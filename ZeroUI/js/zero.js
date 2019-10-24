@@ -49,7 +49,6 @@
         zWin.eventExecute = function (ele, name, evPrototypes) {
             if (document.dispatchEvent) {
                 var ev = document.createEvent("HTMLEvents");
-                //允许冒泡+允许取消
                 ev.initEvent(name, true, true);
                 if (evPrototypes) {
                     for (var o in evPrototypes) {
@@ -261,7 +260,6 @@
         }
     };
     pointHelp = {
-        //计算指定起点及距离及角度的目标坐标
         p2pPoint: function (point, distance, angle) {
             var a = angle * Math.PI / 180;
             var x = Math.round(distance * Math.cos(a) + point.x);
@@ -269,7 +267,6 @@
             var n = { x: x, y: y, distance: distance };
             return n;
         },
-        //计算两点之间的角度
         p2pAngle: function (x1, y1, x2, y2) {
             if (x1 == x2 && y1 < y2) { return 90; }
             if (x1 == x2 && y1 > y2) { return 270; }
@@ -284,7 +281,6 @@
             var a = x1 - x2, b = y1 - y2;
             return Math.round(Math.sqrt(a * a + b * b, 5));
         },
-        //计算两点之间的关系(角度,距离,中间坐标点集合)
         p2pRelation: function (x1, y1, x2, y2) {
             var angle = this.p2pAngle(x1, y1, x2, y2),
                 distance = this.p2pDistance(x1, y1, x2, y2),
@@ -403,12 +399,12 @@
                 i = 0;
             while (i < wArr.length) {
                 var size = {};
-                if (wIsShorten) {//宽度变短(递减)
+                if (wIsShorten) {
                     size.width = size1.width - wArr[i];
                 } else {
                     size.width = size1.width + wArr[i];
                 }
-                if (hIsShorten) {//高度变短(递减)
+                if (hIsShorten) {
                     size.height = size1.height - hArr[i];
                 } else {
                     size.height = size1.height + hArr[i];
@@ -875,16 +871,16 @@
                 }
                 v = '' + v;
                 switch (operator) {
-                    case '='://等于
+                    case '=':
                         if (v === value) { reval.push(nodes[i]); }
                         break;
-                    case '!'://不等
+                    case '!':
                         if (v !== value) { reval.push(nodes[i]); }
                         break;
-                    case '>'://包含
+                    case '>':
                         if (v.indexOf(value) > -1) { reval.push(nodes[i]); }
                         break;
-                    case '<'://不含
+                    case '<':
                         if (v.indexOf(value) < 0) { reval.push(nodes[i]); }
                         break;
                 }
@@ -956,13 +952,11 @@
             return rs;
         };
         for (var j = 0; j < roots.length; j++) {
-            //仅限直属子级
             if (flag) {
                 var nodes = nodeFilter(roots[j].childNodes, eReult.property, eReult.value, eReult.operator);
                 reval = reval.concat(nodes);
                 continue;
             }
-            //不限直属子级
             switch (eReult.property) {
                 case "nodeName":
                     var nodes1 = roots[j].getElementsByTagName(eReult.value);
@@ -1151,7 +1145,6 @@
             if (!isStr(cssText) || cssText.trim().length < 1) {
                 return this;
             }
-            //解析样式字符串
             var styles = [];
             var ms = cssText.match(/([\w\-]+)(\s*\:\s*)((.[^;]*)?)/g);
             if (ms) {
@@ -1160,7 +1153,6 @@
                     if (/([\w\-]+)(\s*\:\s*)((.[^;]*)?)/.exec(ms[i])) {
                         var key = RegExp.$1.toString();
                         var val = RegExp.$3.toString();
-                        //将有横线分隔的key转为标准的驼峰格式字符串
                         if (key.indexOf('-')) {
                             var arr = key.split('-').clearItems(' ');
                             for (var j = 1; j < arr.length; j++) {
@@ -1522,7 +1514,6 @@
                     if (!flag) {
                         eventExecute(this[i], evName);
                     } else {
-                        //模拟必须的touch参数
                         eventExecute(this[i], 'touchstart', { targetTouches: [{ clientX: 0, clientY: 0 }], touches: [{ clientX: 0, clientY: 0 }] });
                         eventExecute(this[i], 'touchend', { targetTouches: [{ clientX: 0, clientY: 0 }], touches: [{ clientX: 0, clientY: 0 }] });
                     }
@@ -1534,7 +1525,6 @@
                 if (!flag) {
                     eventExecute(this[i], evName);
                 } else {
-                    //模拟必须的touch参数
                     eventExecute(this[i], 'touchstart', { targetTouches: [{ clientX: 0, clientY: 0 }], touches: [{ clientX: 0, clientY: 0 }] });
                     eventExecute(this[i], 'touchend', { targetTouches: [{ clientX: 0, clientY: 0 }], touches: [{ clientX: 0, clientY: 0 }] });
                 }
@@ -1602,7 +1592,6 @@
             var g = setInterval(function () { /^(loaded|complete)$/.test(doc.readyState) && (clearInterval(g), end()) }, 0);
             return;
         }
-        log('The browser is too old');
     };
     $.htmlStrToDom = function (content) {
         return $(document.createElement('div')).html(content).find('', 1);
