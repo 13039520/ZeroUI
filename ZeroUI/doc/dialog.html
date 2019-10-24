@@ -226,8 +226,6 @@
                     var defaultVal = '太赞了，我';
                     dialog.prompt(
                         '输入短评',//对话框标题
-                        defaultVal,//默认值
-                        'multiLine',//文本模式(multiLine|password|text,默认text)
                         //确定后回调
                         function (result) {
                             if (result.trim().length < 1) {
@@ -238,9 +236,12 @@
                                 dialog.tips('再补充点什么吧！');
                                 return;
                             }
-                            dialog.alert('短评内容',result);
+                            dialog.alert('短评内容', result);
                             this.close();//关闭对话框
                         },
+                        defaultVal,//默认值
+                        'multiLine',//文本模式(multiLine|password|text,默认text)
+                        
                         320);//宽度(可空)
                 };
                 inputs.tips.onclick = function () {
