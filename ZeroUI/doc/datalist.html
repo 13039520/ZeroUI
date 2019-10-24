@@ -98,14 +98,14 @@
             dataSource: {},
             addFunc: function () {
                 //由于该对话框弹出到顶层页面，url也将是相对于顶层页面的
-                dialog.loadIframe('新建用户', "../zeroJS/datatable_add.html", 800, 600, null, null);
+                dialog.loadIframe('新建用户', "../doc/datatable_add.html", 800, 600, null, null);
             },
             showFunc : function (ele, data, row, isSelected) {
                 dialog.alert('查看明细', JSON.stringify(data));
             },
             editFunc: function (ele, data, row, isSelected) {
                 //由于该对话框弹出到顶层页面，url也将是相对于顶层页面的
-                dialog.loadIframe('用户资料修改-' + data.name, '../zeroJS/datatable_add.html?id=' + data.id, 800, 600, null, null);
+                dialog.loadIframe('用户资料修改-' + data.name, '../doc/datatable_add.html?id=' + data.id, 800, 600, null, null);
             },
             deleteFunc : function (ele, data, row, isSelected) {
                 dialog.confirm('操作确认', '确定要删除“' + data.name + '”吗？', function (flag) {

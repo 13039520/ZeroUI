@@ -1145,25 +1145,25 @@
     <Content Include="mobileUI\index.html" />
     <Content Include="mobileUI\news.html" />
     <Content Include="mobileUI\productlist.html" />
-    <Content Include="zeroJS\ajax.html" />
-    <Content Include="zeroJS\autocomplete.html" />
-    <Content Include="zeroJS\change_opacity.html" />
-    <Content Include="zeroJS\change_position.html" />
-    <Content Include="zeroJS\change_size.html" />
-    <Content Include="zeroJS\datalist.html" />
-    <Content Include="zeroJS\datatable.html" />
-    <Content Include="zeroJS\datatable_add.html" />
-    <Content Include="zeroJS\date_input.html" />
-    <Content Include="zeroJS\dialog.html" />
-    <Content Include="zeroJS\drag.html" />
-    <Content Include="zeroJS\form.html" />
-    <Content Include="zeroJS\icons.html" />
-    <Content Include="zeroJS\image_show.html" />
-    <Content Include="zeroJS\side_bar.html" />
-    <Content Include="zeroJS\tree_box.html" />
-    <Content Include="zeroJS\tree_edit.html" />
-    <Content Include="zeroJS\tree_input.html" />
-    <Content Include="zeroJS\zero.html" />
+    <Content Include="doc\ajax.html" />
+    <Content Include="doc\autocomplete.html" />
+    <Content Include="doc\change_opacity.html" />
+    <Content Include="doc\change_position.html" />
+    <Content Include="doc\change_size.html" />
+    <Content Include="doc\datalist.html" />
+    <Content Include="doc\datatable.html" />
+    <Content Include="doc\datatable_add.html" />
+    <Content Include="doc\date_input.html" />
+    <Content Include="doc\dialog.html" />
+    <Content Include="doc\drag.html" />
+    <Content Include="doc\form.html" />
+    <Content Include="doc\icons.html" />
+    <Content Include="doc\image_show.html" />
+    <Content Include="doc\side_bar.html" />
+    <Content Include="doc\tree_box.html" />
+    <Content Include="doc\tree_edit.html" />
+    <Content Include="doc\tree_input.html" />
+    <Content Include="doc\zero.html" />
   </ItemGroup>
 
 </Project>
