@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "ZeroUI": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Production"
+      }
+    }
+  }
+}

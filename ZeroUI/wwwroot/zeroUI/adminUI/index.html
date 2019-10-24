@@ -1,0 +1,179 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>zeroAdminUI</title>
+    <link href="../css/zero.adminUI.css" rel="stylesheet" />
+    <script type="text/javascript" src="../js/zero.js"></script>
+    <script type="text/javascript" src="../js/zero.ch.js"></script>
+    <script type="text/javascript" src="../js/zero.UI.js"></script>
+    <script type="text/javascript" src="../js/zero.adminUI.js"></script>
+    <script type="text/javascript">
+        zero.ready(function () {
+            zeroAdminUI.mainPage.init();
+            var currentTime = zero('currentTime');
+            if (currentTime.length !== 1) { return; }
+            setInterval(function () {
+                var j = zero.datetimeJSON(new Date(), true);
+                currentTime.html(j.yyyy + '年' + j.MM + '月' + j.dd + '日 ' + j.week + ' ' + j.HH + '时' + j.mm + '分' + j.ss + '秒');
+            }, 1000);
+            var myNotification = zero('myNotification'),
+                myTask = zero('myTask');
+            myNotification.length === 1&&myNotification.addEvent('click', function (e) {
+                dialog.loadIframe(zero(this).text(), 'welcome.html', 800, 600)
+            });
+            myTask.length === 1 && myTask.addEvent('click', function (e) {
+                dialog.loadIframe(zero(this).text(), 'welcome.html', 800, 600)
+            });
+        });
+    </script>
+</head>
+<body class="zero_top_page">
+    <div id="header">
+        <div class="zero_left"><h1>ZeroAdminUI</h1><h2>ZeroAdminUI background management system</h2></div>
+        <div class="zero_right"><div class="zero_arrow_init"><span class="zero_up"></span><span class="zero_down"></span></div>
+            <div class="zero_right_con">
+                <p>现在是：<span id="currentTime">2019年09月19日 星期四 00时00分00秒</span> </p>
+                <p><a id="myTask" class="zero_bg_icon zero_bg_icon_alarm2">今日事务</a> | <a id="myNotification" class="zero_bg_icon zero_bg_icon_volume_medium">我的通知</a> | <a class="zero_bg_icon zero_bg_icon_switch" href="?out=true">退出管理</a></p>
+            </div>
+        </div>
+    </div>
+    <div id="content">
+        <div class="zero_left" id="left">
+            <div class="zero_left_con zero_scrollbar">
+                <div class="zero_left_menu" id="left_menu">
+                    <dl>
+                        <dt>welcome</dt>
+                        <dd><a href="welcome.html">欢迎使用</a></dd>
+                        <dd><a href="about.html">关于系统</a></dd>
+                    </dl>
+                    <dl>
+                        <dt>zeroJS DOC</dt>
+                        <dd><a href="../zeroJS/zero.html">zero</a></dd>
+                        <dd><a href="../zeroJS/ajax.html">zero.ajax</a></dd>
+                        <dd><a href="../zeroJS/date_input.html">zero.dateInput</a></dd>
+                        <dd><a href="../zeroJS/form.html">zero.form</a></dd>
+                        <dd><a href="../zeroJS/change_position.html">zero.changePosition</a></dd>
+                        <dd><a href="../zeroJS/change_size.html">zero.changeSize</a></dd>
+                        <dd><a href="../zeroJS/change_opacity.html">zero.changeOpacity</a></dd>
+                        <dd><a href="../zeroJS/image_show.html">zero.imageShow</a></dd>
+                        <dd><a href="../zeroJS/drag.html">zero.drag</a></dd>
+                        <dd><a href="../zeroJS/dialog.html">zero.dialog</a></dd>
+                        <dd><a href="../zeroJS/tree_input.html">zero.treeInput</a></dd>
+                        <dd><a href="../zeroJS/tree_box.html">zero.treeBox</a></dd>
+                        <dd><a href="../zeroJS/tree_edit.html">zero.treeEdit</a></dd>
+                        <dd><a href="../zeroJS/side_bar.html">zero.UI.sideBar</a></dd>
+                        <dd><a href="../zeroJS/autocomplete.html">zero.UI.autocomplete</a></dd>
+                        <dd><a href="../zeroJS/datalist.html">ze'ro.UI.datalist</a></dd>
+                        <dd><a href="../zeroJS/datatable.html">ze'ro.UI.datatable</a></dd>
+                        <dd><a href="../zeroJS/icons.html">zero.UI.icons</a></dd>
+                    </dl>
+                    <dl>
+                        <dt>系统设置</dt>
+                        <dd><a href="welcome.html">欢迎使用</a></dd>
+                        <dd><a href="about.html">关于系统</a></dd>
+                        <dd><a href="welcome.html">欢迎使用</a></dd>
+                        <dd><a href="about.html">关于系统</a></dd>
+                        <dd><a href="welcome.html">欢迎使用</a></dd>
+                    </dl>
+                    <dl>
+                        <dt>产品管理</dt>
+                        <dd><a href="welcome.html">欢迎使用</a></dd>
+                        <dd><a href="about.html">关于系统</a></dd>
+                        <dd><a href="welcome.html">欢迎使用</a></dd>
+                        <dd><a href="about.html">关于系统</a></dd>
+                        <dd><a href="welcome.html">欢迎使用</a></dd>
+                        <dd><a href="about.html">关于系统</a></dd>
+                        <dd><a href="welcome.html">欢迎使用</a></dd>
+                        <dd><a href="about.html">关于系统</a></dd>
+                    </dl>
+                    <dl>
+                        <dt>订单管理</dt>
+                        <dd><a href="welcome.html">欢迎使用</a></dd>
+                        <dd><a href="about.html">关于系统</a></dd>
+                        <dd><a href="welcome.html">欢迎使用</a></dd>
+                        <dd><a href="about.html">关于系统</a></dd>
+                        <dd><a href="welcome.html">欢迎使用</a></dd>
+                        <dd><a href="about.html">关于系统</a></dd>
+                        <dd><a href="welcome.html">欢迎使用</a></dd>
+                        <dd><a href="about.html">关于系统</a></dd>
+                    </dl>
+                    <dl>
+                        <dt>新闻管理</dt>
+                        <dd><a href="welcome.html">欢迎使用</a></dd>
+                        <dd><a href="about.html">关于系统</a></dd>
+                        <dd><a href="welcome.html">欢迎使用</a></dd>
+                        <dd><a href="about.html">关于系统</a></dd>
+                        <dd><a href="welcome.html">欢迎使用</a></dd>
+                        <dd><a href="about.html">关于系统</a></dd>
+                        <dd><a href="welcome.html">欢迎使用</a></dd>
+                        <dd><a href="about.html">关于系统</a></dd>
+                        <dd><a href="welcome.html">欢迎使用</a></dd>
+                        <dd><a href="about.html">关于系统</a></dd>
+                        <dd><a href="welcome.html">欢迎使用</a></dd>
+                        <dd><a href="about.html">关于系统</a></dd>
+                        <dd><a href="welcome.html">欢迎使用</a></dd>
+                        <dd><a href="about.html">关于系统</a></dd>
+                        <dd><a href="welcome.html">欢迎使用</a></dd>
+                    </dl>
+                    <dl>
+                        <dt>评论管理</dt>
+                        <dd><a href="welcome.html">欢迎使用</a></dd>
+                        <dd><a href="about.html">关于系统</a></dd>
+                        <dd><a href="welcome.html">欢迎使用</a></dd>
+                        <dd><a href="about.html">关于系统</a></dd>
+                        <dd><a href="welcome.html">欢迎使用</a></dd>
+                        <dd><a href="about.html">关于系统</a></dd>
+                        <dd><a href="welcome.html">欢迎使用</a></dd>
+                        <dd><a href="about.html">关于系统</a></dd>
+                        <dd><a href="welcome.html">欢迎使用</a></dd>
+                        <dd><a href="about.html">关于系统</a></dd>
+                        <dd><a href="welcome.html">欢迎使用</a></dd>
+                        <dd><a href="about.html">关于系统</a></dd>
+                        <dd><a href="welcome.html">欢迎使用</a></dd>
+                        <dd><a href="about.html">关于系统</a></dd>
+                    </dl>
+                    <dl>
+                        <dt>咨询管理</dt>
+                        <dd><a href="welcome.html">欢迎使用</a></dd>
+                        <dd><a href="about.html">关于系统</a></dd>
+                        <dd><a href="welcome.html">欢迎使用</a></dd>
+                        <dd><a href="about.html">关于系统</a></dd>
+                        <dd><a href="welcome.html">欢迎使用</a></dd>
+                        <dd><a href="about.html">关于系统</a></dd>
+                        <dd><a href="welcome.html">欢迎使用</a></dd>
+                        <dd><a href="about.html">关于系统</a></dd>
+                        <dd><a href="welcome.html">欢迎使用</a></dd>
+                        <dd><a href="about.html">关于系统</a></dd>
+                        <dd><a href="welcome.html">欢迎使用</a></dd>
+                        <dd><a href="about.html">关于系统</a></dd>
+                    </dl>
+                    <dl>
+                        <dt>任务管理</dt>
+                        <dd><a href="welcome.html">欢迎使用</a></dd>
+                        <dd><a href="about.html">关于系统</a></dd>
+                        <dd><a href="welcome.html">欢迎使用</a></dd>
+                        <dd><a href="about.html">关于系统</a></dd>
+                        <dd><a href="welcome.html">欢迎使用</a></dd>
+                        <dd><a href="about.html">关于系统</a></dd>
+                        <dd><a href="welcome.html">欢迎使用</a></dd>
+                        <dd><a href="about.html">关于系统</a></dd>
+                        <dd><a href="welcome.html">欢迎使用</a></dd>
+                        <dd><a href="about.html">关于系统</a></dd>
+                        <dd><a href="welcome.html">欢迎使用</a></dd>
+                        <dd><a href="about.html">关于系统</a></dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+        <div class="zero_separate" id="separate"><div><!--分隔线--></div></div>
+        <div class="zero_right" id="right">
+            <div class="zero_right_tabs" id="rtabs"><!--tab--></div>
+            <div class="zero_r_iframes" id="riframes"><!--tab_page--></div>
+        </div>
+    </div>
+    <div id="footer">
+        <div>ZEROADMINUI</div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,223 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>zeroMobileUI</title>
+    <link href="../css/zero.mobileUI.css" rel="stylesheet" />
+    <script type="text/javascript" src="../js/zero.js"></script>
+    <script type="text/javascript" src="../js/zero.ch.js"></script>
+    <script type="text/javascript" src="../js/zero.UI.js"></script>
+    <script type="text/javascript" src="../js/zero.mobileUI.js"></script>
+</head>
+<body>
+    <div id="zero_mp_header">
+        <div class="zero_mp_header zero_mp_header_fixed">
+            <div class="zero_mp_header_l"><a href="index.html" class="zero_bg_icon zero_bg_icon_arrow_left">&nbsp;</a></div>
+            <div class="zero_mp_header_c">客户列表</div>
+            <div class="zero_mp_header_r"><a class="zero_bg_icon zero_bg_icon_file zero_mp_remark_bar_show">&nbsp;</a></div>
+        </div>
+    </div>
+    <div id="zero_mp_main">
+        <div class="zero_ctrl_inputs">
+            <span>操作：</span>
+            <input type="button" value="过滤" class="zero_bg_icon zero_bg_icon_filter2" onclick="zero.UI.leftSideBar('filterSideBar', true)" />
+            <select onchange="myPage.itemSel(this)" class="zero_bg_icon zero_bg_icon_checkbox_checked">
+                <option>勾选</option>
+                <option value="1">全选</option>
+                <option value="2">弃选</option>
+            </select>
+            <input type="button" value="删除" class="zero_bg_icon zero_bg_icon_remove2" onclick="myPage.bulkDeleteFunc()" />
+            <a href="datatable_add.html" class="zero_bg_icon zero_bg_icon_plus">新建</a>
+        </div>
+        <div class="zero_data_list zero_page_bar_fixed">
+            <table class="zero_datatable">
+                <thead>
+                    <tr><th style="width:16px;"></th><th>No.</th><th>姓名</th><th>城市</th><th class="ctrl noprint">操作</th></tr>
+                </thead>
+                <tbody id="dataInit" class="zero_selected_single">
+                    <tr style="visibility:hidden;"><td><input type="checkbox" /></td><td>#rownum#</td><td>@name</td><td>@city</td><td class="zero_ctrl noprint"><input type="button" value="明细" class="zero_bg_icon zero_bg_icon_eye2" /></td></tr>
+                 </tbody>
+            </table>
+            <div class="zero_page_bar noprint"><div id="pageInit" class="zero_pager noprint"></div></div>
+        </div>
+    </div>
+
+    <div id="filterSideBar" class="zero_side_bar">
+        <div class="zero_mp_main">
+            <div class="zero_side_bar_header">
+                <div class="zero_side_bar_header_l"><a class="zero_bg_icon zero_bg_icon_filter2"></a></div>
+                <div class="zero_side_bar_header_c">客户过滤(左侧弹出)</div>
+                <div class="zero_side_bar_header_r"><a class="zero_side_bar_close zero_bg_icon zero_bg_icon_close"></a></div>
+            </div>
+            <div class="zero_side_bar_main"><div class="zero_form" id="myForm1">
+                <dl class="zero_form_group zero_form_group_cols3">
+                    <dd><div class="zero_form_text">
+                        <h2 class="zero_form_input_label">排序：</h2>
+                         </div><div class="zero_form_input"><select name="sort"><option>--默认--</option></select></div></dd>
+                    <dd><div class="zero_form_text">
+                        <h2 class="zero_form_input_label">性别：</h2>
+                        </div><div class="zero_form_input"><select name="gender"><option>--不限--</option></select></div></dd>
+                    <dd><div class="zero_form_text">
+                        <h2 class="zero_form_input_label">状态：</h2>
+                        </div><div class="zero_form_input"><select name="state"><option>--不限--</option></select></div></dd>
+                    <dd class="zero_form_cells1"><div class="zero_form_text">
+                        <h2 class="zero_form_input_label">关键词：</h2>
+                        </div><div class="zero_form_input"><input type="text" name="keyword" /></div></dd>
+                </dl>
+                <div class="zero_form_btns">
+                    <input type="button" name="cancelBtn" value="取消" class="zero_side_bar_close" />
+                    <input type="submit" name="submitBtn" value="搜索" onclick="myPage.searchFunc()" />
+                </div></div>
+            </div>
+        </div>
+    </div>
+    <div id="zero_mp_remark_bar" class="zero_side_bar zero_side_bar_header_fixed">
+        <div class="zero_mp_main">
+            <div class="zero_side_bar_header">
+                <div class="zero_side_bar_header_l"><a class="zero_bg_icon zero_bg_icon_file"></a></div>
+                <div class="zero_side_bar_header_c">关于客户列表</div>
+                <div class="zero_side_bar_header_r"><a class="zero_side_bar_close zero_bg_icon zero_bg_icon_close"></a></div>
+            </div>
+            <div class="zero_side_bar_main">
+                <p>1. 默认按注册时间降序排列</p>
+                <p>2. 默认只取最近一周的数据</p>
+                <p>3. 如果需要更精细的筛选请点击“过滤”按钮，在其弹出的面板中进行操作</p>
+                <p style="text-align:center;"><input type="button" value="我已经知道了" class="zero_side_bar_close zero_bg_icon zero_bg_icon_close" /></p>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../js/zero.tree.js"></script>
+    <script type="text/javascript">
+        //zero.debug(1);
+        //封装成一个对象(避免变量重名)
+        var myPage = {
+            dataSource: {},
+            addFunc: function () {
+                dialog.loadIframe('新建客户', "datatable_add.html", 800, 600, null, null);
+            },
+            showFunc: function (ele, data, row, isSelected) {
+                dialog.alert('查看明细', JSON.stringify(data));
+            },
+            bulkDeleteFunc: function () {
+                var rows = myPage.dataSource.getSelected();
+                if (rows.length) {
+                    dialog.confirm('操作确认', '本次将删除' + rows.length + '条数据，确定要删除吗？', function (flag) {
+                        flag && myPage.dataSource.removeSelected();
+                    })
+                }
+            },
+            itemSel: function (sel) {
+                switch (sel.value) {
+                    case '1':
+                        myPage.dataSource.selectedAll();
+                        break;
+                    case '2':
+                        myPage.dataSource.selectedCancel();
+                        break;
+                    case '3':
+                        myPage.dataSource.selectedReverse();
+                        break;
+                }
+                //还原选中项(使每一次选择操作项都能触发事件)
+                sel.selectedIndex = 0;
+            },
+            searchFunc: function () {
+                //收起弹出层
+                zero.UI.upSideBar('filterSideBar', false);
+                //获取数据
+                var data = zero.form('myForm1').getData();
+                //将数据循环写入到查询参数中
+                for (var o in data) {
+                    var v = data[o];
+                    if ('' === v) {
+                        myPage.dataSource.queryDataRemove(o);
+                    } else {
+                        myPage.dataSource.queryDataSet(o, data[o]);
+                    }
+                }
+                //将page查询参数设置为1
+                myPage.dataSource.queryDataSet('page', 1);
+                //重新加载数据
+                myPage.dataSource.reload();
+            },
+            initFunc: function () {
+                myPage.dataSource = zeroUI.datalist({
+                    //url:'/home/listTestApi',
+                    url: function (request) {
+                        var page = request.queryData.page,
+                            size = request.queryData.size,
+                            total = 123456;
+                        if (page < 1) { page = 1; }
+                        if (size < 1) { size = 1; }
+                        var pages = total % size === 0 ? total / size : parseInt(total / size) + 1;
+                        if (page > pages) { page = pages; }
+                        var reval = { total: total, rows: [], status: 1, msg: 'OK' },
+                            startIndex = page * size - size,
+                            endIndex = startIndex + size;
+                        if (endIndex > total) { endIndex = total; }
+                        while (startIndex < endIndex) {
+                            startIndex++;
+                            var name = '张王李武孙赵钱韩楚魏陈宋秦陶吴杨谢林陆关'[Math.floor(Math.random() * 20)]
+                                            + '无有常玄启合远近师悟劝成'[Math.floor(Math.random() * 12)]
+                                            + '龙虎风云文武德胜芳菲燕雅娴淑慧兰麒麟琪琳玲珑'[Math.floor(Math.random() * 20)];
+                            reval.rows.push({ id: startIndex, city: '昆明', name: name, birthday: '2020-01-01', createTime: '2020-01-01 10:30:20', sex: startIndex % 2 == 0 ? 1 : 2 });
+                        }
+                        request.end(reval);
+                        //zero.log(JSON.stringify(request));
+                    },
+                    delay: 500,
+                    pageNode: 'pageInit',
+                    dataNode: 'dataInit',
+                    queryData: { page: 1, size: 20 },
+                    queryHeader: {},
+                    queryMethod: 'get',
+                    pager: { left: 0, right: 0, count: true, go: false, size: [], useLink: false },
+                    rowFormat: function (html, index, page, size, row) { return html.replace('#rownum#', page * size + index + 1); },
+                    cellFormat: function (name, value, row) {
+                        switch (name) {
+                            case 'sex':
+                                value = value === 0 ? '未知' : (value === 1 ? '男' : '女');
+                                break;
+                            case 'birthday':
+                                value = value.replace(/(\s*\d{1,2}:\d{1,2}:\d{1,2}).*$/, '');
+                                break;
+                        }
+                        return value;
+                    },
+                    onRowClick: function (ele, data, row, isSelected) {
+                        switch (ele.value) {
+                            case '明细':
+                                myPage.showFunc(ele, data, row, isSelected);
+                                break;
+                        }
+                        if (!isSelected) {
+                            myPage.dataSource.selectedRow(row);
+                        } else {
+                            myPage.dataSource.selectedCancel(row);
+                        }
+                    },
+                    onDataLoad: function (data, page, size, total) {
+                        if (data && data.length) {
+                            var vLen = ('' + total).length;
+                            var fun = function (v) {
+                                v = '' + v;
+                                while (v.length < vLen) {
+                                    v = '0' + v;
+                                }
+                                return v;
+                            };
+                            for (var i = 0; i < data.length; i++) {
+                                var v = (page * size - size + i + 1);
+                                data[i].myCustomSerialNumber = total + '-' + fun(v) + '-' + fun(total - v);
+                            }
+                        }
+                    }
+                });
+            }
+        };
+        zero.ready(myPage.initFunc);
+    </script>
+</body>
+</html>

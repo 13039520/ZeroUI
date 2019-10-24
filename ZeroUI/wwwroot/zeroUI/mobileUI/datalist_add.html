@@ -1,0 +1,135 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>zeroMobileUI</title>
+    <link href="../css/zero.mobileUI.css" rel="stylesheet" />
+    <script type="text/javascript" src="../js/zero.js"></script>
+    <script type="text/javascript" src="../js/zero.ch.js"></script>
+    <script type="text/javascript" src="../js/zero.UI.js"></script>
+    <script type="text/javascript" src="../js/zero.mobileUI.js"></script>
+</head>
+<body>
+    <div id="zero_mp_header">
+        <div class="zero_mp_header zero_mp_header_fixed">
+            <div class="zero_mp_header_l"><a href="datalist.html" class="zero_bg_icon zero_bg_icon_arrow_left">&nbsp;</a></div>
+            <div class="zero_mp_header_c">新建预约</div>
+            <div class="zero_mp_header_r"><a class="zero_bg_icon zero_bg_icon_file zero_mp_remark_bar_show">&nbsp;</a></div>
+        </div>
+    </div>
+    <div id="zero_mp_main">
+        <form class="zero_form zero_form_btns_fixed" id="myForm">
+        <dl class="zero_form_group">
+            <dt><span class="zero_bg_icon zero_bg_icon_folder_open"></span><span>基础资料(*项必填必选)</span></dt>
+            <dd><div class="zero_form_text">
+                <h2 class="zero_form_input_label">姓名(*)：</h2>
+            </div><div class="zero_form_input"><input type="text" name="name" /></div></dd>
+            <dd><div class="zero_form_text">
+                <h2 class="zero_form_input_label">性别(*)：</h2>
+            </div><div class="zero_form_input">
+                 <input type="hidden" name="gender" value="0" /><!--默认值-->
+                <label><input type="radio" name="gender" value="1" /> 男</label>
+                <label><input type="radio" name="gender" value="2" /> 女</label>
+                <label><input type="radio" name="gender" value="3" /> 其它</label>
+                 </div></dd>
+            <dd><div class="zero_form_text">
+                <h2 class="zero_form_input_label">生日(*)：</h2>
+            </div><div class="zero_form_input"><input type="text" name="birthday" /></div></dd>
+            <dd><div class="zero_form_text">
+                <h2 class="zero_form_input_label">居住城市(*)：</h2>
+            </div><div class="zero_form_input"><input type="text" name="city" /></div></dd>
+        </dl>
+        <dl class="zero_form_group">
+            <dt><span class="zero_bg_icon zero_bg_icon_folder_open"></span><span>联系方式(*项必填必选)</span></dt>
+            <dd><div class="zero_form_text">
+                <h2 class="zero_form_input_label">电子邮箱(*)：</h2>
+            </div><div class="zero_form_input"><input type="text" name="email" /></div></dd>
+            <dd><div class="zero_form_text">
+                <h2 class="zero_form_input_label">手机号码(*)：</h2>
+            </div><div class="zero_form_input"><input type="text" name="phone" /></div></dd>
+            <dd><div class="zero_form_text">
+                <h2 class="zero_form_input_label">详细地址(*)：</h2>
+            </div><div class="zero_form_input"><input type="text" name="address" /></div></dd>
+            <dd><div class="zero_form_text">
+                <h2 class="zero_form_input_label">邮政编码(*)：</h2>
+            </div><div class="zero_form_input"><input type="text" name="post" /></div></dd>
+        </dl>
+        <div class="zero_form_btns">
+            <input type="reset" name="zero_btnCancel" value="重置" />
+            <input type="submit" name="zero_btnSubmit" value="提交" />
+        </div>
+        </form>
+    </div>
+
+    <div id="zero_mp_remark_bar" class="zero_side_bar zero_side_bar_header_fixed">
+        <div class="zero_mp_main">
+            <div class="zero_side_bar_header">
+                <div class="zero_side_bar_header_l"><a class="zero_bg_icon zero_bg_icon_file"></a></div>
+                <div class="zero_side_bar_header_c">关于新建预约</div>
+                <div class="zero_side_bar_header_r"><a class="zero_side_bar_close zero_bg_icon zero_bg_icon_close"></a></div>
+            </div>
+            <div class="zero_side_bar_main">
+                <p>1. 带"*"项为必填必选项，您必须选择或填写</p>
+                <p>2. 如果不能提交，请滑动整个页面对各个输入项进行检查，未填或未选或输入不合法的输入项会以橙色进行高亮提示</p>
+                <p style="text-align:center;"><input type="button" value="我已经知道了" class="zero_side_bar_close zero_bg_icon zero_bg_icon_close" /></p>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../js/zero.tree.js"></script>
+    <script type="text/javascript">
+        zero.ready(function () {
+            //zero.debug(1);
+            var myForm = zero.form('myForm'),
+                inputs = myForm.inputs,
+                checkResult = myForm.checkResult;
+            inputs.birthday.onfocus = function () {
+                zero.dateInput('选择生日').editType(1).format('yyyy-MM-dd').target(this).ok(function (str, json, date) {
+                    this.value = str;
+                    return true;//返回任意为true的值表示处理成功
+                }).show(1);
+            };
+
+            zero.ajax('../js/data-area.txt').send(function (res) {
+                var d = null;
+                try { d = eval('(' + res + ')'); } catch (e) { d = null; }
+                if (!d) { return; }
+                zero.treeInput({
+                    target: inputs.city,
+                    data: d.data,
+                    valueField: 'AreaCode',
+                    textField: 'AreaName',
+                    parentField: 'AreaParent',
+                    onTextBuilder: function (data) { return '[' + data.AreaCode + ']' + data.AreaName + data.AreaNameSuffix; },
+                    onSelect: function (data) { /*选中项的valueField已经写入到了target中*/ }
+                });
+                zero.log('city data loaded.');
+            });
+
+            zero.log('my form events binded.');
+            var waitingDialog = null;
+            myForm.onCheck = function (data) {
+
+                var tips = '此项不能留空';
+                checkResult.email = { fail: !/^\w{2,50}@\w{1,50}(\.\w{1,50}){1,3}$/.test(data.email), msg: '输入不合格式要求' };
+                checkResult.phone = { fail: !/^1[1-9]\d{9}$/.test(data.phone), msg: '输入不合格式要求' };
+                checkResult.address = { fail: !data.address, msg: tips };
+                checkResult.post = { fail: !data.post, msg: tips };
+                checkResult.name = { fail: !data.name, msg: tips };
+                checkResult.gender = { fail: '0' === data.gender, msg: tips };
+                checkResult.birthday = { fail: !data.birthday, msg: tips };
+                checkResult.city = { fail: !data.city, msg: tips };
+            };
+            myForm.onRequest = function () {
+                waitingDialog = dialog.waiting('……正在提交……');
+            };
+            myForm.onResponse = function (res) {
+                waitingDialog && waitingDialog.close();
+                dialog.alert('操作提示', '新建预约成功！', function () { window.location.href = 'datalist.html'; });
+            };
+            //myForm.submit();
+        });
+    </script>
+</body>
+</html>
