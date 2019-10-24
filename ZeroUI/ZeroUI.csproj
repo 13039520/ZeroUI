@@ -1166,8 +1166,4 @@
     <Content Include="zeroJS\zero.html" />
   </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.App" />
-  </ItemGroup>
-
 </Project>
