@@ -14,8 +14,7 @@
             var currentTime = zero('currentTime');
             if (currentTime.length !== 1) { return; }
             setInterval(function () {
-                var j = zero.datetimeJSON(new Date(), true);
-                currentTime.html(j.yyyy + '年' + j.MM + '月' + j.dd + '日 ' + j.week + ' ' + j.HH + '时' + j.mm + '分' + j.ss + '秒');
+                currentTime.html(zero.datetimeFormat(new Date(), 'yyyy年MM月dd日 week HH时mm分ss秒'));
             }, 1000);
             var myNotification = zero('myNotification'),
                 myTask = zero('myTask');
