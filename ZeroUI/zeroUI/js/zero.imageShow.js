@@ -17,7 +17,6 @@
         var id = '_zero_image_show_',
             doc = win.document,
             body = doc.body,
-            //水平拉伸,垂直拉伸,居中拉伸,居中水平拉伸,居中垂直拉伸,水平移动,垂直移动
             behaviorArr = ['SH', 'SV', 'SC', 'SCH', 'SCV', 'MH', 'MV'],
             getImgBehaviorVal = function (v) {
                 v = ('' + v).toUpperCase();
