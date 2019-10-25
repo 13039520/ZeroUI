@@ -95,7 +95,6 @@ body #dialogInit .zero_dialogB{}
 .zero_data_list .zero_title_bar .zero_right{margin-right:10px;}
 .zero_data_list .zero_title_bar *{vertical-align:middle;}
 .zero_data_list .zero_title{border-left:solid 15px #05a59d;font-weight:600;font-size:16px;line-height:1px;padding:0 2px;}
-.zero_data_list .zero_listInit{width:100%;overflow:hidden;overflow-x:visible;*overflow-x:scroll;margin:0 auto;}
 
 .zero_demo_main{display:block;padding:10px;overflow:hidden;}
 .zero_demo_main table.zero_datatable tbody td{padding:5px;}

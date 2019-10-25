@@ -99,7 +99,7 @@ dl.zero_form_group dd.zero_tips .zero_form_input {border-color: #f90;}
 .zero_repeat_item_btns input[type=submit].zero_bg_icon,
 .zero_repeat_item_btns input[type=reset].zero_bg_icon,
 .zero_repeat_item_btns button.zero_bg_icon,
-.zero_repeat_item_btns .zero_bg_icon{background-color:#82d5d6;border-color:#39c2c2;color:#000;}
+.zero_repeat_item_btns .zero_bg_icon{color:#000;}
 .zero_repeat_col2 .zero_repeat_item{width:50%;}
 .zero_repeat_col3 .zero_repeat_item{width:33.33%;}
 .zero_repeat_col4 .zero_repeat_item{width:25%;}
@@ -129,7 +129,7 @@ table.zero_datatable tbody tr.zero_selected a{color:#000;}
 table.zero_datatable tbody tr.zero_selected a:hover{color:#f00;}
 table.zero_datatable .zero_ctrl a,
 table.zero_datatable button,
-table.zero_datatable input[type=button]{display:inline-block;height:20px; font-size:12px;background-color:transparent;border-color:#39c2c2;color:#000;}
+table.zero_datatable input[type=button]{display:inline-block;height:20px; font-size:12px;background-color:transparent;color:#000;}
 table.zero_datatable .zero_ctrl a:hover,
 table.zero_datatable button:hover,
 table.zero_datatable input[type=button]:hover{border-color:#000;}

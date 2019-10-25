@@ -6,6 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="zeroUI\doc\datalist2.html" />
+    <None Remove="zeroUI\doc\datalist3.html" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="zeroUI\adminUI\about.html" />
     <Content Include="zeroUI\adminUI\index.html" />
     <Content Include="zeroUI\adminUI\welcome.html" />
@@ -1113,6 +1118,8 @@
     <Content Include="zeroUI\css\zero.icons.css" />
     <Content Include="zeroUI\css\zero.icons.white.css" />
     <Content Include="zeroUI\css\zero.mobileUI.css" />
+    <Content Include="zeroUI\doc\datalist3.html" />
+    <Content Include="zeroUI\doc\datalist2.html" />
     <Content Include="zeroUI\favicon.ico" />
     <Content Include="zeroUI\images\001.jpg" />
     <Content Include="zeroUI\images\002.jpg" />
@@ -1145,7 +1152,7 @@
     <Content Include="zeroUI\doc\change_opacity.html" />
     <Content Include="zeroUI\doc\change_position.html" />
     <Content Include="zeroUI\doc\change_size.html" />
-    <Content Include="zeroUI\doc\datalist.html" />
+    <Content Include="zeroUI\doc\datalist1.html" />
     <Content Include="zeroUI\doc\datatable.html" />
     <Content Include="zeroUI\doc\datatable_add.html" />
     <Content Include="zeroUI\doc\date_input.html" />
