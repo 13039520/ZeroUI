@@ -87,7 +87,7 @@ dl.zero_form_group dd.zero_tips .zero_form_input {border-color: #f90;}
 .zero_repeat_item_con{overflow:hidden;line-height:1;font-size:12px;padding:2px 0;margin:0;}
 .zero_repeat_item_btns{padding:0;margin:0;line-height:1;}
 .zero_repeat .zero_repeat_item:last-child{margin-bottom:0;}
-.zero_repeat_item_inside{border:solid 1px #f2f2f2;margin:3px;padding:2px; overflow:hidden;display:block;background:#fff;}
+.zero_repeat_item_inside{border:solid 1px #f7f7f7;margin:3px;padding:2px; overflow:hidden;display:block;background:#fff;}
 .zero_repeat_item.zero_selected .zero_repeat_item_inside{border-color:#999;}
 .zero_repeat_init{margin:3px;}
 .zero_repeat_item_btns input[type=button],
@@ -118,10 +118,10 @@ table.zero_datatable tbody{color:#666;font-size:14px;}
 table.zero_datatable tfoot td{background:#fff;border:solid 1px #dedede;} 
 table.zero_datatable tfoot td .zero_left{width:49%; height:30px; padding-top:4px;}
 table.zero_datatable tfoot td .zero_right{width:49%;}
-table.zero_datatable tbody td{border:solid 1px #dedede;padding:1px 0;}
+table.zero_datatable tbody td{border:solid 1px #eee;padding:1px 0;}
 table.zero_datatable tbody tr{background:#fff;color:#333;line-height:1.2;}
 table.zero_datatable tbody tr:hover{color:#f00;}
-table.zero_datatable tbody tr:nth-child(even){background:#f2f2f2;color:#000;}
+table.zero_datatable tbody tr:nth-child(even){background:#f7f7f7;color:#000;}
 table.zero_datatable tbody tr:nth-child(even):hover{color:#f00;}
 table.zero_datatable tbody tr.zero_selected{color:#f00; background:#ffeeee;}
 table.zero_datatable tbody tr.zero_selected:hover{background:#ffffaa;color:#f00;}

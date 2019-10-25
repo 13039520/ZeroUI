@@ -87,23 +87,23 @@
                         zero.treeInput({
                             target: inputs.city1,
                             data: data,//初始化数据
-                            valueField: 'OrgId',//标识列名称
-                            textField: 'OrgName',//显示列名称
-                            parentField: 'ParentId',//父节点
-                            onTextBuilder: function (data) { return '['+data.OrgId+']'+data.OrgName; },
+                            valueField: 'AreaCode',//标识列名称
+                            textField: 'AreaName',//显示列名称
+                            parentField: 'AreaParent',//父节点
+                            onTextBuilder: function (data) { return '[' + data.AreaCode + ']' + data.AreaName + data.AreaNameSuffix; },
                             //选中回调：输入框的值为选中项的valueField字段
                             onSelect: function (data) {
                                 //默认显示的文本为选中项的textField字段
-                                this.changeText(data.OrgName);
+                                //this.changeText(data.AreaName);
                             }
                         });
                         //复选
                         zero.treeInput({
                             target: inputs.city2,
                             data: data,//初始化数据
-                            valueField: 'OrgId',//标识列名称
-                            textField: 'OrgName',//显示列名称
-                            parentField: 'ParentId',//父节点
+                            valueField: 'AreaCode',//标识列名称
+                            textField: 'AreaName',//显示列名称
+                            parentField: 'AreaParent',//父节点
                             //onTextBuilder: function (data) { return data.OrgName; },
                             //复选回调：多个选中的valueField用"|"分隔
                             onCheck: function (rows) {
@@ -116,7 +116,7 @@
                             }
                         });
                     };
-                zero.ajax('../js/data-org.txt').send(function (res) {
+                zero.ajax('../js/data-area.txt').send(function (res) {
                     var d = null;
                     try { d = eval('(' + res + ')'); } catch (e) { d = null; }
                     if (!d) { return; }

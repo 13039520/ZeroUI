@@ -39,7 +39,7 @@ body #dialogInit .zero_dialogB{}
 #zero_ap_header table td{width:50%; height:100%; white-space:nowrap;}
 #zero_ap_content{width:100%; height:93%; overflow:hidden;background:url(images/con_bg.jpg) center no-repeat;background-size:cover;}
 #zero_ap_content .zero_left{width:15%;height:100%; overflow:hidden;padding:0;}
-.zero_ap_left_con{width:100%;height:100%; margin:0; padding:0;overflow:hidden;}
+.zero_ap_left_con{width:100%;height:100%; margin:0; padding:0;overflow:hidden;background-color:rgba(255,255,255,.5);}
 .zero_ap_left_menu{margin:0; padding:0; display:block; overflow:hidden;}
 .zero_ap_left_menu dl{padding:0; margin:0;overflow:hidden; display:block; border-left:solid 1px #52ccc9; border-bottom:solid 1px #ccc;  white-space:nowrap;}
 .zero_ap_left_menu dt{padding:0 0 0 32px; cursor:pointer; margin:0 0 -1px 0; background:url(images/icon_folder001.png) no-repeat 5px center; overflow:hidden; font-weight:bold;border-bottom:solid 1px #ccc;line-height:28px; color:#666666;}

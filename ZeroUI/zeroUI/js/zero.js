@@ -2645,18 +2645,19 @@
                 var boxH = showDiv.offsetHeight,
                     boxW = showDiv.offsetWidth,
                     cH = size.height,
-                    cW = size.width;
+                    cW = size.width,
+                    followTriggerPoint = (cH / 2 > boxH && cW / 2 > boxW);
                 if (boxH > cH) {
                     boxH = cH;
                     showDiv.style.height = cH - 2 + 'px';
                     conDiv[0].style.height = (cH - 2 - (isFooterHide ? 0 : 41) - (config.showHeader ? 40 : 0)) + 'px';
-                    conDiv[0].style.overflowY = "scroll"
+                    conDiv[0].style.overflowY = "scroll";
                 }
                 if (boxW > cW) {
                     boxW = cW;
                     showDiv.style.width = cW - 2 + 'px';
                     conDiv[0].style.width = (cW - 2) + 'px';
-                    conDiv[0].style.overflowX = "scroll"
+                    conDiv[0].style.overflowX = "scroll";
                 }
                 var scrollT = Math.max(this.doc.documentElement.scrollTop, this.bod.scrollTop),
                     scrollL = Math.max(this.doc.documentElement.scrollLeft, this.bod.scrollLeft),
@@ -2686,28 +2687,42 @@
                             return p1;
                         }
                     };
-                var toPoint = { x: cW / 2 - boxW / 2 + scrollL, y: cH / 2 - boxH / 2 + scrollT };
-                showDiv.style.marginTop = (toPoint.y) + "px";
-                showDiv.style.marginLeft = (toPoint.x) + "px";
-
-                if (!config.isAnimationEntry) { endFunc(); return; }
-                
-                var mousePos = getMousePos(), toSize = $(showDiv).getSize(true);
-                if (!mousePos.unusual) {
-                    var w = mousePos.win;
-                    while (w != this.win && w.parent) {
-                        var ifs = w.parent.document.getElementsByTagName('iframe');
-                        for (var i = 0; i < ifs.length; i++) {
-                            if (ifs[i].contentWindow === w) {
-                                var p = $(ifs[i]).getAbsPoint(true);
-                                mousePos.x += p.x;
-                                mousePos.y += p.y;
-                                break;
+                var toPoint = { x: cW / 2 - boxW / 2 + scrollL, y: cH / 2 - boxH / 2 + scrollT },
+                    toSize = { width: boxW, height: boxH },
+                    mousePos = null,
+                    mousePosCorrect = function (mp,dwin) {
+                        if (!mp.unusual) {
+                            var w = mp.win;
+                            while (w != dwin && w.parent) {
+                                var ifs = w.parent.document.getElementsByTagName('iframe');
+                                for (var i = 0; i < ifs.length; i++) {
+                                    if (ifs[i].contentWindow === w) {
+                                        var p = $(ifs[i]).getAbsPoint(true);
+                                        mp.x += p.x;
+                                        mp.y += p.y;
+                                        break;
+                                    }
+                                }
+                                w = w.parent;
                             }
                         }
-                        w = w.parent;
-                    }
+                        return mp;
+                    };
+                if (followTriggerPoint) {
+                    mousePos = mousePosCorrect(getMousePos(), this.win);
+                    toPoint.x = mousePos.x - parseInt(toSize.width / 2, 10);
+                    toPoint.y = mousePos.y - parseInt(toSize.height / 2, 10);
+                    if (toPoint.x < 0) { toPoint.x = 0; }
+                    if (toPoint.y < 0) { toPoint.y = 0; }
+                    if (toPoint.x + toSize.width > cW) { toPoint.x = cW - toSize.width; }
+                    if (toPoint.y + toSize.height > cH) { toPoint.y = cH - toSize.height; }
                 }
+                showDiv.style.marginTop = (toPoint.y) + "px";
+                showDiv.style.marginLeft = (toPoint.x) + "px";
+                
+                if (!config.isAnimationEntry) { endFunc(); return; }
+                
+                if (!mousePos) { mousePos = mousePosCorrect(getMousePos(),this.win); }
                 $.htmlStrToDom('<div style="padding:0;margin:0;border:0;background:#fff;width:0;z-index:10000;height:0;position:absolute;margin:' + (mousePos.y + scrollT) + 'px 0 0 ' + (mousePos.x + scrollL) + 'px;"></div>').prependTo(this.bod).changePosition({
                     to: toPoint,
                     isFast: !0,
@@ -2796,6 +2811,7 @@
                         var isHomologous = true;
                         try {
                             this.contentWindow.parentDialogObj = o;
+                            this.contentWindow.focus();
                         } catch (e) {
                             log('onload error:' + e.message);
                             isHomologous = false;
@@ -2816,7 +2832,7 @@
         };
         this.loadBigImage = function (title, url) {
             var win = this.win,
-                waitingDialog = dialog.waiting('……正在打开图片……'),
+                waitingDialog = dialog.waiting('……loading……'),
                 div = $.htmlStrToDom('<div style="width:0;height:0;overflow:hidden;padding:0;margin:0;border:0;"></div>').appendTo()[0],
                 img = document.createElement('img'),
                 beginTime = new Date();

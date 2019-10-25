@@ -141,7 +141,7 @@
                 }).show(1);
             };
 
-            zero.ajax('/zeroUI/js/data-area.txt').send(function (res) {
+            zero.ajax('../js/data-area.txt').send(function (res) {
                 var d = null;
                 try { d = eval('(' + res + ')'); } catch (e) { d = null; }
                 if (!d) { return; }
