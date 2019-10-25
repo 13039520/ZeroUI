@@ -12,6 +12,7 @@
             index = 0;
         }
         if (!isWin(win)) { win = window; }
+        win.focus();
         if (!isNum(zIndex)) { zIndex = 0; }
         var id = '_zero_image_show_',
             doc = win.document,
@@ -81,7 +82,7 @@
             loadImgFun = function (image, loaded) {
                 running = true;
                 bTime = new Date();
-                $(imgInit).html('<p style="padding:0;margin:0;height:100%;background:#f2f2f2;overflow:hidden;"><span style="display:block;padding:0;margin:0;height:50%;"></span><span style="display:block;padding:0;margin:0;text-align:center;">……loading……</span></p>');
+                $(imgInit).html('<p style="padding:0;margin:0;height:100%;background:#f2f2f2;overflow:hidden;"><span style="display:block;padding:0;margin:0;height:50%;"></span><span style="display:block;padding:0;margin:0;text-align:center;">……'+$.lan.loading+'……</span></p>');
                 var img = document.createElement('img');
                 img.style.visibility = 'hidden';
                 if (isStr(image.alt)) { img.alt = image.alt; }
@@ -187,7 +188,7 @@
                     vSize.height = sBarVal.h ? (vSize.height - scrollBarWidth.h) : vSize.height;
                     var h = this.height,
                         w = this.width,
-                        dw = 2,//减去padding带来的2像素宽度
+                        dw = 2,
                         maxH = vSize.height - dw,
                         maxW = vSize.width - dw;
                     if (h > maxH) {

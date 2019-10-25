@@ -151,7 +151,7 @@
             }
             area.value = s;
         },
-    lan = { ok: 'Ok', sure: 'Sure', edit: 'Edit', yes: 'Yes', no: 'No', cancel: 'Cancel', submit: 'Submit', reset: 'Reset', clear: 'Clear', enter: 'Enter', plus: 'Plus', minus: 'Minus', add: 'Add', insert: 'Insert', remove: 'Remove', 'delete': 'Delete', update: 'Update', refresh: 'Refresh', go: 'Go', back: 'Back', search: 'Search', 'new': 'New', open: 'Open', close: 'Close', waiting: 'Waiting', start: 'Start', end: 'End', dialog: 'Dialog', tips: 'Tips', cut: 'Cut', copy: 'Copy', paste: 'Paste', year: 'Year', month: 'Month', day: 'Day', hour: 'Hour', minute: 'Minute', second: 'Second', now: 'Now', monday: 'Monday', tuesday: 'Tuesday', wednesday: 'Wednesday', thursday: 'Thursday', friday: 'Friday', saturday: 'Saturday', sunday: 'Sunday' },
+    lan = { ok: 'Ok', sure: 'Sure', edit: 'Edit', yes: 'Yes', no: 'No', cancel: 'Cancel', submit: 'Submit', reset: 'Reset', clear: 'Clear', enter: 'Enter', plus: 'Plus', minus: 'Minus', add: 'Add', insert: 'Insert', remove: 'Remove', 'delete': 'Delete', update: 'Update', refresh: 'Refresh', go: 'Go', back: 'Back', search: 'Search', 'new': 'New', open: 'Open', close: 'Close', waiting: 'Waiting', start: 'Start', end: 'End', dialog: 'Dialog', tips: 'Tips', cut: 'Cut', copy: 'Copy', paste: 'Paste', year: 'Year', month: 'Month', day: 'Day', hour: 'Hour', minute: 'Minute', second: 'Second', now: 'Now', monday: 'Monday', tuesday: 'Tuesday', wednesday: 'Wednesday', thursday: 'Thursday', friday: 'Friday', saturday: 'Saturday', sunday: 'Sunday', load: 'Load', loading: 'Loading', upload: 'Upload', download: 'Download' },
     getStyle = function (ele, property) {
         if (!isEle(ele)) {
             return null;
@@ -2832,7 +2832,7 @@
         };
         this.loadBigImage = function (title, url) {
             var win = this.win,
-                waitingDialog = dialog.waiting('……loading……'),
+                waitingDialog = dialog.waiting('……'+lan.loading+'……'),
                 div = $.htmlStrToDom('<div style="width:0;height:0;overflow:hidden;padding:0;margin:0;border:0;"></div>').appendTo()[0],
                 img = document.createElement('img'),
                 beginTime = new Date();
@@ -2873,7 +2873,7 @@
                 }
             };
             img.onerror = function () {
-                dialog.tips('……图片加载错误……', 2000);
+                dialog.tips('……error……', 2000);
                 waitingDialog.close();
             };
             img.src = url;

@@ -46,4 +46,8 @@
     $.waiting = '等待';
     $.start = '开始';
     $.end = '结束';
+    $.load = '加载';
+    $.loading = '正在加载',
+    $.upload = '上传';
+    $.download = '下载';
 })(zero.lan);
