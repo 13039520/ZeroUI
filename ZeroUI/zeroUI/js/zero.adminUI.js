@@ -17,10 +17,10 @@
     UI.mainPage = function () {
         var rtabs, riframes;
         var winResize = function () {
-            var h = $(win).getSize().height - $("header").getSize().height - $("footer").getSize().height;
-            $("content").cssText("height:" + h + "px");
+            var h = $(win).getSize().height - $("zero_ap_header").getSize().height - $("zero_ap_footer").getSize().height;
+            $("zero_ap_content").cssText("height:" + h + "px");
             var I = $("riframes");
-            I.hasClass("zero_fitDiv") ? I.cssText("height:100%") : I.cssText("height:" + (h - 30) + "px")
+            I.hasClass("zero_ap_fitDiv") ? I.cssText("height:100%") : I.cssText("height:" + (h - 30) + "px")
         },
         topLayout = function () {
             var a = '<span class="zero_scrollbar" style="width:' + ($("separate")[0].offsetWidth - 2) + 'px;margin-left:1px;">&nbsp;</span><div class="zero_box"><div class="zero_vLine">&nbsp;</div></div>',
@@ -399,7 +399,7 @@
              else {
                  var b = $("iframe" + $(tab).attribute("id").replace("tab", "")),
                      f = $.htmlStrToDom('<div class="zero_btn_init" id="' + id + '"><div class="zero_init"><a class="zero_back">退出全屏</a></div></div>').insertAfter(b[0]);
-                 $(b[0].parentNode).addClass("zero_fitDiv").cssText("height:100%;");
+                 $(b[0].parentNode).addClass("zero_ap_fitDiv").cssText("height:100%;");
                  if (isIE || isFirefox || isEdge) { $("right").cssText("position:static;"); }
                  var e = document.title;
                  iframeTitle = $(tab).find("class=zero_tab_text").html();
@@ -412,9 +412,9 @@
                  $(f).find("class=zero_back").addEvent("click", function () {
                      if (isIE || isFirefox || isEdge) { $("right").cssText("position:relative"); }
                      document.title = e;
-                     var a = $(window).getSize().height - $("header").getSize().height - $("footer").getSize().height - 30;
+                     var a = $(window).getSize().height - $("zero_ap_header").getSize().height - $("zero_ap_footer").getSize().height - 30;
                      $(this).removeEvent("click");
-                     $(b[0].parentNode).removeClass("zero_fitDiv").cssText("height:" + a + "px;");
+                     $(b[0].parentNode).removeClass("zero_ap_fitDiv").cssText("height:" + a + "px;");
                      f.remove();
                      fsc(false);
                  })
@@ -427,7 +427,7 @@
                 if (!$(document.body).hasClass("zero_top_page")) { return; }
 
                 $(win).addEvent("resize", winResize);
-                $("header").addEvent("click", function (a) {
+                $("zero_ap_header").addEvent("click", function (a) {
                     a = a || event;
                     a = a.srcElement || a.target;
                     $(a).hasClass("zero_up") ? ($(this).addClass("zero_header_hide"), $(win).fireEvent("resize")) : $(a).hasClass("zero_down") && ($(this).removeClass("zero_header_hide"), $(window).fireEvent("resize"))
@@ -441,7 +441,7 @@
                 if (isIE567) {
                     $(e)[0].offsetHeight;
                     $(c)[0].offsetHeight;
-                    $("header", "class=zero_arrow_init")[0].offsetHeight;
+                    $("zero_ap_header", "class=zero_arrow_init")[0].offsetHeight;
                 }
                 if(isIE || isEdge || isFirefox){
                     $("right").cssText("position:relative");

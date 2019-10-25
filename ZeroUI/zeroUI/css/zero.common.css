@@ -15,7 +15,7 @@ input[type=checkbox],input[type=radio]{background:none;}
 input[disabled="disabled"],input[readonly="readonly"]{border:solid 1px #dedede;background-color:#f2f2f2;color:#999;margin:1px;padding:0;}
 input[type=button],input[type=submit],input[type=reset],button{border:solid 1px #999;background-color:#f2f2f2;color:#333;margin:1px;padding:0 4px;cursor:pointer;border-radius:3px;height:2em;}
 input[type=button]:hover,input[type=submit]:hover,input[type=reset]:hover,button:hover{border-color:#000;}
-/*分页页码*/
+
 .zero_pager{padding:0;margin:5px 0;overflow:hidden; zoom:1; text-align:center;font-size:12px;}
 .zero_pager a,.zero_pager b,.zero_pager span{display:inline-block;min-width:12px;height:26px; line-height:26px; overflow:hidden;margin:1px;padding:0 4px;text-align:center;border:solid 1px #dedede;color:#999;background:#f2f2f2;font-weight:normal;}
 .zero_pager a,.zero_pager b{color:#999;cursor:pointer;}
@@ -30,7 +30,7 @@ input[type=button]:hover,input[type=submit]:hover,input[type=reset]:hover,button
 .zero_pager .zero_count *{display:inline-block;color:#f00;padding:0 2px;font-weight:normal;font-style:normal;}
 .zero_pager .zero_goto{padding:0 5px;}
 .zero_pager .zero_goto a,.zero_pager .zero_goto b,.zero_pager .zero_goto span{background:none;color:#333;min-width:5px;}
-/*输入模块*/
+
 .zero_form{border:0;padding:0;margin:0;display:block;overflow:hidden}
 .zero_form .zero_btn,.zero_form input[type=button],.zero_form input[type=reset],.zero_form input[type=submit]{display:inline-block;overflow:hidden;border:solid 1px #999;background:#dedede;color:#666;outline:none;cursor:pointer;margin:0 .625em 0 0;padding:.325em;font-size:.875em;letter-spacing:.125em;min-width:5em;text-align:center;height:2em}
 .zero_btn:hover,.zero_form input[type=button]:hover{color:#333;border-color:#ccc}
@@ -87,7 +87,7 @@ dl.zero_form_group dd.zero_tips .zero_form_input {border-color: #f90;}
 .zero_repeat_item_con{overflow:hidden;line-height:1;font-size:12px;padding:2px 0;margin:0;}
 .zero_repeat_item_btns{padding:0;margin:0;line-height:1;}
 .zero_repeat .zero_repeat_item:last-child{margin-bottom:0;}
-.zero_repeat_item_inside{border:solid 1px #eee;margin:3px;padding:2px; overflow:hidden;display:block;background:#fff;}
+.zero_repeat_item_inside{border:solid 1px #f2f2f2;margin:3px;padding:2px; overflow:hidden;display:block;background:#fff;}
 .zero_repeat_item.zero_selected .zero_repeat_item_inside{border-color:#999;}
 .zero_repeat_init{margin:3px;}
 .zero_repeat_item_btns input[type=button],
@@ -109,12 +109,12 @@ dl.zero_form_group dd.zero_tips .zero_form_input {border-color: #f90;}
 .zero_repeat_news .zero_repeat_item_title{min-width:50px;}
 .zero_repeat_news .zero_repeat_item_con{min-width:50px;}
 .zero_repeat_news .zero_repeat_item_btns{text-align:right;}
-/*数据表格*/
+
 table.zero_datatable {width: 100%;border-spacing: 0;border-collapse: collapse;}
 table.zero_datatable thead{background:#236363;}
 table.zero_datatable p{padding:0;margin:0;}
 table.zero_datatable thead th,table.zero_datatable thead td{text-align:left;border:solid 1px #236363;color:#fff;line-height:1;padding:0;font-size:12px;}
-table.zero_datatable tbody{color:#666;}
+table.zero_datatable tbody{color:#666;font-size:14px;}
 table.zero_datatable tfoot td{background:#fff;border:solid 1px #dedede;} 
 table.zero_datatable tfoot td .zero_left{width:49%; height:30px; padding-top:4px;}
 table.zero_datatable tfoot td .zero_right{width:49%;}
