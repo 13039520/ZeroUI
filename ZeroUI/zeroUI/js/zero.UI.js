@@ -134,34 +134,30 @@
             img.onload = img.onerror = f
         }
     };
-    UI.dataToHtml = function (data, template, onCell, onRow) {
-        if (!data) { return '' }
-        if (!isArray(data)) {
-            data = [data]
+    UI.dataToHtml = function (data, tmpl, onCell, onRow) {
+        if (!data) { return ''; }
+        if (!isArray(data)) { data = [data]; }
+        if (!isStr(tmpl)) { tmpl = ''; }
+        var s = [], hasRowFunc = isFunc(onRow), hasCellFunc = isFunc(onCell), temp = tmpl.replace(/@@/g, '_@_@_'), sKey = temp.match(/@\w+/g), sKeys = [], dKeys = {};
+        for (var o in data[0]) { dKeys[o.toLowerCase()] = o; }
+        if (sKey != null && sKey.length > 0) {
+            for(var i=0;i<sKey.length;i++){ sKeys.push(sKey[i].substr(1)); }
+            sKeys.distinct();
+            for (var i = 0; i < sKeys.length; i++) { var a = sKeys[i], b = a.toLowerCase(); sKeys[i] = { original: a, dKey: dKeys[b] }; }
         }
-        if (template) { template = template.toString() }
-        else { template = '' }
-        var s = [],
-            hasRowFunc = isFunc(onRow),
-            hasCellFunc = isFunc(onCell);
         for (var i = 0; i < data.length; i++) {
-            s[i] = template.replace(/@@/g, '_@_@_');
-            for (var o in data[i]) {
-                var value;
-                if (hasCellFunc) {
-                    value = onCell(o, data[i][o], data[i]);
-                    value = undefined !== value ? value : data[i][o];
-                } else {
-                    value = data[i][o];
-                }
-                s[i] = s[i].replace(new RegExp('@' + o + '\\b', 'ig'), value);
+            s[i] = '' + temp;
+            for (var j = 0; j < sKeys.length; j++) {
+                var sk=sKeys[j].original,sv, dv;
+                if (undefined !== sKeys[j].dKey) { dv = data[i][sKeys[j].dKey]; }
+                if (hasCellFunc) { sv = onCell(sk, dv, data[i]); sv = undefined !== sv ? sv : dv; }
+                else { sv = dv; }
+                s[i] = s[i].replace(new RegExp('@' + sk + '\\b', 'ig'), sv);
             }
             s[i] = s[i].replace(/_@_@_/g, '@')
             if (hasRowFunc) {
                 var value = onRow(s[i], i, data[i]);
-                if (undefined !== value) {
-                    s[i] = value;
-                }
+                if (undefined !== value) { s[i] = value; }
             }
         }
         return s.join('');
@@ -242,8 +238,8 @@
         if (!pn.length) { return; }
         if (!pn[0].nodeName) { return; }
         config.pageNode = pn[0];
-        if (!isStr(config.template) || config.template.trim().length < 1) { config.template = $(config.dataNode).html(); }
-        config.template = config.template.trim();
+        if (!isStr(config.tmpl) || config.tmpl.trim().length < 1) { config.tmpl = $(config.dataNode).html(); }
+        config.tmpl = config.tmpl.trim();
         if (!isFunc(config.rowFormat)) { config.rowFormat = function (html, index, page, size, row) { return html } }
         if (!isFunc(config.cellFormat)) { config.cellFormat = function (name, value, row) { return value } }
         if (!config.queryData) { config.queryData = { size: 1, page: 1, entityMap: '', orderby: '', columns: '' }; }
@@ -272,7 +268,7 @@
             }
         });
         var tNodeName = '';
-        if (/^<([a-zA-Z]{1,})/.exec(config.template)) {
+        if (/^<([a-zA-Z]{1,})/.exec(config.tmpl)) {
             config.templateNodeName = tNodeName = RegExp.$1.toUpperCase();
         }
 
@@ -302,7 +298,7 @@
                                 _this.data = res.data;
                                 var dataHtml = UI.dataToHtml(
                                     res.data,
-                                    config.template,
+                                    config.tmpl,
                                     function (name, value, row) {
                                         var s = config.cellFormat(name, value, row);
                                         return s ? s : value;
