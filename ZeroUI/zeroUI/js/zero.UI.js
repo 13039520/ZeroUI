@@ -213,17 +213,20 @@
         }
         s[s.length] = "</div>";
         if (count) {
-            s[s.length] = "<div class=\"zero_count\"><em>" + total + "</em>条/<em>" + pages + "</em>页</div>";
+            s[s.length] = "<div class=\"zero_count\">total:<em>" + total + "</em></div>";
         }
         if (sizeArray && sizeArray.length > 1) {
             var sh = '';
             for (var i = 0; i < sizeArray.length; i++) {
                 sh += '<option value=\"' + sizeArray[i] + '\"' + (sizeArray[i] === size ? ' selected="selected"' : '') + '>' + sizeArray[i] + '</option>';
             }
-            s[s.length] = '<div class=\"zero_count\">每页<select>' + sh + '</select>条</div>';
+            s[s.length] = '<div class=\"zero_count\">size:<select>' + sh + '</select></div>';
+        }
+        if (count) {
+            s[s.length] = "<div class=\"zero_count\">pages:<em>" + pages + "</em></div>";
         }
         if (goto) {
-            s[s.length] = "<div class=\"zero_goto\"><span>跳转到</span><input type=\"text\" value=\"" + page + "\" ps=\"" + pages + "\" maxlength=\"" + ('' + pages).length + "\" /><span>页</span><input type=\"button\" value=\"GO\" class=\"zero_btn\" /></div>";
+            s[s.length] = "<div class=\"zero_goto\"><span>to</span><input type=\"text\" value=\"" + page + "\" ps=\"" + pages + "\" maxlength=\"" + ('' + pages).length + "\" /><input type=\"button\" value=\"go\" class=\"zero_btn\" /></div>";
         }
         return s.join('')
     };

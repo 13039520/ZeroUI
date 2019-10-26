@@ -24,11 +24,12 @@ input[type=button]:hover,input[type=submit]:hover,input[type=reset]:hover,button
 .zero_pager .zero_list,.zero_pager .zero_count,.zero_pager .zero_goto{overflow:hidden;padding:0;margin:0;display:inline-block;height:30px;}
 .zero_pager select,.zero_pager input{margin:1px;height:26px;width:30px;text-align:center;overflow:hidden;padding:0 4px; vertical-align:top;display:inline-block;border:solid 1px #dedede;background:#fff;outline:none;}
 .zero_pager select{width:auto;max-width:100px;}
-.zero_pager .zero_btn{background:#fa4848;border-color:#fa4848;color:#fff;cursor:pointer;border-radius:4px;}
-.zero_pager .zero_count{padding:0 4px;border:solid 1px #dedede;margin:1px;height:26px; line-height:26px;}
+.zero_pager .zero_count{padding:0;border:solid 1px #dedede;margin:1px;height:26px; line-height:26px;}
 .zero_pager .zero_count select{border:0;background:none;outline:none;margin:0;}
-.zero_pager .zero_count *{display:inline-block;color:#f00;padding:0 2px;font-weight:normal;font-style:normal;}
-.zero_pager .zero_goto{padding:0 5px;}
+.zero_pager .zero_count *{display:inline-block;color:#00f;padding:0 2px;font-weight:normal;font-style:normal;}
+.zero_pager .zero_goto{padding:0;}
+.zero_pager .zero_goto input{color:#f00;}
+.zero_pager input.zero_btn{background:#fa4848;border-color:#fa4848;color:#fff;cursor:pointer;border-radius:4px;}
 .zero_pager .zero_goto a,.zero_pager .zero_goto b,.zero_pager .zero_goto span{background:none;color:#333;min-width:5px;}
 
 .zero_form{border:0;padding:0;margin:0;display:block;overflow:hidden}
