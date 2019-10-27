@@ -629,7 +629,7 @@
                   docClickFunc = function (e) {
                       if (myDivIsHidden) { return; }
                       var ele = e.target || e.srcElement;
-                      if (ele == config.target) { return;}
+                      if (ele == config.target) { return; }
                       if (!myDiv[0].contains(ele)) { return myDivHiddenFunc(); }
                       selItemNode(ele);
                   },
@@ -683,7 +683,6 @@
                       loadding = true;
                       var end = function (res) {
                           loadding = false;
-                          $.log(JSON.stringify(res));
                           if (isStr(res)) {
                               res = config.onDeserialization(res);
                           }
@@ -752,9 +751,15 @@
                 }
                 p = p.parentNode;
             }
-            $.log('isFormChildren=' + isFormChildren);
-            $(config.target).attribute('data-zero-autocomplete', myId).attribute('autocomplete','off');
-            UI.inputTextLengthLimit(config.target, 30, function (len) { loadData(''+this.value); });
+            $(config.target).attribute('data-zero-autocomplete', myId).attribute('autocomplete', 'off');
+            var v = '';
+            UI.inputTextLengthLimit(config.target, 30, function (len) {
+                var a = '' + this.value;
+                if (v != a) {
+                    v = a;
+                    loadData(a);
+                }
+            });
 
         }(config);
     };
