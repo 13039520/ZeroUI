@@ -560,6 +560,6 @@
     $.adminUI = window.zeroAdminUI = UI;
 
     $.ready(function () {
-        $.UI.zeroFormInputBoxWatcher();
+        
     });
 })(zero);

@@ -851,4 +851,8 @@
     };
 
     window.zeroUI = $.UI = UI;
+
+    $.ready(function () {
+        $.UI.zeroFormInputBoxWatcher();
+    });
 })(zero);

@@ -21,7 +21,6 @@
     $.mobileUI = window.mobileUI = UI;
 
     $.ready(function () {
-        $.UI.zeroFormInputBoxWatcher();
         $.mobileUI.mobilePageRemarkBar();
         $.mobileUI.iconNavListColors();
     });

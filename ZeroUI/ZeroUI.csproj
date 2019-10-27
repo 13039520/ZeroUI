@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="zeroUI\adminUI\login.html" />
     <None Remove="zeroUI\doc\datalist2.html" />
     <None Remove="zeroUI\doc\datalist3.html" />
   </ItemGroup>
@@ -13,9 +14,9 @@
   <ItemGroup>
     <Content Include="zeroUI\adminUI\about.html" />
     <Content Include="zeroUI\adminUI\index.html" />
+    <Content Include="zeroUI\adminUI\login.html" />
     <Content Include="zeroUI\adminUI\welcome.html" />
     <Content Include="zeroUI\css\images\con_bg.jpg" />
-    <Content Include="zeroUI\css\images\con_bg002.jpg" />
     <Content Include="zeroUI\css\images\header_bg.png" />
     <Content Include="zeroUI\css\images\icon\accessibility.png" />
     <Content Include="zeroUI\css\images\icon\address-book.png" />
@@ -1109,8 +1110,6 @@
     <Content Include="zeroUI\css\images\icon_page002.png" />
     <Content Include="zeroUI\css\images\icon_page003.png" />
     <Content Include="zeroUI\css\images\nav_arrow.png" />
-    <Content Include="zeroUI\css\images\page_loading.gif" />
-    <Content Include="zeroUI\css\images\page_loading.png" />
     <Content Include="zeroUI\css\images\top_down_icon.png" />
     <Content Include="zeroUI\css\images\top_up_icon.png" />
     <Content Include="zeroUI\css\zero.adminUI.css" />
