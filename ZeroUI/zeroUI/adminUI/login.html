@@ -46,11 +46,7 @@
     var loginPage = {
         formFunc: function () {
             var myForm = zero.form('zero_login_m'),
-                inputs = myForm.inputs;
-            inputs.btnReset.onclick = function () { myForm.reset(); };
-            inputs.btnSubmit.onclick = function () { myForm.submit(); };
-
-            var waitingDialog = null;
+                waitingDialog = null;
             myForm.onCheck = function (data) {
                 this.checkResult.account = { fail: !data.account, msg: '不能为空' };
                 this.checkResult.password = { fail: !data.password, msg: '不能为空' };
@@ -61,10 +57,8 @@
             };
             myForm.onResponse = function (res) {
                 waitingDialog && waitingDialog.close();
-                dialog.alert('登录提示', '恭喜你，登录成功！为了你的账号安全，请在使用结束后确认已经退出系统。', function () { location.href = 'index.html'; });
+                dialog.alert('登录提示', '恭喜你，登录成功！为了你的账号安全，请在使用结束后及时退出系统。', function () { location.href = 'index.html'; });
             };
-            //myForm.action = 'login';
-            //myForm.method = 'post';
         },
         showFunc: function (bgSrc) {
             var size = zero(window).getSize();
