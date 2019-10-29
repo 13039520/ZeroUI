@@ -16,16 +16,20 @@ body #dialogInit .zero_dialogB a:hover{color:#05a59d;background:#f7f7f7;}
 body #dialogInit .zero_dialogMaskDiv,body #dialogInit .zero_nDialog .zero_dialogMaskDiv{background:#000;opacity:0.1;}
 body #dialogInit .zero_dialogShowDiv,body #dialogInit .zero_nDialog .zero_dialogShowDiv{border-color:#05a59d;box-shadow:0 0 4px rgba(0,0,0,.4);}
 body #dialogInit .zero_dialogB{}
+/*以更明确的指向覆盖zero_date_input的默认样式*/
+body #zero_date_input .box .t{background:#03d6d0;}
+body #zero_date_input p{background:#03d6d0;color:#fff;}
+body #zero_date_input p span:hover{color:#000;}
 
 .zero_top_page{width:100%;height:100%;overflow:hidden;}
 .zero_dialog_page {}
 .zero_ifram_page{width:100%;min-height:100%;}
 
 #zero_ap_header{width:100%; height:50px; overflow:hidden; background:#03d6d0;background: linear-gradient(#03d6d0,#05a59d); border-bottom:solid 3px #03d6d0; color:#fff;font-size:14px;}
-#zero_ap_header .zero_left{width:49%;height: 100%; /*background:url(images/logo.png) no-repeat;*/}
+#zero_ap_header .zero_left{width:30%;height: 100%; /*background:url(images/logo.png) no-repeat;*/}
 #zero_ap_header .zero_left h1{margin:3px 0 0 5px;padding:0; font-size:24px;white-space:nowrap; line-height:1.2;color:#fff;}
 #zero_ap_header .zero_left h2{margin:0 0 0 5px;padding:0; font-size:14px; font-weight:normal;white-space:nowrap;line-height:1; text-transform:uppercase;color:#000;}
-#zero_ap_header .zero_right{width: 50%;height: 100%;float:right;}
+#zero_ap_header .zero_right{width: 69%;height: 100%;float:right;}
 #zero_ap_header .zero_right_con p{height:45%; padding:0; margin:0; overflow:hidden; white-space:nowrap; text-align:right; padding-right:0.625em; white-space:nowrap; vertical-align:middle;}
 #zero_ap_header .zero_right_con{margin-right:46px;height:100%;}
 #zero_ap_header .zero_right_con p a{color:#000;cursor:pointer;vertical-align:middle;display:inline-block;}
@@ -39,6 +43,8 @@ body #dialogInit .zero_dialogB{}
 #zero_ap_header table td{width:50%; height:100%; white-space:nowrap;}
 #zero_ap_content{width:100%; height:93%; overflow:hidden;background:url(images/con_bg.jpg) center no-repeat;background-size:cover;}
 #zero_ap_content .zero_left{width:15%;height:100%; overflow:hidden;padding:0;}
+#zero_ap_content .zero_side_bar.zero_left{display:block;position:static;background-color:transparent;}
+#zero_ap_content .zero_side_bar.zero_left .zero_side_bar_main{height:100%;}
 .zero_ap_left_con{width:100%;height:100%; margin:0; padding:0;overflow:hidden;background-color:rgba(255,255,255,.5);}
 .zero_ap_left_menu{margin:0; padding:0; display:block; overflow:hidden;}
 .zero_ap_left_menu dl{padding:0; margin:0;overflow:hidden; display:block; border-left:solid 1px #52ccc9; border-bottom:solid 1px #ccc;  white-space:nowrap;}
@@ -103,6 +109,11 @@ body #dialogInit .zero_dialogB{}
 .zero_demo_main table.zero_datatable tbody tr:hover{color:#236363;}
 .zero_demo_main table.zero_datatable tbody tr:nth-child(even):hover{color:#000;}
 
+ @media screen and (max-width: 800px){
+    #zero_ap_content .zero_left, #zero_ap_content .zero_separate{width:0;}
+    #zero_ap_content .zero_right{width:100%;}
+
+ }
 @media print {
     .noprint { display: none; }
     .zero_top_page .zero_ap_fitDiv{display:none;}
