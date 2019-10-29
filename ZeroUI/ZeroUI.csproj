@@ -6,7 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="zeroUI\adminUI\login.html" />
     <None Remove="zeroUI\doc\datalist2.html" />
     <None Remove="zeroUI\doc\datalist3.html" />
   </ItemGroup>
@@ -14,7 +13,6 @@
   <ItemGroup>
     <Content Include="zeroUI\adminUI\about.html" />
     <Content Include="zeroUI\adminUI\index.html" />
-    <Content Include="zeroUI\adminUI\login.html" />
     <Content Include="zeroUI\adminUI\welcome.html" />
     <Content Include="zeroUI\css\images\con_bg.jpg" />
     <Content Include="zeroUI\css\images\header_bg.png" />
