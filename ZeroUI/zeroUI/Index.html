@@ -88,7 +88,7 @@
                                 },
                                 end: function (obj) {
                                     if (bgSrc) {
-                                        document.body.style.backgroundImage = 'url(' + bgSrc + ')';
+                                        zero(document.body).cssText('background-image:url('+bgSrc+');')
                                     }
                                     setTimeout(function () {
                                         zero('zero_login_m').cssText('visibility:visible;');
