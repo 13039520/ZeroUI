@@ -63,7 +63,7 @@
                 //dialog.contentOnly('<div style="border:solid 1px #f00;padding:5px;margin:5px;"><div>恭喜你，登录成功！为了你的账号安全，请在使用结束后及时退出系统。</div><div>你想查看：[<a href="adminUI/index.html">adminUI</a>] | [<a href="mobileUI/index.html">mobileUI</a>]</div></div>');
                 dialog.alert('操作提示', '恭喜你，登录成功！为了你的账号安全，请在使用结束后及时退出系统。', function () {
                     var size = zero(window).getSize();
-                    window.location.href = (size.width < 1024 ? 'mobileUI' : 'adminUI') + '/index.html';
+                    window.location.href = ((size.height < 640 || size.width < 1024) ? 'mobileUI' : 'adminUI') + '/index.html';
                 });
             };
         },

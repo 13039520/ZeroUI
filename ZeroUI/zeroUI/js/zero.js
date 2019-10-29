@@ -3055,11 +3055,11 @@
             inputFunc = function () {
                 this.blur();
                 var name = this.name,
-                    title = $(this).attribute('data-title'),
+                    iTitle = $(this).attribute('data-title'),
                     value = parseInt(this.value, 10);
-                if (!title || !name) { return; }
+                if (!iTitle || !name) { return; }
                 var numFunc = function (num) { return num < 10 ? '0' + num : num; };
-                var html = ['<div class="sel ' + title + '" data-begin="' + value + '" data-name="' + name + '"><p><span class="title">' + (undefined !== lan[title] ? lan[title] : title) + '</span><span class="per">&lt;&lt;</span><span class="next">&gt;&gt;</span><span class="close">x</span></p><div>'];
+                var html = ['<div class="sel ' + iTitle + '" data-begin="' + value + '" data-name="' + name + '"><p><span class="title">'+title+'：' + (undefined !== lan[iTitle] ? lan[iTitle] : iTitle) + '</span><span class="per">&lt;&lt;</span><span class="next">&gt;&gt;</span><span class="close">x</span></p><div>'];
                 var bs = 0;
                 switch (name) {
                     case 'yyyy':
