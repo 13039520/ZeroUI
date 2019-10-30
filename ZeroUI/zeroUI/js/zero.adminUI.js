@@ -19,112 +19,14 @@
         var winResize = function () {
             var h = $(win).getSize().height - $("zero_ap_header").getSize().height - $("zero_ap_footer").getSize().height;
             $("zero_ap_content").cssText("height:" + h + "px");
+            $("zero_ap_left_menu").cssText("height:" + (h-31) + "px");
             var I = $("riframes");
             I.hasClass("zero_ap_fitDiv") ? I.cssText("height:100%") : I.cssText("height:" + (h - 30) + "px")
         },
         topLayout = function () {
-            var a = '<span class="zero_scrollbar" style="width:' + ($("separate")[0].offsetWidth - 2) + 'px;margin-left:1px;">&nbsp;</span><div class="zero_box"><div class="zero_vLine">&nbsp;</div></div>',
-                l = $("separate").html(a).find("span", 1)[0],
-                c = $("left_menu")[0],
-                b = $("separate").find("div", 1)[0],
+            var c = $("zero_ap_left_menu")[0],
                 e = $("left")[0],
-                h = $("right")[0],
-                k, g = function (a) {
-                    a = a || window.event;
-                    a = a.clientX / k * 100;
-                    a = 0 > a ? 0 : 99 < a ? 99 : a;
-                    e.style.width = a + "%";
-                    h.style.width = 99 - a + "%"
-                },
-                q = function (a) {
-                    a = a || window.event;
-                    a = a.clientX / k * 100;
-                    a = 0 > a ? 0 : a;
-                    a = 99 < a ? 99 : a;
-                    a = 0 > a ? 0 : 99 < a ? 99 : a;
-                    e.style.width = a + "%";
-                    h.style.width = 99 - a + "%";
-                    b.releaseCapture ? (b.onmousemove = g, b.onmouseup = q, b.releaseCapture()) : (document.removeEventListener("mousemove", g, !0), document.removeEventListener("mouseup", q, !0));
-                    b.onmousemove = null;
-                    b.onmouseup = null;
-                    isIE || isFirefox || (a = $("drag_mask_div"), a.length && a.remove())
-                };
-            b.onmousedown = function (a) {
-                isIE || isFirefox || $.htmlStrToDom('<div id="drag_mask_div" style="position:absolute;z-index:10000;width:100%;height:100%;overflow:hidden;background:#f00;filter:alpha(opacity=0);opacity:0;"></div>').prependTo();
-                a = document;
-                k = a.documentElement.clientWidth;
-                b.setCapture ? (b.onmousemove = g, b.onmouseup = q, b.setCapture()) : (document.addEventListener("mousemove", g, !0), document.addEventListener("mouseup", q, !0))
-            };
-            l.onmouseenter = function () {
-                var menuH = c.offsetHeight, menuBoxH = c.parentNode.offsetHeight, menuDif = menuH - menuBoxH;
-                if (menuDif < 1) {
-                    return;
-                }
-                var YNs = [],
-                    RNs = [],
-                    pSize = $(l.parentNode).getSize(),
-                    pPoint = $(l.parentNode).getAbsPoint(),
-                    cSize = $(l).getSize();
-                var drag = $.drag(l).begin(function (node, point, para) {
-                    this.range(pPoint.x, pPoint.y, pSize.width, pSize.height - cSize.height);
-                    $(node).addClass("zero_selected");
-                    isIE || isFirefox || $.htmlStrToDom('<div id="drag_mask_div2" style="position:absolute;z-index:10000;width:100%;height:100%;overflow:hidden;background:#f00;filter:alpha(opacity=0);opacity:0;"></div>').prependTo();
-                }).move(function (node, point, para) {
-                    var cY = point.y - pPoint.y;
-                    if (YNs[YNs.length - 1] === cY) {
-                        return;
-                    }
-                    YNs.push(cY);
-                    $(node).cssText('margin-top:' + cY + 'px');
-                    var v = Math.floor(cY / (pSize.height - cSize.height) * 100);
-                    if (RNs[RNs.length - 1] === v) {
-                        return;
-                    }
-                    RNs.push(v);
-                    if (v > 0) {
-                        v = Math.floor((menuDif * v / 100));
-                    }
-                    $(c).cssText('margin-top:' + (v ? '-' + v : 0) + 'px');
-
-                }).end(function (node, point, para) {
-                    drag.release();
-                    $(node).removeClass("zero_selected");
-                    isIE || isFirefox || (f = $("drag_mask_div2"), f.length && f.remove());
-                    YNs = [];
-                    RNs = [];
-                });
-            };
-            $(win).addEvent("resize", function () {
-                l.style.width = l.parentNode.offsetWidth - 2 + "px"
-            });
-            var mousewheel = function (a) {
-                var d = c.style.marginTop,
-                    d = d ? parseInt(d, 10) : 0,
-                    b = 0 - c.offsetHeight + c.parentNode.offsetHeight;
-                0 < b && (b = 0);
-                var f = l.parentNode.offsetHeight - l.offsetHeight;
-                0 > f && (f = 0);
-                var e = 0;
-                a = a || window.event;
-                a.wheelDelta ? e = 0 > a.wheelDelta ? -1 : 1 : a.detail && (e = 0 > a.detail ? 1 : -1);
-                0 < e ? (d += 20, 0 < d && (d = 0)) : (d -= 20, d < b && (d = b));
-                a = parseInt((~d + 1) / (~b + 1) * f, 10);
-                l.style.marginTop = a + "px";
-                c.style.marginTop = d + "px"
-            };
-            $("left_menu").addEvent("mouseenter", function () {
-                if (isFirefox) {
-                    document.addEventListener('DOMMouseScroll', mousewheel, false);
-                    return;
-                }
-                window.onmousewheel = window.document.onmousewheel = mousewheel;
-            }).addEvent("mouseleave", function () {
-                if (isFirefox) {
-                    document.removeEventListener('DOMMouseScroll', mousewheel, false);
-                    return;
-                }
-                window.onmousewheel = window.document.onmousewheel = null;
-            })
+                h = $("right")[0];
         },
         selectionEmpty = function () {
             document.selection ? document.selection.empty() : window.getSelection && window.getSelection().removeAllRanges()
@@ -162,7 +64,7 @@
             }
         },
         menuInit = function () {
-            var a = $("left_menu")[0];
+            var a = $("zero_ap_left_menu")[0];
             $(a, "a").foreach(function (a) {
                 $(this.parentNode).attribute("link", $(this).attribute("href")).html($(this).html()).attribute("id", "nav" + $.guid())
             });
@@ -221,7 +123,7 @@
             }).last()[0])
         },
         tabsInit = function () {
-            var d = $("rtabs").html('<div class="zero_r_arrow_l"><span class="zero_arrow_l">&lt;</span></div><div class="zero_r_tabs_init"><div class="zero_init"><div class="zero_tabs"></div></div></div><div class="zero_r_arrow_r"><span class="zero_arrow_r">&gt;</span></div>'),
+            var d = $("rtabs").html('<div class="zero_r_arrow_l"><span class="zero_arrow_l zero_bg_icon zero_bg_icon_arrow_left3">&nbsp;</span></div><div class="zero_r_tabs_init"><div class="zero_init"><div class="zero_tabs"></div></div></div><div class="zero_r_arrow_r"><span class="zero_arrow_r zero_bg_icon zero_bg_icon_arrow_right3">&nbsp</span></div>'),
             a = rtabs = $(d).find("class=zero_tabs"),
             b = riframes = $("riframes")
             e = $(d).find("class=zero_arrow_l"),
@@ -229,26 +131,25 @@
             d.addEvent("click", function (d) {
                 d = d || event;
                 d = d.srcElement || d.target;
-                if (d.className) switch (d.className.toLowerCase()) {
-                    case "zero_arrow_l":
+                if (d.className) {
+                    var n=d.className.toLowerCase();
+                    if(n.indexOf('zero_arrow_l')>-1){
                         $(a).find("class>zero_tab", 1);
                         d = parseInt($(a)[0].style.marginLeft, 10);
                         cl = (d ? d : 0) + 121;
                         0 < cl && (cl = 0);
                         $(a).cssText("margin-left:" + cl + "px");
-                        break;
-                    case "zero_arrow_r":
+                    }else if(n.indexOf('zero_arrow_r')>-1){
                         var c = $(a).find("class>zero_tab", 1);
                         d = (d = parseInt($(a)[0].style.marginLeft, 10)) ? d : 0;
                         var b = $($(a)[0].parentNode).getSize().width,
                             c = 121 * c.length;
                         c > b && (b = c - b + d, 0 < b && (d -= 121 < b ? 121 : b, $(a).cssText("margin-left:" + d + "px")));
-                        break;
-                    case "zero_tab_text":
+                    }else if(n.indexOf('zero_tab_text')>-1){
                         tabSelected(d.parentNode);
-                        break;
-                    case "zero_tab_close":
+                    }else if(n.indexOf('zero_tab_close')>-1){
                         tabClose(d.parentNode)
+                    }
                 }
             }).addEvent("dblclick", function (a) {
                 a = a || event;
