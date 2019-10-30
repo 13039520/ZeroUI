@@ -17,9 +17,14 @@
     UI.mainPage = function () {
         var rtabs, riframes;
         var winResize = function () {
-            var h = $(win).getSize().height - $("zero_ap_header").getSize().height - $("zero_ap_footer").getSize().height;
+            var wSize = $(win).getSize(), h = wSize.height - $("zero_ap_header").getSize().height - $("zero_ap_footer").getSize().height;
             $("zero_ap_content").cssText("height:" + h + "px");
-            $("zero_ap_left_menu").cssText("height:" + (h-31) + "px");
+            var menu= $("zero_ap_left_menu");
+            if ($('left').hasClass('zero_ap_content_left_fixed')) {
+                menu.cssText("height:" + (wSize.height - 31) + "px");
+            } else {
+                menu.cssText("height:" + (h - 31) + "px");
+            }
             var I = $("riframes");
             I.hasClass("zero_ap_fitDiv") ? I.cssText("height:100%") : I.cssText("height:" + (h - 30) + "px")
         },
@@ -97,9 +102,21 @@
                     }
                 }
             })
+            var btnShow = $('zero_ap_left_menu_show'),
+                btnHidden = $('zero_ap_left_menu_hidden');
+            if (btnShow.length !== 1 || btnHidden.length !== 1) { return; }
+            btnShow.addEvent('click', function () {
+                if (btnHidden[0].offsetHeight !== 0) { return; }
+                $(this).parent(3).addClass('zero_ap_content_left_fixed');
+                $(win).fireEvent('resize');
+            });
+            btnHidden.addEvent('click', function () {
+                $(this).parent(3).removeClass('zero_ap_content_left_fixed');
+                $(win).fireEvent('resize');
+            });
         },
         menuSelected = function () {
-            var a = $('left_menu').find("dd");
+            var a = $('zero_ap_left_menu').find("dd");
             if (1 < a.length) {
                 a.hasClass("zero_selected") || $(a[0]).addClass("zero_selected");
                 var c = function () {
@@ -120,7 +137,11 @@
             tabCreate(title, src, num);
             tabSelected($(rtabs).find("class>zero_tab", 1).foreach(function (n) {
                 $(this).attribute("n", n)
-            }).last()[0])
+            }).last()[0]);
+            var btnHidden = $('zero_ap_left_menu_hidden');
+            if (btnHidden[0].offsetHeight !== 0) {
+                btnHidden.fireEvent('click');
+            }
         },
         tabsInit = function () {
             var d = $("rtabs").html('<div class="zero_r_arrow_l"><span class="zero_arrow_l zero_bg_icon zero_bg_icon_arrow_left3">&nbsp;</span></div><div class="zero_r_tabs_init"><div class="zero_init"><div class="zero_tabs"></div></div></div><div class="zero_r_arrow_r"><span class="zero_arrow_r zero_bg_icon zero_bg_icon_arrow_right3">&nbsp</span></div>'),
