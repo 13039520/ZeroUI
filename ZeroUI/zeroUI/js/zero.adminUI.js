@@ -105,12 +105,12 @@
             var btnShow = $('zero_ap_left_menu_show'),
                 btnHidden = $('zero_ap_left_menu_hidden');
             if (btnShow.length !== 1 || btnHidden.length !== 1) { return; }
-            btnShow.addEvent('click', function () {
+            btnShow.addEvent('click', function (e) {
                 if (btnHidden[0].offsetHeight !== 0) { return; }
                 $(this).parent(3).addClass('zero_ap_content_left_fixed');
                 $(win).fireEvent('resize');
             });
-            btnHidden.addEvent('click', function () {
+            btnHidden.addEvent('click', function (e) {
                 $(this).parent(3).removeClass('zero_ap_content_left_fixed');
                 $(win).fireEvent('resize');
             });
@@ -144,7 +144,7 @@
             }
         },
         tabsInit = function () {
-            var d = $("rtabs").html('<div class="zero_r_arrow_l"><span class="zero_arrow_l zero_bg_icon zero_bg_icon_arrow_left3">&nbsp;</span></div><div class="zero_r_tabs_init"><div class="zero_init"><div class="zero_tabs"></div></div></div><div class="zero_r_arrow_r"><span class="zero_arrow_r zero_bg_icon zero_bg_icon_arrow_right3">&nbsp</span></div>'),
+            var d = $("rtabs").html('<div class="zero_r_arrow_l"><span class="zero_arrow_l zero_bg_icon zero_bg_icon_arrow_left3"></span></div><div class="zero_r_tabs_init"><div class="zero_init"><div class="zero_tabs"></div></div></div><div class="zero_r_arrow_r"><span class="zero_arrow_r zero_bg_icon zero_bg_icon_arrow_right3"></span></div>'),
             a = rtabs = $(d).find("class=zero_tabs"),
             b = riframes = $("riframes")
             e = $(d).find("class=zero_arrow_l"),
