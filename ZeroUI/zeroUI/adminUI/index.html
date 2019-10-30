@@ -25,6 +25,14 @@
             myTask.length === 1 && myTask.addEvent('click', function (e) {
                 dialog.loadIframe(zero(this).text(), 'welcome.html', 800, 600)
             });
+            var n = zero('left_menu_show');
+            if (n.length !== 1) { return; }
+            n.addEvent('click', function (e) {
+                var size = zero(window).getSize();
+                if (size.width > 800) { return; }
+                zero(this).parent(3).cssText('position:absolute;');
+                zero.UI.sideBar('left', 'left', true);
+            });
         });
     </script>
 </head>
@@ -40,8 +48,9 @@
     </div>
     <div id="zero_ap_content">
         <div class="zero_left zero_side_bar" id="left">
+            <div class="zero_mp_main">
             <div class="zero_side_bar_header">
-                <div class="zero_side_bar_header_l"><a class="zero_bg_icon zero_bg_icon_list"></a></div>
+                <div class="zero_side_bar_header_l"><a class="zero_bg_icon zero_bg_icon_list" id="left_menu_show"></a></div>
                 <div class="zero_side_bar_header_c">导航菜单</div>
                 <div class="zero_side_bar_header_r"><a class="zero_side_bar_close zero_bg_icon zero_bg_icon_close"></a></div>
             </div>
@@ -173,7 +182,7 @@
                     </dl>
                 </div>
             </div></div>
-        </div>
+        </div></div>
         <div class="zero_separate" id="separate"><div><!--分隔线--></div></div>
         <div class="zero_right" id="right">
             <div class="zero_right_tabs" id="rtabs"><!--tab--></div>
