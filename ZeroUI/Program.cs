@@ -22,7 +22,8 @@ namespace ZeroUI
             var host = new WebHostBuilder();
             return host.UseKestrel(options=> {
                 //options.Listen(System.Net.IPAddress.Loopback, 5000);
-                options.ListenLocalhost(5000);
+                //options.ListenLocalhost(5000);
+                options.ListenAnyIP(5000);
             })
             .UseContentRoot(Directory.GetCurrentDirectory())
             .UseWebRoot(System.IO.Path.Combine(Directory.GetCurrentDirectory(), @"zeroUI"))

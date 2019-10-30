@@ -68,9 +68,9 @@ body #zero_date_input p span:hover{color:#000;}
 .zero_ap_content_right{width:84%;height:100%;float:right;}
 #zero_ap_content .zero_right_tabs{display:block;padding:0;margin:0;border:0;height:28px;overflow:hidden;border-bottom:solid 2px #03d6d0;}
 #zero_ap_content .zero_r_arrow_l,#zero_ap_content .zero_r_arrow_r{height:28px;width:0;overflow:hidden;padding:0;margin:0;float:left;}
-#zero_ap_content .zero_r_arrow_l span,#zero_ap_content .zero_r_arrow_r span{display:block;height:28px;width:29px;overflow:hidden;background-color:#f2f2f2;padding-left:0;background-position:center; color:#666;line-height:1.875em;text-align:center;position:absolute;cursor:pointer;}
+#zero_ap_content .zero_r_arrow_l span,#zero_ap_content .zero_r_arrow_r span{display:block;height:28px;width:29px;overflow:hidden;background-color:#fff;padding-left:0;background-position:center; color:#666;line-height:1.875em;text-align:center;position:absolute;cursor:pointer;}
 #zero_ap_content .zero_r_arrow_r span{margin-left:-28px;}
-#zero_ap_content .zero_r_tabs_init{height:28px;width:100%;overflow:hidden;padding:0;margin:0;float:left;}
+#zero_ap_content .zero_r_tabs_init{height:29px;width:100%;overflow:hidden;padding:0;margin:0;float:left;}
 #zero_ap_content .zero_r_tabs_init .zero_init{height:28px;margin:1px 29px 0 29px;overflow:hidden;padding:0;}
 #zero_ap_content .zero_r_tabs_init .zero_tabs{width:121px;height:28px;overflow:hidden;padding:0;margin:0;border:0;}
 #zero_ap_content .zero_r_tabs_init .zero_tab{width:118px; height:28px;overflow:hidden;float:left;background:rgba(240,240,240,0.6);margin:3px 0 0 1px;border:solid 1px #fff; border-radius:5px 5px 0 0;}
@@ -115,10 +115,14 @@ body #zero_date_input p span:hover{color:#000;}
     #zero_ap_content .zero_ap_content_left_fixed .zero_ap_left_header_l .zero_bg_icon{margin:0;border:0;}
     #zero_ap_content .zero_ap_content_left_fixed .zero_ap_left_header_r{display:block;}
     #zero_ap_content .zero_right_tabs{margin-left:30px;}
+    body *.ZSW1000H{display:none;}
  }
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 600px) {
     #zero_ap_header .zero_left{width:0;}
     #zero_ap_header .zero_right{width:100%;}
+    .zero_data_list{margin-top:10px;}
+    .zero_data_list .zero_title_bar{height:auto;position:static;}
+    body *.ZSW600H{display:none;}
 }
 @media print {
     .noprint { display: none; }

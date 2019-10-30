@@ -103,7 +103,7 @@
                         zero(this.node).addClass('drag_node_on');
                     }).move(function (node, point, para) {
                         //point参数是相对于页面的
-                        var cssText = 'left:' + point.x + 'px; top:' + point.y + 'px;'
+                        var cssText = 'left:' + parseInt(point.x,10) + 'px; top:' + parseInt(point.y,10) + 'px;'
                         //设置样式及内部文本
                         zero(this.node).cssText(cssText).html(cssText);
                     }).end(function (node, point, para) {

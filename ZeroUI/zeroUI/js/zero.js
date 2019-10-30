@@ -1772,6 +1772,7 @@
                     onBegin.apply(_this, [ele, { x: beginX, y: beginY }, { pointX: range[0], pointY: range[1], maxWidth: range[2], maxHeight: range[3] }]);
                 },
                 touchMove = function (e) {
+                    $.stopEventBubble(e);
                     var point = getOffsetPoint(e.touches[0].clientX, e.touches[0].clientY);
                     onMove.apply(_this, [ele, point, para]);
                 },

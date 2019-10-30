@@ -462,10 +462,11 @@
                 inputs.input2.onfocus = function (e) {
                     $(inputs.input1).fireEvent('focus');
                     this.blur();
-                    var point = $(this).getAbsPoint(true),size=$(this).getSize(true);
+                    var point = $(this).getAbsPoint();
+                    $.log(JSON.stringify(point));
                     rootNode.style.width = this.offsetWidth + 'px';
                     rootNode.style.marginLeft = point.x + 'px';
-                    rootNode.style.marginTop = (point.y + size.height) + 'px';
+                    rootNode.style.marginTop = (point.y + this.offsetHeight) + 'px';
                     rootNode.style.display = 'block';
                     inputs.input2.onblur = function () { $(inputs.input1).fireEvent('blur'); };
                     //延迟绑定事件：避免鼠标点击获得焦点时被触发

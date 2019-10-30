@@ -13,20 +13,22 @@
             <div class="zero_left"><span class="zero_title">用户列表</span><a class="zero_bg_icon zero_bg_icon_filter2" onclick="zero.UI.upSideBar('filterSideBar', true)">过滤</a></div>
             <div class="zero_right">
                 <input type="button" value="新建" class="zero_bg_icon zero_bg_icon_plus" onclick="myPage.addFunc()" />
-                <select class="zero_bg_icon zero_bg_icon_checkmark_circle" onchange="myPage.selCmd(this)">
+                <!--页面最大宽度只有600像素时隐藏-->
+                <select class="zero_bg_icon zero_bg_icon_checkmark_circle ZSW600H" onchange="myPage.selCmd(this)">
                     <option value="">勾选</option>
                     <option value="all">全选</option>
                     <option value="reverse">反选</option>
                     <option value="cancel">弃选</option>
                 </select>
                 <input type="button" value="删除" class="zero_bg_icon zero_bg_icon_remove" onclick="myPage.bulkDeleteFunc()" />
-                <select class="zero_bg_icon zero_bg_icon_enter" onchange="myPage.datafileFunc(this)">
+                <!--页面最大宽度只有600像素时隐藏-->
+                <select class="zero_bg_icon zero_bg_icon_enter ZSW600H" onchange="myPage.datafileFunc(this)">
                     <option value="">导入导出</option>
                     <option value="export">导出用户</option>
                     <option value="import">导入用户</option>
                 </select>
-                | 
-                <select class="zero_iframe_page_ctrl zero_bg_icon zero_bg_icon_screen">
+                <!--页面最大宽度只有1000像素时就隐藏-->
+                <select class="zero_iframe_page_ctrl zero_bg_icon zero_bg_icon_screen ZSW1000H">
                     <option value="">--页面操作--</option>
                     <option value="page_lock">锁定页面</option>
                     <option value="page_unlock">解锁页面</option>
@@ -40,10 +42,10 @@
             </div>
             <table class="zero_datatable">
                 <thead>
-                    <tr><th style="width:14px;" class="noprint"></th><th>No.</th><th>姓名</th><th>性别</th><th>生日</th><th>城市</th><th>注册时间</th><th class="ctrl noprint">操作</th></tr>
+                    <tr><th style="width:14px;" class="noprint"></th><th>No.</th><th>姓名</th><th class="ZSW600H">性别</th><th class="ZSW1000H">生日</th><th>城市</th><th>注册时间</th><th class="ctrl noprint ZSW600H">操作</th></tr>
                  </thead>
                 <tbody id="dataInit" class="zero_selected_single">
-                    <tr style="visibility:hidden;"><td class="noprint"><input type="checkbox" value="@id" /></td><td>#rownum#</td><td>@name</td><td>@sex</td><td>@birthday</td><td>@city</td><td>@createTime</td><td class="zero_ctrl noprint"><input type="button" value="明细" class="zero_bg_icon zero_bg_icon_eye2" /><input type="button" value="修改" class="zero_bg_icon zero_bg_icon_pen" /><input type="button" value="删除" class="zero_bg_icon zero_bg_icon_remove2" /></td></tr>
+                    <tr style="visibility:hidden;"><td class="noprint"><input type="checkbox" value="@id" /></td><td>#rownum#</td><td>@name</td><td class="ZSW600H">@sex</td><td class="ZSW1000H">@birthday</td><td>@city</td><td>@createTime</td><td class="zero_ctrl noprint ZSW600H"><input type="button" value="明细" class="zero_bg_icon zero_bg_icon_eye2" /><input type="button" value="修改" class="zero_bg_icon zero_bg_icon_pen" /><input type="button" value="删除" class="zero_bg_icon zero_bg_icon_remove2" /></td></tr>
                 </tbody>
             </table>
             <div class="zero_page_bar noprint"><div id="pageInit" class="zero_pager noprint"></div></div>
