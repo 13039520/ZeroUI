@@ -110,7 +110,7 @@ body #zero_date_input p span:hover{color:#000;}
  @media screen and (max-width: 1024px){
     #zero_ap_content .zero_ap_content_left{width:0;}
     #zero_ap_content .zero_ap_content_right{width:100%;}
-    .zero_ap_left_header_l .zero_bg_icon{height:29px;width:28px; border:solid 1px #fff; background-color:#03d6d0;z-index:1;}
+    .zero_ap_left_header_l .zero_bg_icon{height:29px;width:28px; border:solid 1px #fff; border-bottom:none; background-color:#03d6d0;z-index:1;}
     #zero_ap_content .zero_ap_content_left_fixed{float:none;width:320px;position:fixed;top:0;left:0;background-color:#f2f2f2;z-index:2;}
     #zero_ap_content .zero_ap_content_left_fixed .zero_ap_left_header_l .zero_bg_icon{margin:0;border:0;}
     #zero_ap_content .zero_ap_content_left_fixed .zero_ap_left_header_r{display:block;}

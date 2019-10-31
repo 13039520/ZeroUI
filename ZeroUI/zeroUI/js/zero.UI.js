@@ -162,7 +162,7 @@
         }
         return s.join('');
     };
-    UI.pageBarBuilder = function (url, total, size, page, left, right, count, goto, sizeArray, useLink) {
+    UI.pageBarBuilder = function (url, total, size, page, left, right, showTotal, showPages, showGoto, sizeArray, useLink) {
         if (total < 1) {
             return "<div class=\"zero_list\"><span>&lt;&lt;</span><span>&lt;</span><span>1</span><span>&gt;</span><span>&gt;&gt;</span></div>";
         }
@@ -212,7 +212,7 @@
             s[s.length] = "<" + tName + " href=\"" + url.replace(pageKey, pages) + "\" class=\"zero_next\">&gt;&gt;</" + tName + ">";
         }
         s[s.length] = "</div>";
-        if (count) {
+        if (showTotal) {
             s[s.length] = "<div class=\"zero_count\">total:<em>" + total + "</em></div>";
         }
         if (sizeArray && sizeArray.length > 1) {
@@ -222,10 +222,10 @@
             }
             s[s.length] = '<div class=\"zero_count\">size:<select>' + sh + '</select></div>';
         }
-        if (count) {
+        if (showPages) {
             s[s.length] = "<div class=\"zero_count\">pages:<em>" + pages + "</em></div>";
         }
-        if (goto) {
+        if (showGoto) {
             s[s.length] = "<div class=\"zero_goto\"><span>to</span><input type=\"text\" value=\"" + page + "\" ps=\"" + pages + "\" maxlength=\"" + ('' + pages).length + "\" /><input type=\"button\" value=\"go\" class=\"zero_btn\" /></div>";
         }
         return s.join('')
@@ -249,7 +249,7 @@
         if (!config.queryHeader) { config.queryHeader = {}; }
         if (!config.queryMethod) { config.queryMethod = 'post'; }
         if (isNaN(config.queryDelay)) { config.queryDelay = 0; }
-        if (!config.pager) { config.pager = { left: 5, right: 5, count: true, go: true, size: [5, 10, 15], useLink: true }; }
+        if (!config.pager) { config.pager = { left: 5, right: 5, showTotal: true, showPages: true, showGoto: true, size: [5, 10, 15], useLink: true }; }
         if (undefined === config.pager.useLink) { config.pager.useLink = true; }
         if (!isStr(config.url) && !isFunc(config.url)) { config.url = document.location.href; }
         if (!isFunc(config.onRowClick)) { config.onRowClick = function (ele, data, row, isSelected) { } }
@@ -314,7 +314,7 @@
                                 var total = res.total,
                                     size = config.queryData.size,
                                     page = config.queryData.page,
-                                    pagerHtml = UI.pageBarBuilder("", total, size, page, config.pager.left, config.pager.right, config.pager.count, config.pager.go, config.pager.size, config.pager.useLink),
+                                    pagerHtml = UI.pageBarBuilder("", total, size, page, config.pager.left, config.pager.right, config.pager.showTotal, config.pager.showPages, config.pager.showGoto, config.pager.size, config.pager.useLink),
                                     trs = $(config.dataNode, tNodeName, 1),
                                     showIndex = 0,
                                     showFun = function () {
