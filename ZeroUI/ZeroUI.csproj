@@ -3,13 +3,8 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <StartupObject></StartupObject>
+    <NoDefaultLaunchSettingsFile>True</NoDefaultLaunchSettingsFile>
   </PropertyGroup>
-
-  <ItemGroup>
-    <None Remove="zeroUI\doc\datalist2.html" />
-    <None Remove="zeroUI\doc\datalist3.html" />
-  </ItemGroup>
-
   <ItemGroup>
     <Content Include="zeroUI\adminUI\about.html" />
     <Content Include="zeroUI\adminUI\index.html" />
