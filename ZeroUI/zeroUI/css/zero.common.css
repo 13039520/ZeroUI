@@ -184,3 +184,9 @@ body.zero_side_bar_show{overflow:hidden;}
 .zero_ctrl_inputs .zero_bg_icon{border:solid 1px #666;}
 .zero_ctrl_inputs a{height:27px; padding-right:5px;border-radius:3px;}
 
+/*在一定的屏幕宽度下隐藏页面元素*/
+@media screen and (max-width: 1024px) { body *.MCW1024H{display:none;} }
+@media screen and (max-width: 768px) { body *.MCW768H{display:none;} }
+@media screen and (max-width: 640px) { body *.MCW640H{display:none;} }
+@media screen and (max-width: 320px) { body *.MCW320H{display:none;} }
+
