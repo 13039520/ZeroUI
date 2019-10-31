@@ -4,7 +4,7 @@
 ::-webkit-scrollbar {width:8px;height:8px;}
 ::-webkit-scrollbar-button {background: #000; height:8px;width:8px;}
 ::-webkit-scrollbar-track-piece{background: #e7f9fb;}
-::-webkit-scrollbar-thumb {background:#05a59d;border:solid 1px #e7f9fb;border-left:none;}
+::-webkit-scrollbar-thumb {background:#ccc;border:solid 1px #e7f9fb;border-left:none;}
 
 /*以更明确的指向覆盖dialog的默认样式*/
 body #dialogInit .zero_dialog .zero_dialogT{background:#03d6d0;color:#fff;}
@@ -42,7 +42,7 @@ body #zero_date_input p span:hover{color:#000;}
 #zero_ap_header.zero_header_hide .zero_arrow_init .zero_down{display:block;z-index:1;}
 #zero_ap_header table td{width:50%; height:100%; white-space:nowrap;}
 #zero_ap_content{width:100%; height:93%; overflow:hidden;background:url(images/con_bg.jpg) center no-repeat;background-size:cover;}
-.zero_ap_content_left{width:16%;height:100%; overflow:hidden;padding:0;margin:0 0 0 -2px;float:left;border-right:solid 2px #03d6d0;}
+.zero_ap_content_left{width:18%;height:100%; overflow:hidden;padding:0;margin:0 0 0 -2px;float:left;border-right:solid 2px #03d6d0;}
 .zero_ap_left_menu{margin:0;padding:0; border:0;display:block; overflow:hidden; overflow-y:scroll;height:100%;background-color:rgba(255,255,255,.5);}
 .zero_ap_left_menu dl{padding:0; margin:0 0 0 2px;overflow:hidden; display:block; border-left:solid 1px #52ccc9; border-bottom:solid 1px #ccc;  white-space:nowrap;}
 .zero_ap_left_menu dt{padding:0 0 0 32px; cursor:pointer; margin:0 0 -1px 0; background:url(images/icon_folder001.png) no-repeat 5px center; overflow:hidden; font-weight:bold;border-bottom:solid 1px #ccc;line-height:28px; color:#666666;}
@@ -65,7 +65,7 @@ body #zero_date_input p span:hover{color:#000;}
 .zero_ap_left_header .zero_bg_icon{padding:0;margin:0;width:30px;height:30px;display:block;background-position:center;background-color:rgba(255,255,255,.3);position:absolute;}
 .zero_ap_left_header_r .zero_bg_icon{margin:-30px 0 0 -30px;}
 
-.zero_ap_content_right{width:84%;height:100%;float:right;}
+.zero_ap_content_right{width:82%;height:100%;float:right;}
 #zero_ap_content .zero_right_tabs{display:block;padding:0;margin:0;border:0;height:28px;overflow:hidden;border-bottom:solid 2px #03d6d0;}
 #zero_ap_content .zero_r_arrow_l,#zero_ap_content .zero_r_arrow_r{height:28px;width:0;overflow:hidden;padding:0;margin:0;float:left;}
 #zero_ap_content .zero_r_arrow_l span,#zero_ap_content .zero_r_arrow_r span{display:block;height:28px;width:29px;overflow:hidden;background-color:#fff;padding-left:0;background-position:center; color:#666;line-height:1.875em;text-align:center;position:absolute;cursor:pointer;}
