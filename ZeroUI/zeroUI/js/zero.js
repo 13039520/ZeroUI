@@ -2673,6 +2673,7 @@
                     },
                     getMousePos = function (e) {
                         var p1 = { x: size.width / 2, y: size.height / 2, unusual: true, win: zWin };
+                        if (isTouchScreen) { return p1; }
                         try{
                             e = e || zWin.event;
                             var n = e.target || e.srcElement,
@@ -2812,7 +2813,6 @@
                         var isHomologous = true;
                         try {
                             this.contentWindow.parentDialogObj = o;
-                            this.contentWindow.focus();
                         } catch (e) {
                             log('onload error:' + e.message);
                             isHomologous = false;
