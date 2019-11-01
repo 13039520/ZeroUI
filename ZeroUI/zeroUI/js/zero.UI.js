@@ -773,6 +773,7 @@
         var con = $(bar).find('class>zero_mp_main', 1);
         if (con.length != 1) { return; }
         if (!$(bar).attribute('data-e-close')) {
+            if (isTouchScreen) { $(bar).addEvent('touchmove', function (e) { $.stopEventBubble(e); });}
             $(bar).attribute('data-e-close', 1).find('class>zero_side_bar_close').addEvent('click', function (e) {
                 UI.sideBar(node,cmd, false);
             });
