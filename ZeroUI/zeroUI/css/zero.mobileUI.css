@@ -53,7 +53,7 @@ table.zero_datatable input[type=button].zero_bg_icon{background-color:#82d5d6;bo
 .zero_repeat_item_btns input[type=submit].zero_bg_icon,
 .zero_repeat_item_btns input[type=reset].zero_bg_icon,
 .zero_repeat_item_btns button.zero_bg_icon,
-.zero_repeat_item_btns .zero_bg_icon{background-color:#82d5d6;color:#fff;}
+.zero_repeat_item_btns .zero_bg_icon{background-color:#82d5d6;border-color:#39c2c2;color:#fff;}
 
 
 
