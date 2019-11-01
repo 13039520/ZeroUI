@@ -237,7 +237,7 @@
                     cellFormat: function (name, value, row) {
                         switch (name) {
                             case 'cover':
-                                value = '<img src="' + value + '" onload="zero.UI.imgFullParentNode(this)" onclick="dialog.loadBigImage(\'' + row.name + '\',\'' + value + '\')" />';
+                                value = '<img src="' + value + '" onload="zero.UI.imgFullParentNode(this)" onclick="dialog.loadBigImage(\'' + row.title + '\',\'' + value + '\')" />';
                                 break;
                         }
                         return value;

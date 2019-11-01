@@ -89,10 +89,10 @@
                                 },
                                 end: function (obj) {
                                     if (bgSrc) {
-                                        zero(document.body).cssText('background-image:url('+bgSrc+');')
+                                        zero(document.body).cssText('background-image:url(' + bgSrc + ');');
                                     }
                                     setTimeout(function () {
-                                        zero('zero_login_m').cssText('visibility:visible;');
+                                        zero(obj).cssText('opacity:.5;background:#fff;');
                                         size = zero(window).getSize();
                                         var tSize = zero('zero_login_m').getSize();
                                         //3. to login module
@@ -103,10 +103,8 @@
                                                 zero(this).cssText('left:' + p.x + 'px;top:' + p.y + 'px;height:' + (size.height - (size.height - tSize.height) * v) + 'px;width:' + (size.width - (size.width - tSize.width) * v) + 'px');
                                             },
                                             end: function (obj) {
-                                                setTimeout(function () {
-                                                    //4. change opacity value and remove
-                                                    obj.changeOpacity({ to: 10, change: function (s) { zero(this).cssText('opacity:' + (s / 100)); }, end(obj) { obj.remove(); } })
-                                                }, 200);
+                                                zero('zero_login_m').cssText('visibility:visible;');
+                                                obj.remove();
                                             }
                                         });
                                     }, 500);
