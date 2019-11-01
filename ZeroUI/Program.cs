@@ -17,17 +17,13 @@ namespace ZeroUI
             CreateWebHostBuilder(args).Build().Run();
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args)
-        {
-            var host = new WebHostBuilder();
-            return host.UseKestrel(options=> {
-                //options.Listen(System.Net.IPAddress.Loopback, 5000);
-                //options.ListenLocalhost(5000);
-                options.ListenAnyIP(5000);
-            })
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) => WebHost.CreateDefaultBuilder(args)
+                .UseKestrel(options =>
+                {
+                    options.Listen(System.Net.IPAddress.Any, 5000);
+                })
             .UseContentRoot(Directory.GetCurrentDirectory())
             .UseWebRoot(System.IO.Path.Combine(Directory.GetCurrentDirectory(), @"zeroUI"))
             .UseStartup<Startup>();
-        }
     }
 }
