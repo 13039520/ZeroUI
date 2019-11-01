@@ -1,10 +1,10 @@
 ﻿@import 'zero.common.css';
 @import 'zero.icons.css';
 
-::-webkit-scrollbar {width:8px;height:8px;}
+/*::-webkit-scrollbar {width:8px;height:8px;}
 ::-webkit-scrollbar-button {background: #000; height:8px;width:8px;}
 ::-webkit-scrollbar-track-piece{background: #e7f9fb;}
-::-webkit-scrollbar-thumb {background:#ccc;border:solid 1px #e7f9fb;border-left:none;}
+::-webkit-scrollbar-thumb {background:#ccc;border:solid 1px #e7f9fb;border-left:none;}*/
 
 /*以更明确的指向覆盖dialog的默认样式*/
 body #dialogInit .zero_dialog .zero_dialogT{background:#03d6d0;color:#fff;}

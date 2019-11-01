@@ -69,11 +69,15 @@
             }
         },
         menuInit = function () {
+            var btnShow = $('zero_ap_left_menu_show'),
+                btnHidden = $('zero_ap_left_menu_hidden'),
+                menu = $("zero_ap_left_menu");
+            if (menu.length !== 1 || btnShow.length !== 1 || btnHidden.length !== 1) { return; }
             var a = $("zero_ap_left_menu")[0];
-            $(a, "a").foreach(function (a) {
+            $(menu, "a").foreach(function (a) {
                 $(this.parentNode).attribute("link", $(this).attribute("href")).html($(this).html()).attribute("id", "nav" + $.guid())
             });
-            $(a).addEvent("click", function (a) {
+            menu.addEvent("click", function (a) {
                 a = a || event;
                 a = a.target || a.srcElement;
                 if (a.nodeName) {
@@ -91,6 +95,9 @@
                     c = function () {
                         var a = $(this),
                             d = $(this.parentNode);
+                        if (btnHidden[0].offsetHeight !== 0) {
+                            btnHidden.fireEvent('click');
+                        }
                         a.hasClass("zero_selected") ? (a = $(this).attribute("id").replace("nav", ""), tabSelected($("tab" + a))) : (a.addClass("zero_selected"), d.hasClass("zero_selected") || d.addClass("zero_selected"), menuOpen(this))
                     };
                     switch (a.nodeName.toLowerCase()) {
@@ -102,9 +109,6 @@
                     }
                 }
             })
-            var btnShow = $('zero_ap_left_menu_show'),
-                btnHidden = $('zero_ap_left_menu_hidden');
-            if (btnShow.length !== 1 || btnHidden.length !== 1) { return; }
             btnShow.addEvent('click', function (e) {
                 if (btnHidden[0].offsetHeight !== 0) { return; }
                 $(this).parent(3).addClass('zero_ap_content_left_fixed');
@@ -146,10 +150,6 @@
             tabSelected($(rtabs).find("class>zero_tab", 1).foreach(function (n) {
                 $(this).attribute("n", n)
             }).last()[0]);
-            var btnHidden = $('zero_ap_left_menu_hidden');
-            if (btnHidden[0].offsetHeight !== 0) {
-                btnHidden.fireEvent('click');
-            }
         },
         tabsInit = function () {
             var d = $("rtabs").html('<div class="zero_r_arrow_l"><span class="zero_arrow_l zero_bg_icon zero_bg_icon_arrow_left3"></span></div><div class="zero_r_tabs_init"><div class="zero_init"><div class="zero_tabs"></div></div></div><div class="zero_r_arrow_r"><span class="zero_arrow_r zero_bg_icon zero_bg_icon_arrow_right3"></span></div>'),
