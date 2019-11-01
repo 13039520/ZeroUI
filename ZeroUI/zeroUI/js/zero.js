@@ -3192,24 +3192,29 @@
                     var ele = e.srcElement || e.target,
                         name = ele.nodeName;
                     if (name === 'A') {
-                        var cla = $(ele).attribute('class');
+                        var cla = $(ele).attribute('class'),
+                            remove = function () {
+                                if (!isTouchScreen) { root.remove(); return; }
+                                $(root).find('class=box').cssText('display:none');
+                                setTimeout(function () { root.remove(); }, 200);
+                            };
                         switch (cla) {
                             case 'clean':
                                 $(target).value('');
-                                root.remove();
+                                remove();
                                 break;
                             case 'cancel':
-                                root.remove();
+                                remove();
                                 break;
                             case 'now':
                                 var result = $.datetimeParse(new Date());
                                 if (isFunc(okFunc)) {
                                     var reval = okFunc.apply(target, [getDatetimeFormat(result, format), $.datetimeJSON(result, true), result]);
                                     if (reval) {
-                                        root.remove();
+                                        remove();
                                     }
                                 } else {
-                                    root.remove();
+                                    remove();
                                 }
                                 break;
                             case 'ok':
@@ -3218,10 +3223,10 @@
                                 if (isFunc(okFunc)) {
                                     var reval = okFunc.apply(target, [getDatetimeFormat(result, format), $.datetimeJSON(result, true), result]);
                                     if (reval) {
-                                        root.remove();
+                                        remove();
                                     }
                                 } else {
-                                    root.remove();
+                                    remove();
                                 }
                                 break;
                         }
@@ -3325,8 +3330,6 @@
                     point = $(target).getAbsPoint(),
                     maxX = Math.max(docSize.width, winSize.width) - showDivSize.width,
                     maxY = Math.max(docSize.height, winSize.height) - showDivSize.height;
-                log('maxX=' + maxX)
-                log('point.x=' + point.x)
                 if (point.x > maxX) {
                     point.x = maxX;
                 }

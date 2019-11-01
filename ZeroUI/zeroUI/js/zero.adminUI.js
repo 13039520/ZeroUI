@@ -111,8 +111,16 @@
                 $(win).fireEvent('resize');
             });
             btnHidden.addEvent('click', function (e) {
-                $(this).parent(3).removeClass('zero_ap_content_left_fixed');
-                $(win).fireEvent('resize');
+                var _this = $(this).parent(3);
+                if (!isTouchScreen) {
+                    _this.removeClass('zero_ap_content_left_fixed');
+                    $(win).fireEvent('resize');
+                    return;
+                }
+                setTimeout(function () {
+                    _this.removeClass('zero_ap_content_left_fixed');
+                    $(win).fireEvent('resize');
+                }, 200);
             });
         },
         menuSelected = function () {

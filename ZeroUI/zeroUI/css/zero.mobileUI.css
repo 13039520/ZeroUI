@@ -13,9 +13,11 @@ body #dialogInit .zero_dialogMaskDiv,body #dialogInit .zero_nDialog .zero_dialog
 body #dialogInit .zero_dialogShowDiv,body #dialogInit .zero_nDialog .zero_dialogShowDiv{border-color:#05a59d;box-shadow:0 0 0.625em rgba(0,0,0,.4);}
 body #dialogInit .zero_dialogB{}
 /*以更明确的指向覆盖zero_date_input的默认样式*/
+body #zero_date_input .box{border-color:#05a59d;}
 body #zero_date_input .box .t{background:#03d6d0;}
 body #zero_date_input p{background:#03d6d0;color:#fff;}
 body #zero_date_input p span:hover{color:#000;}
+body #zero_date_input .b a{border-left-color:#dedede;}
 
 html,body{padding:0;margin:0;font-size:16px;line-height:1.7;background:#f2f2f2 url(images/con_bg.jpg) center no-repeat;background-size:cover;background-attachment:fixed;}
 #zero_mp_header{width:100%;height:32px;overflow:hidden;color:#fff;line-height:32px;border-bottom:solid 1px #fff;}
