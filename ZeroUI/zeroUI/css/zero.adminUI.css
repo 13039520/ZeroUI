@@ -44,9 +44,9 @@ body #zero_date_input .b a{border-left-color:#dedede;}
 #zero_ap_header.zero_header_hide .zero_arrow_init .zero_down{display:block;z-index:1;}
 #zero_ap_header table td{width:50%; height:100%; white-space:nowrap;}
 #zero_ap_content{width:100%; height:93%; overflow:hidden;background:url(images/con_bg.jpg) center no-repeat;background-size:cover;}
-.zero_ap_content_left{width:18%;height:100%; overflow:hidden;padding:0;margin:0 0 0 -2px;float:left;border-right:solid 2px #03d6d0;}
+.zero_ap_content_left{width:18%;height:100%; overflow:hidden;padding:0;margin:0 0 0 -3px;float:left;border-right:solid 3px #03d6d0;}
 .zero_ap_left_menu{margin:0;padding:0; border:0;display:block; overflow:hidden; overflow-y:scroll;height:100%;background-color:rgba(255,255,255,.5);}
-.zero_ap_left_menu dl{padding:0; margin:0 0 0 2px;overflow:hidden; display:block; border-left:solid 1px #52ccc9; border-bottom:solid 1px #ccc;  white-space:nowrap;}
+.zero_ap_left_menu dl{padding:0; margin:0 0 0 3px;overflow:hidden; display:block; border-left:solid 1px #52ccc9; border-bottom:solid 1px #ccc;  white-space:nowrap;}
 .zero_ap_left_menu dt{padding:0 0 0 32px; cursor:pointer; margin:0 0 -1px 0; background:url(images/icon_folder001.png) no-repeat 5px center; overflow:hidden; font-weight:bold;border-bottom:solid 1px #ccc;line-height:28px; color:#666666;}
 .zero_ap_left_menu dt:hover{background-image:url(images/icon_folder003.png);color:#05a59d;}
 .zero_ap_left_menu dd{padding:3px 0 3px 32px; color:#666; cursor:pointer; margin:0 0 -1px 16px; line-height:28px; background:url(images/icon_page001.png) no-repeat 5px center; overflow:hidden; border-left:solid 1px #ccc;border-bottom:solid 1px #ccc;font-size:14px;}
@@ -68,19 +68,19 @@ body #zero_date_input .b a{border-left-color:#dedede;}
 .zero_ap_left_header_r .zero_bg_icon{margin:-30px 0 0 -30px;}
 
 .zero_ap_content_right{width:82%;height:100%;float:right;}
-#zero_ap_content .zero_right_tabs{display:block;padding:0;margin:0;border:0;height:28px;overflow:hidden;border-bottom:solid 2px #03d6d0;}
-#zero_ap_content .zero_r_arrow_l,#zero_ap_content .zero_r_arrow_r{height:28px;width:0;overflow:hidden;padding:0;margin:0;float:left;}
-#zero_ap_content .zero_r_arrow_l span,#zero_ap_content .zero_r_arrow_r span{display:block;height:28px;width:29px;overflow:hidden;background-color:#fff;padding-left:0;background-position:center; color:#666;line-height:1.875em;text-align:center;position:absolute;cursor:pointer;}
+#zero_ap_content .zero_right_tabs{display:block;padding:0;margin:0;border:0;height:30px;overflow:hidden;border-bottom:solid 2px #05a59d;}
+#zero_ap_content .zero_r_arrow_l,#zero_ap_content .zero_r_arrow_r{height:30px;width:0;overflow:hidden;padding:0;margin:0;float:left;}
+#zero_ap_content .zero_r_arrow_l span,#zero_ap_content .zero_r_arrow_r span{display:block;height:29px;width:29px;overflow:hidden;background-color:#fff;padding-left:0;background-position:center; color:#666;line-height:1.875em;text-align:center;position:absolute;cursor:pointer;}
 #zero_ap_content .zero_r_arrow_r span{margin-left:-28px;}
-#zero_ap_content .zero_r_tabs_init{height:29px;width:100%;overflow:hidden;padding:0;margin:0;float:left;}
-#zero_ap_content .zero_r_tabs_init .zero_init{height:28px;margin:1px 29px 0 29px;overflow:hidden;padding:0;}
-#zero_ap_content .zero_r_tabs_init .zero_tabs{width:121px;height:28px;overflow:hidden;padding:0;margin:0;border:0;}
-#zero_ap_content .zero_r_tabs_init .zero_tab{width:118px; height:28px;overflow:hidden;float:left;background:rgba(240,240,240,0.6);margin:3px 0 0 1px;border:solid 1px #fff; border-radius:0;}
-#zero_ap_content .zero_r_tabs_init .zero_tab_text{display:block;padding:0;margin:0;width:102px;height:28px;overflow:hidden;float:left;white-space:nowrap;text-overflow:ellipsis;color:#999; text-indent:4px;line-height:28px;font-size:14px;cursor:default;}
+#zero_ap_content .zero_r_tabs_init{height:30px;width:100%;overflow:hidden;padding:0;margin:0;float:left;}
+#zero_ap_content .zero_r_tabs_init .zero_init{height:30px;margin:1px 29px 0 29px;overflow:hidden;padding:0;}
+#zero_ap_content .zero_r_tabs_init .zero_tabs{width:121px;height:29px;overflow:hidden;padding:0;margin:0;border:0;}
+#zero_ap_content .zero_r_tabs_init .zero_tab{width:118px; height:29px;overflow:hidden;float:left;background:rgba(240,240,240,0.6);margin:3px 0 0 1px;border:solid 1px #fff; border-radius:0;}
+#zero_ap_content .zero_r_tabs_init .zero_tab_text{display:block;padding:0;margin:0;width:102px;height:29px;overflow:hidden;float:left;white-space:nowrap;text-overflow:ellipsis;color:#999; text-indent:4px;line-height:28px;font-size:14px;cursor:default;}
 #zero_ap_content .zero_r_tabs_init .zero_tab_close{display:block;padding:0;margin:6px 0 0 0;width:16px;height:16px;overflow:hidden;float:right;background:#ccc;color:#fff;line-height:12px;text-align:center;cursor:pointer;border-radius:0;}
-#zero_ap_content .zero_r_tabs_init .zero_selected{background:#03d6d0;margin-top:1px;}
+#zero_ap_content .zero_r_tabs_init .zero_selected{background:#05a59d;margin-top:1px;}
 #zero_ap_content .zero_r_tabs_init .zero_selected .zero_tab_text{color:#fff;}
-#zero_ap_content .zero_r_tabs_init .zero_selected .zero_tab_close{background-color:#fff; color:#03d6d0;}
+#zero_ap_content .zero_r_tabs_init .zero_selected .zero_tab_close{background-color:#fff; color:#05a59d;}
 .zero_r_iframes{width:100%;overflow:hidden;background-color:rgba(255,255,255,0.8);}
 .zero_r_iframes iframe{width:100%;height:100%;border:0;overflow-x: hidden; overflow-y: auto;display:none;background:transparent;}
 .zero_r_iframes iframe.zero_selected{display:block;}
@@ -112,7 +112,7 @@ body #zero_date_input .b a{border-left-color:#dedede;}
  @media screen and (max-width: 1024px){
     #zero_ap_content .zero_ap_content_left{width:0;}
     #zero_ap_content .zero_ap_content_right{width:100%;}
-    .zero_ap_left_header_l .zero_bg_icon{height:28px;width:28px; border:solid 1px #fff; border-bottom:none; background-color:#03d6d0;z-index:1;}
+    .zero_ap_left_header_l .zero_bg_icon{height:29px;width:28px; border:solid 1px #fff; border-bottom:none; background-color:#03d6d0;z-index:1;}
     #zero_ap_content .zero_ap_content_left_fixed{float:none;width:320px;position:fixed;top:0;left:0;background-color:#f2f2f2;z-index:2;}
     #zero_ap_content .zero_ap_content_left_fixed .zero_ap_left_header_l .zero_bg_icon{margin:0;border:0;height:30px;}
     #zero_ap_content .zero_ap_content_left_fixed .zero_ap_left_header_r{display:block;}
