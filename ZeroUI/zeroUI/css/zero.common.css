@@ -1,5 +1,5 @@
 ﻿html{min-height:100%;}
-html,body,form{padding:0; margin:0; font-family:'微软雅黑'; font-size:16px; line-height:1.75; color:#333;}
+html,body,form{padding:0; margin:0; font-family:'微软雅黑'; font-size:16px; line-height:1.75; color:#333;background-color:#fafafa;}
 a{text-decoration:none;}
 .zero_left{float:left; overflow:hidden;}
 .zero_right{float:right; overflow:hidden;}
@@ -156,7 +156,7 @@ table.zero_datatable span em{font-size:12px;font-style:normal;color:#000;}
 
 .zero_side_bar{height:100%;width:100%;padding:0;margin:0;border:0;top:0;left:0;bottom:0;overflow:hidden;position:fixed;z-index:1;background:rgba(0,0,0,.3);display:none;}
 .zero_side_bar .zero_mp_main{height:100%;padding:0;background-color:rgba(255,255,255,1);visibility:visible;overflow-x:hidden;overflow-y:auto;}
-.zero_side_bar_header{color:#fff;line-height:32px;height:32px;overflow:hidden;background:#03d6d0;padding:0;margin:0;border:solid 1px #fff;display:block;}
+.zero_side_bar_header{color:#fff;line-height:32px;height:32px;overflow:hidden;background:#03d6d0;padding:0;margin:0;border:solid 1px #fafafa;display:block;}
 .zero_side_bar_header_l{width:0;height:0;overflow:hidden;display:block;padding:0;margin:0;border:0;float:left;}
 .zero_side_bar_header_c{padding:0;margin:0 32px;border:0; overflow:hidden;text-align:center;}
 .zero_side_bar_header_r{width:0;height:0;overflow:hidden;display:block;padding:0;margin:0;border:0;float:right;}

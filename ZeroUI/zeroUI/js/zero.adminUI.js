@@ -201,7 +201,6 @@
                 var a = iframe[0];
                 try {
                     var d = a.contentWindow;
-                    d.document.body.style.backgroundColor = 'transparent';
                     $(d).addEvent("scroll", function () {
                         var a = d.document.documentElement.scrollTop || d.document.body.scrollTop,
                             b = d.document.documentElement.scrollLeft || d.document.body.scrollLeft;
