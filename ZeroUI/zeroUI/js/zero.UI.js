@@ -790,21 +790,21 @@
                 switch (cmd) {
                     case 'left':
                         temp.cssText('left:0;top:0;height:' + size.height + 'px;');
-                        $(con).cssText('height:100%;width:' + (size.width - dif) + 'px;margin:0;');
+                        $(con).cssText('height:' + (size.height - 2) + 'px;width:' + (size.width - dif) + 'px;margin:0;');
                         isLeftOrRight = true;
                         break;
                     case 'right':
-                        temp.cssText('right:0;top:0;height:' + size.height + 'px;');
-                        $(con).cssText('height:100%;margin:0 0 0 ' + dif + 'px');
+                        temp.cssText('right:0;top:0;height:' + (size.height-2) + 'px;');
+                        $(con).cssText('height:' + (size.height - 2) + 'px;margin:0 0 0 ' + dif + 'px');
                         isLeftOrRight = true;
                         break;
                     case 'up':
                         temp.cssText('left:0;top:0;width:' + size.width + 'px;');
-                        $(con).cssText('height:' + (size.height - dif) + 'px;margin:0;');
+                        $(con).cssText('height:' + (size.height - dif -2) + 'px;margin:0;');
                         break;
                     case 'down':
                         temp.cssText('left:0;bottom:0;width:' + size.width + 'px;');
-                        $(con).cssText('height:' + (size.height - dif) + 'px;margin:' + dif + 'px 0 0 0');
+                        $(con).cssText('height:' + (size.height - dif -2) + 'px;margin:' + dif + 'px 0 0 0');
                         break;
                 }
                 var hc = $(bar).find('class>zero_mp_main', 1).first().find('class>zero_side_bar_header_c');

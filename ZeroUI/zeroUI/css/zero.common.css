@@ -9,12 +9,12 @@ a{text-decoration:none;}
 .zero_code_highlight li {background:#fff; word-break:break-all;}
 .zero_code_highlight li:hover{background:#f2f2f2;}
 input{vertical-align:middle;}
-input[type=text],input[type=password],input[type=time],input[type=tel],textarea,select,input[type=radio],input[type=checkbox],select{border:solid 1px #dfdfdf;border-radius:0;background:#f2f2f2;color:#000;margin:1px;padding:0;height:22px;line-height:22px; outline:none;}
+input[type=text],input[type=password],input[type=time],input[type=tel],textarea,select,input[type=radio],input[type=checkbox],select{border:solid 1px #dfdfdf;border-radius:0;background:#f2f2f2;color:#01211f;margin:1px;padding:0;height:22px;line-height:22px; outline:none;}
 select{height:28px;}
 input[type=checkbox],input[type=radio]{background:none;}
 input[disabled="disabled"],input[readonly="readonly"]{border:solid 1px #dedede;background-color:#f2f2f2;color:#999;margin:1px;padding:0;}
 input[type=button],input[type=submit],input[type=reset],button{border:solid 1px #999;background-color:#f2f2f2;color:#333;margin:1px;padding:0 4px;cursor:pointer;border-radius:0;height:28px;}
-input[type=button]:hover,input[type=submit]:hover,input[type=reset]:hover,button:hover{border-color:#000;}
+input[type=button]:hover,input[type=submit]:hover,input[type=reset]:hover,button:hover{border-color:#01211f;}
 
 .zero_pager{padding:0;margin:5px 0;overflow:hidden; zoom:1; text-align:center;font-size:12px;}
 .zero_pager a,.zero_pager b,.zero_pager span{display:inline-block;min-width:12px;height:26px; line-height:26px; overflow:hidden;margin:1px;padding:0 4px;text-align:center;border:solid 1px #dedede;color:#999;background:#f2f2f2;font-weight:normal;}
@@ -84,7 +84,7 @@ dl.zero_form_group dd.zero_tips .zero_form_input {border-color: #f90;}
 .zero_repeat_item p{padding:0;margin:0;}
 .zero_repeat_item_cover{display:block;padding:0;margin:1px;height:120px;overflow:hidden;background-color:#dedede;}
 .zero_repeat_item_cover img{display:block;width:100%;height:auto;border:0;margin:0;}
-.zero_repeat_item_title{line-height:1;padding:0;margin:0;overflow:hidden;color:#000;}
+.zero_repeat_item_title{line-height:1;padding:0;margin:0;overflow:hidden;color:#01211f;}
 .zero_repeat_item_con{overflow:hidden;line-height:1;font-size:12px;padding:2px 0;margin:0;}
 .zero_repeat_item_btns{padding:0;margin:0;line-height:1;}
 .zero_repeat .zero_repeat_item:last-child{margin-bottom:0;}
@@ -100,7 +100,7 @@ dl.zero_form_group dd.zero_tips .zero_form_input {border-color: #f90;}
 .zero_repeat_item_btns input[type=submit].zero_bg_icon,
 .zero_repeat_item_btns input[type=reset].zero_bg_icon,
 .zero_repeat_item_btns button.zero_bg_icon,
-.zero_repeat_item_btns .zero_bg_icon{color:#000;}
+.zero_repeat_item_btns .zero_bg_icon{color:#01211f;}
 .zero_repeat_col2 .zero_repeat_item{width:50%;}
 .zero_repeat_col3 .zero_repeat_item{width:33.33%;}
 .zero_repeat_col4 .zero_repeat_item{width:25%;}
@@ -122,47 +122,47 @@ table.zero_datatable tfoot td .zero_right{width:49%;}
 table.zero_datatable tbody td{border:solid 1px #eee;padding:1px 0;}
 table.zero_datatable tbody tr{background:#fff;color:#333;line-height:1.2;}
 table.zero_datatable tbody tr:hover{color:#f00;}
-table.zero_datatable tbody tr:nth-child(even){background:#f7f7f7;color:#000;}
+table.zero_datatable tbody tr:nth-child(even){background:#f7f7f7;color:#01211f;}
 table.zero_datatable tbody tr:nth-child(even):hover{color:#f00;}
 table.zero_datatable tbody tr.zero_selected{color:#f00; background:#ffeeee;}
 table.zero_datatable tbody tr.zero_selected:hover{background:#ffffaa;color:#f00;}
-table.zero_datatable tbody tr.zero_selected a{color:#000;}
+table.zero_datatable tbody tr.zero_selected a{color:#01211f;}
 table.zero_datatable tbody tr.zero_selected a:hover{color:#f00;}
 table.zero_datatable .zero_ctrl a,
 table.zero_datatable button,
-table.zero_datatable input[type=button]{display:inline-block;height:20px; font-size:12px;background-color:transparent;color:#000;}
+table.zero_datatable input[type=button]{display:inline-block;height:20px; font-size:12px;background-color:transparent;color:#01211f;}
 table.zero_datatable .zero_ctrl a:hover,
 table.zero_datatable button:hover,
-table.zero_datatable input[type=button]:hover{border-color:#000;}
+table.zero_datatable input[type=button]:hover{border-color:#01211f;}
 table.zero_datatable tbody tr.zero_selected .zero_ctrl a{color:#037f8c;}
 table.zero_datatable tbody tr.zero_selected .zero_ctrl a:hover{color:#f00;}
 table.zero_datatable a,table.zero_datatable span{display:inline-block;line-height:1;}
 table.zero_datatable span{color:#090;}
-table.zero_datatable span em{font-size:12px;font-style:normal;color:#000;}
+table.zero_datatable span em{font-size:12px;font-style:normal;color:#01211f;}
 
-#zero_debug_bar{padding:0;margin:0;overflow:hidden;width:100%;height:100px;border-top:solid 1px #000;}
-#zero_debug_bar div{position:fixed;z-index:999;padding:0;margin:0;overflow:hidden;font-size:12px;width:100%;height:100px;border-top:solid 1px #000;background:#fff;color:#000;left:0;bottom:0}
-#zero_debug_bar p{padding:0;margin:0;height:20px;line-height:20px;overflow:hidden;background:#000;color:#fff;}
+#zero_debug_bar{padding:0;margin:0;overflow:hidden;width:100%;height:100px;border-top:solid 1px #01211f;}
+#zero_debug_bar div{position:fixed;z-index:999;padding:0;margin:0;overflow:hidden;font-size:12px;width:100%;height:100px;border-top:solid 1px #01211f;background:#fff;color:#01211f;left:0;bottom:0}
+#zero_debug_bar p{padding:0;margin:0;height:20px;line-height:20px;overflow:hidden;background:#01211f;color:#fff;}
 #zero_debug_bar p a{display:block;padding:0;margin:0;border:0;width:200px;min-width:200px;height:20px;overflow:hidden;float:left;}
 #zero_debug_bar p b{display:block;padding:0;margin:0;border:0;width:18px;min-width:18px;height:18px;border:solid 1px #fff;overflow:hidden;float:right;text-align:center;}
-#zero_debug_bar textarea{padding:0;margin:0;width:100%;height:80px;overflow-y:scroll;font-size:12px;line-height:1.2;width:100%;height:100px;border:0;background:#fff;color:#000;}
+#zero_debug_bar textarea{padding:0;margin:0;width:100%;height:80px;overflow-y:scroll;font-size:12px;line-height:1.2;width:100%;height:100px;border:0;background:#fff;color:#01211f;}
 
 .zero_autocomplete_bar{background:#fff;z-index:10;border:solid 1px #037f8c;}
-.zero_autocomplete_bar a{display:block; color:#000; text-decoration:none;line-height:1;padding:5px 0;margin:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;border-bottom:solid 1px #eee;font-size:14px;}
+.zero_autocomplete_bar a{display:block; color:#01211f; text-decoration:none;line-height:1;padding:5px 0;margin:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;border-bottom:solid 1px #eee;font-size:14px;}
 .zero_autocomplete_bar a:last-child{border-bottom:0;}
 .zero_autocomplete_bar a:hover{background:#eee;color:#f00;}
 .zero_autocomplete_bar a.selected{background:#ddd;color:#f00;}
 .zero_autocomplete_bar b{color:#f90;}
 
 .zero_side_bar{height:100%;width:100%;padding:0;margin:0;border:0;top:0;left:0;bottom:0;overflow:hidden;position:fixed;z-index:1;background:rgba(0,0,0,.3);display:none;}
-.zero_side_bar .zero_mp_main{height:100%;padding:0;background-color:rgba(255,255,255,1);visibility:visible;overflow-x:hidden;overflow-y:auto;}
-.zero_side_bar_header{color:#fff;line-height:32px;height:32px;overflow:hidden;background:#03d6d0;padding:0;margin:0;border:solid 1px #fafafa;display:block;}
+.zero_side_bar .zero_mp_main{height:100%;padding:0;background-color:#fafafa;visibility:visible;overflow-x:hidden;overflow-y:auto;border:solid 1px #01211f;}
+.zero_side_bar_header{color:#fff;line-height:32px;height:32px;overflow:hidden;background:#03d6d0;padding:0;margin:0;border-bottom:solid 1px #01211f;display:block;}
 .zero_side_bar_header_l{width:0;height:0;overflow:hidden;display:block;padding:0;margin:0;border:0;float:left;}
 .zero_side_bar_header_c{padding:0;margin:0 32px;border:0; overflow:hidden;text-align:center;}
 .zero_side_bar_header_r{width:0;height:0;overflow:hidden;display:block;padding:0;margin:0;border:0;float:right;}
 .zero_side_bar_header .zero_bg_icon{padding:0;margin:0;width:32px;height:32px;display:block;background-position:center;background-color:#05a59d;position:absolute;}
 .zero_side_bar_header_r .zero_bg_icon{margin:-32px 0 0 -32px;}
-.zero_side_bar_main{padding:0;margin:0;border:0;display:block;background:#fff;}
+.zero_side_bar_main{padding:0;margin:0;display:block;background:#fafafa;width:100%;}
 body.zero_side_bar_show{overflow:hidden;}
 .zero_side_bar_header_fixed  .zero_mp_main{position:relative;}
 .zero_side_bar_header_fixed  .zero_side_bar_header{position:fixed;}

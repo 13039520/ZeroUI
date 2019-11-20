@@ -26,7 +26,7 @@
                 menu.cssText("height:" + (h - 31) + "px");
             }
             var I = $("riframes");
-            I.hasClass("zero_ap_fitDiv") ? I.cssText("height:100%") : I.cssText("height:" + (h - 30) + "px")
+            I.hasClass("zero_ap_fitDiv") ? I.cssText("height:100%") : I.cssText("height:" + (h - 32) + "px")
         },
         topLayout = function () {
             var c = $("zero_ap_left_menu")[0],
