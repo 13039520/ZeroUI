@@ -5,12 +5,16 @@
     <StartupObject></StartupObject>
     <NoDefaultLaunchSettingsFile>True</NoDefaultLaunchSettingsFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="zeroUI\adminUI\index.html" />
+    <None Remove="zeroUI\css\zero.adminUI.css" />
+    <None Remove="zeroUI\js\zero.adminUI.js" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="zeroUI\adminUI\about.html" />
     <Content Include="zeroUI\adminUI\index.html" />
     <Content Include="zeroUI\adminUI\welcome.html" />
-    <Content Include="zeroUI\css\images\con_bg.jpg" />
-    <Content Include="zeroUI\css\images\header_bg.png" />
     <Content Include="zeroUI\css\images\icon\accessibility.png" />
     <Content Include="zeroUI\css\images\icon\address_book.png" />
     <Content Include="zeroUI\css\images\icon\aid.png" />
@@ -911,16 +915,6 @@
     <Content Include="zeroUI\css\images\icon\youtube2.png" />
     <Content Include="zeroUI\css\images\icon\zoom_in.png" />
     <Content Include="zeroUI\css\images\icon\zoom_out.png" />
-    <Content Include="zeroUI\css\images\icon_folder001.png" />
-    <Content Include="zeroUI\css\images\icon_folder002.png" />
-    <Content Include="zeroUI\css\images\icon_folder003.png" />
-    <Content Include="zeroUI\css\images\icon_folder004.png" />
-    <Content Include="zeroUI\css\images\icon_page001.png" />
-    <Content Include="zeroUI\css\images\icon_page002.png" />
-    <Content Include="zeroUI\css\images\icon_page003.png" />
-    <Content Include="zeroUI\css\images\nav_arrow.png" />
-    <Content Include="zeroUI\css\images\top_down_icon.png" />
-    <Content Include="zeroUI\css\images\top_up_icon.png" />
     <Content Include="zeroUI\css\zero.adminUI.css" />
     <Content Include="zeroUI\css\zero.common.css" />
     <Content Include="zeroUI\css\zero.icons.css" />

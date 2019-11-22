@@ -15,23 +15,20 @@
     var UI = {};
 
     UI.mainPage = function () {
-        var rtabs, riframes;
-        var winResize = function () {
-            var wSize = $(win).getSize(), h = wSize.height - $("zero_ap_header").getSize().height - $("zero_ap_footer").getSize().height;
-            $("zero_ap_content").cssText("height:" + h + "px");
-            var menu= $("zero_ap_left_menu");
-            if ($('left').hasClass('zero_ap_content_left_fixed')) {
-                menu.cssText("height:" + (wSize.height - 31) + "px");
-            } else {
-                menu.cssText("height:" + (h - 31) + "px");
+        var rtabs, riframes, wSize;
+        var winResize = function (isClick) {
+            wSize = $(win).getSize();
+            if (undefined === isClick) {
+                if (wSize.width < 1024) {
+                    $('zero_ap_layout_main').addClass('zero_ap_layout_left_hide');
+                } else {
+                    $('zero_ap_layout_main').removeClass('zero_ap_layout_left_hide');
+                }
             }
-            var I = $("riframes");
-            I.hasClass("zero_ap_fitDiv") ? I.cssText("height:100%") : I.cssText("height:" + (h - 32) + "px")
-        },
-        topLayout = function () {
-            var c = $("zero_ap_left_menu")[0],
-                e = $("left")[0],
-                h = $("right")[0];
+            var lSize = $('zero_ap_layout_left').getSize();
+            $('zero_ap_layout_left_menu_init').cssText('height:' + (wSize.height - 66 - 10 - 2) + 'px');
+            $('zero_ap_layout_right').cssText('width:' + (wSize.width - (wSize.width>1024?lSize.width:0)) + 'px');
+            $('zero_ap_layout_right_iframes').cssText('height:' + (wSize.height - 66) + 'px');
         },
         selectionEmpty = function () {
             document.selection ? document.selection.empty() : window.getSelection && window.getSelection().removeAllRanges()
@@ -69,11 +66,8 @@
             }
         },
         menuInit = function () {
-            var btnShow = $('zero_ap_left_menu_show'),
-                btnHidden = $('zero_ap_left_menu_hidden'),
-                menu = $("zero_ap_left_menu");
-            if (menu.length !== 1 || btnShow.length !== 1 || btnHidden.length !== 1) { return; }
-            var a = $("zero_ap_left_menu")[0];
+            var menu = $("zero_ap_layout_left_menu");
+            if (menu.length !== 1) { return; }
             $(menu, "a").foreach(function (a) {
                 $(this.parentNode).attribute("link", $(this).attribute("href")).html($(this).html()).attribute("id", "nav" + $.guid())
             });
@@ -95,10 +89,8 @@
                     c = function () {
                         var a = $(this),
                             d = $(this.parentNode);
-                        if (btnHidden[0].offsetHeight !== 0) {
-                            btnHidden.fireEvent('click');
-                        }
-                        a.hasClass("zero_selected") ? (a = $(this).attribute("id").replace("nav", ""), tabSelected($("tab" + a))) : (a.addClass("zero_selected"), d.hasClass("zero_selected") || d.addClass("zero_selected"), menuOpen(this))
+                        a.hasClass("zero_selected") ? (a = $(this).attribute("id").replace("nav", ""), tabSelected($("tab" + a))) : (a.addClass("zero_selected"), d.hasClass("zero_selected") || d.addClass("zero_selected"), menuOpen(this));
+                        if (wSize && wSize.width < 1024) { btn.fireEvent('click'); }
                     };
                     switch (a.nodeName.toLowerCase()) {
                         case "dt":
@@ -108,27 +100,21 @@
                             c.apply(a, [])
                     }
                 }
-            })
-            btnShow.addEvent('click', function (e) {
-                if (btnHidden[0].offsetHeight !== 0) { return; }
-                $(this).parent(3).addClass('zero_ap_content_left_fixed');
-                $(win).fireEvent('resize');
             });
-            btnHidden.addEvent('click', function (e) {
-                var _this = $(this).parent(3);
-                if (!isTouchScreen) {
-                    _this.removeClass('zero_ap_content_left_fixed');
-                    $(win).fireEvent('resize');
-                    return;
+            var btn = $('zero_ap_layout_left_ctrl_btn');
+            if (btn.length != 1) { return; }
+            btn.addEvent('click', function (e) {
+                var main = $('zero_ap_layout_main');
+                if ($(main).hasClass('zero_ap_layout_left_hide')) {
+                    $(main).removeClass('zero_ap_layout_left_hide');
+                } else {
+                    $(main).addClass('zero_ap_layout_left_hide');
                 }
-                setTimeout(function () {
-                    _this.removeClass('zero_ap_content_left_fixed');
-                    $(win).fireEvent('resize');
-                }, 200);
+                winResize(null,true);
             });
         },
         menuSelected = function () {
-            var a = $('zero_ap_left_menu').find("dd");
+            var a = $('zero_ap_layout_left_menu').find("dd");
             if (1 < a.length) {
                 a.hasClass("zero_selected") || $(a[0]).addClass("zero_selected");
                 var c = function () {
@@ -152,9 +138,9 @@
             }).last()[0]);
         },
         tabsInit = function () {
-            var d = $("rtabs").html('<div class="zero_r_arrow_l"><span class="zero_arrow_l zero_bg_icon zero_bg_icon_arrow_left3"></span></div><div class="zero_r_tabs_init"><div class="zero_init"><div class="zero_tabs"></div></div></div><div class="zero_r_arrow_r"><span class="zero_arrow_r zero_bg_icon zero_bg_icon_arrow_right3"></span></div>'),
+            var d = $("zero_ap_layout_right_tabs").html('<div class="zero_r_arrow_l"><span class="zero_arrow_l zero_bg_icon zero_bg_icon_arrow_left3"></span></div><div class="zero_r_tabs_init"><div class="zero_init"><div class="zero_tabs"></div></div></div><div class="zero_r_arrow_r"><span class="zero_arrow_r zero_bg_icon zero_bg_icon_arrow_right3"></span></div>'),
             a = rtabs = $(d).find("class=zero_tabs"),
-            b = riframes = $("riframes")
+            b = riframes = $("zero_ap_layout_right_iframes")
             e = $(d).find("class=zero_arrow_l"),
             c = $(d).find("class=zero_arrow_r");
             d.addEvent("click", function (d) {
@@ -323,13 +309,11 @@
             } catch (m) { }
         },
         tabFitShow = function (tab) {
-             var id = '_' + $.guid(), c = $(id);
-             if (c.length) { c.find("class=zero_back").fireEvent("click"); }
+             var id = 'zero_ap_fit_back', c = $(id);
+             if (c.length) { c.fireEvent("click"); }
              else {
-                 var b = $("iframe" + $(tab).attribute("id").replace("tab", "")),
-                     f = $.htmlStrToDom('<div class="zero_btn_init" id="' + id + '"><div class="zero_init"><a class="zero_back">退出全屏</a></div></div>').insertAfter(b[0]);
-                 $(b[0].parentNode).addClass("zero_ap_fitDiv").cssText("height:100%;");
-                 if (isIE || isFirefox || isEdge) { $("right").cssText("position:static;"); }
+                 var b = $("iframe" + $(tab).attribute("id").replace("tab", "")).addClass('zero_ap_fit'),
+                     f = $.htmlStrToDom('<a id="zero_ap_fit_back">退出全屏</a>').insertAfter(b[0]);
                  var e = document.title;
                  iframeTitle = $(tab).find("class=zero_tab_text").html();
                  try {
@@ -338,12 +322,11 @@
                  } catch (g) { }
                  document.title = iframeTitle;
                  fsc(true);
-                 $(f).find("class=zero_back").addEvent("click", function () {
-                     if (isIE || isFirefox || isEdge) { $("right").cssText("position:relative"); }
+                 $(f).addEvent("click", function () {
                      document.title = e;
-                     var a = $(window).getSize().height - $("zero_ap_header").getSize().height - $("zero_ap_footer").getSize().height - 30;
+                     var a = $(window).getSize().height - 64;
                      $(this).removeEvent("click");
-                     $(b[0].parentNode).removeClass("zero_ap_fitDiv").cssText("height:" + a + "px;");
+                     $(b[0]).removeClass("zero_ap_fit");
                      f.remove();
                      fsc(false);
                  })
@@ -354,27 +337,11 @@
             this.isTopWin = isTopWin;
             this.init = function () {
                 if (!$(document.body).hasClass("zero_top_page")) { return; }
-
-                $(win).addEvent("resize", winResize);
-                $("zero_ap_header").addEvent("click", function (a) {
-                    a = a || event;
-                    a = a.srcElement || a.target;
-                    $(a).hasClass("zero_up") ? ($(this).addClass("zero_header_hide"), $(win).fireEvent("resize")) : $(a).hasClass("zero_down") && ($(this).removeClass("zero_header_hide"), $(window).fireEvent("resize"))
-                });
+                $(win).addEvent("resize", function (e) { winResize() });
                 winResize();
-                topLayout();
                 menuInit();
                 tabsInit();
                 menuSelected();
-                //对IE567强制触发渲染重绘
-                if (isIE567) {
-                    $(e)[0].offsetHeight;
-                    $(c)[0].offsetHeight;
-                    $("zero_ap_header", "class=zero_arrow_init")[0].offsetHeight;
-                }
-                if(isIE || isEdge || isFirefox){
-                    $("right").cssText("position:relative");
-                }
             };
             this.tabClose = function (num) {
                 num && (num = $("tab" + num), num.length && tabClose(num[0]));

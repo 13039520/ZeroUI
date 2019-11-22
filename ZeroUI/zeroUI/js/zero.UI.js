@@ -322,14 +322,13 @@
                                         var len = trs.length,
                                             myTimes = len < 12 ? 1 : (len % 12 === 0 ? len / 12 : parseInt(len / 12, 10) + 1),
                                             end = function () {
-                                                var n = $(config.pageNode).html(pagerHtml);
-                                                if (config.pager.count && config.pager.size) {
-                                                    n.find('select').addEvent('change', function (e) {
-                                                        config.queryData.page = 1;
-                                                        config.queryData.size = parseInt(this.value, 10);
-                                                        loadData();
-                                                    })
-                                                }
+                                                var n = $(config.pageNode).html(pagerHtml).find('select');
+                                                if (n.length !== 1) { return; }
+                                                n[0].onchange = function (e) {
+                                                    config.queryData.page = 1;
+                                                    config.queryData.size = parseInt(this.value, 10);
+                                                    loadData();
+                                                };
                                             };
                                         if (showIndex < trs.length) {
                                             var n = 0;

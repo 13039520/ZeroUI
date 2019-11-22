@@ -17,44 +17,22 @@
             setInterval(function () {
                 currentTime.html(zero.datetimeFormat(new Date(), 'yyyy年MM月dd日 week HH时mm分ss秒'));
             }, 1000);
-            var myNotification = zero('myNotification'),
-                myTask = zero('myTask');
-            myNotification.length === 1&&myNotification.addEvent('click', function (e) {
-                dialog.loadIframe(zero(this).text(), 'welcome.html', 800, 600)
-            });
-            myTask.length === 1 && myTask.addEvent('click', function (e) {
-                dialog.loadIframe(zero(this).text(), 'welcome.html', 800, 600)
-            });
-            var n = zero('left_menu_show');
-            if (n.length !== 1) { return; }
-            n.addEvent('click', function (e) {
-                var size = zero(window).getSize();
-                if (size.width > 800) { return; }
-                zero(this).parent(3).cssText('position:absolute;');
-                zero.UI.sideBar('left', 'left', true);
-            });
         });
     </script>
 </head>
 <body class="zero_top_page">
-    <div id="zero_ap_header">
-        <div class="zero_left"><h1>ZeroAdminUI V1.0</h1><h2>zeroAdminUI background management system</h2></div>
-        <div class="zero_right"><div class="zero_arrow_init"><span class="zero_up"></span><span class="zero_down"></span></div>
-            <div class="zero_right_con">
-                <p>现在是：<span id="currentTime">2019年09月19日 星期四 00时00分00秒</span> </p>
-                <p><a id="myTask" class="zero_bg_icon zero_bg_icon_alarm2">今日事务</a> | <a id="myNotification" class="zero_bg_icon zero_bg_icon_volume_medium">我的通知</a> | <a class="zero_bg_icon zero_bg_icon_switch" href="?out=true">退出管理</a></p>
+    <div id="zero_ap_layout_main">
+        <div id="zero_ap_layout_left">
+            <div id="zero_ap_layout_left_header">
+                <div id="zero_ap_layout_left_logo">
+                <h1>ZeroAdminUI V1.0</h1>
+                <h2>zeroAdminUI background management system</h2>
+                </div>
+                <a id="zero_ap_layout_left_ctrl_btn"></a>
             </div>
-        </div>
-    </div>
-    <div id="zero_ap_content">
-        <div class="zero_ap_content_left" id="left">
-            <div class="zero_ap_left_header">
-                <div class="zero_ap_left_header_l"><span class="zero_bg_icon zero_bg_icon_list" id="zero_ap_left_menu_show"></span></div>
-                <div class="zero_ap_left_header_c">MENU</div>
-                <div class="zero_ap_left_header_r"><span class="zero_bg_icon zero_bg_icon_arrow_left" id="zero_ap_left_menu_hidden"></span></div>
-            </div>
-            <div id="zero_ap_left_menu" class="zero_ap_left_menu">
-                    <dl>
+            <div id="zero_ap_layout_left_menu_init">
+                <div id="zero_ap_layout_left_menu">
+                <dl>
                         <dt>welcome</dt>
                         <dd><a href="welcome.html">欢迎使用</a></dd>
                         <dd><a href="about.html">关于系统</a></dd>
@@ -177,15 +155,16 @@
                         <dd><a href="welcome.html">欢迎使用</a></dd>
                         <dd><a href="about.html">关于系统</a></dd>
                     </dl>
+            </div></div>
+        </div>
+        <div id="zero_ap_layout_right">
+            <div id="zero_ap_layout_right_header">
+                <div class="zero_left">欢迎光临！<span class="MCW640H">现在是 <span id="currentTime"></span></span></div>
+                <div class="zero_right"><span class="zero_bg_icon zero_bg_icon_switch">退出</span></div>
             </div>
+            <div id="zero_ap_layout_right_tabs"></div>
+            <div id="zero_ap_layout_right_iframes"></div>
         </div>
-        <div class="zero_ap_content_right" id="right">
-            <div class="zero_right_tabs" id="rtabs"></div>
-            <div class="zero_r_iframes" id="riframes"></div>
-        </div>
-    </div>
-    <div id="zero_ap_footer">
-        <div>&copy;2019 zeroAdminUI</div>
     </div>
 </body>
 </html>
