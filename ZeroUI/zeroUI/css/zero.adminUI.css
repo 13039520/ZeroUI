@@ -39,7 +39,8 @@ body #zero_date_input .b a{border-left-color:#dedede;}
 .zero_ap_layout_left_hide #zero_ap_layout_left_ctrl_btn{display:block;position:absolute;z-index:2; background-color:#03776e;background-image:url(images/icon/list.png); border:solid 1px #012d26;height:27px;width:27px;margin:-5px 0 0 -5px;}
 .zero_ap_layout_left_hide #zero_ap_layout_right_header{padding-left:32px;}
 
-#zero_ap_layout_left_menu{margin:0;padding:0; border:0;display:block; overflow:hidden;overflow-y:auto;height:100%;}
+#zero_ap_layout_left_menu{margin:0;padding:0; border:0;display:block; overflow:hidden;height:100%;}
+#zero_ap_layout_left_menu:hover{overflow-y:auto;}
 #zero_ap_layout_left_menu dl{padding:0; margin:0;overflow:hidden; display:block;border-bottom:solid 1px #012d26;  white-space:nowrap;}
 #zero_ap_layout_left_menu dt{padding:0 0 0 26px; cursor:pointer; margin:0 0 -1px 0; background:url(images/icon/folder.png) no-repeat 5px center; overflow:hidden;border-bottom:solid 1px #012d26;line-height:28px; color:#012d26;}
 #zero_ap_layout_left_menu dt:hover{color:#05c1af;}
@@ -99,12 +100,9 @@ body #zero_date_input .b a{border-left-color:#dedede;}
     ::-webkit-scrollbar-button{background: #01211f; height:8px;width:8px;}
     ::-webkit-scrollbar-track-piece{background: #e7f9fb;}
     ::-webkit-scrollbar-thumb {background:#ccc;border:solid 1px #e7f9fb;border-left:none;}
-    #zero_ap_layout_left ::-webkit-scrollbar{width:0;}
     #zero_ap_layout_left ::-webkit-scrollbar-button{height:0;}
     #zero_ap_layout_left ::-webkit-scrollbar-track-piece{background:#01211f;width:0;}
-    #zero_ap_layout_left ::-webkit-scrollbar-thumb{background-color:#03776e;border:0;border-left:solid 1px #01211f;display:none;}
-    #zero_ap_layout_left:hover ::-webkit-scrollbar{width:8px;}
-    #zero_ap_layout_left:hover ::-webkit-scrollbar-thumb{display:block;}
+    #zero_ap_layout_left ::-webkit-scrollbar-thumb{background-color:#03776e;border:0;border-left:solid 1px #01211f;}
 }
  @media screen and (max-width: 1024px){
     #zero_ap_layout_left{position:fixed;left:0;top:0;z-index:1;}
