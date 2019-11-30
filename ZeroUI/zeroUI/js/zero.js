@@ -2922,7 +2922,7 @@
         if (!isStr(format)) {
             format = 'yyyy-MM-dd HH:mm:ss';
         }
-        return format.replace(/[a-zA-Z]{1,4}/g, function (c) {
+        return format.replace(/\b[a-zA-Z]{1,4}\b/g, function (c) {
             switch (c) {
                 case 'yy':
                     return obj.yyyy.substr(2, 2);

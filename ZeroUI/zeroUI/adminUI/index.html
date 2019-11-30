@@ -15,7 +15,7 @@
             var currentTime = zero('currentTime');
             if (currentTime.length !== 1) { return; }
             setInterval(function () {
-                currentTime.html(zero.datetimeFormat(new Date(), 'yyyy年MM月dd日 week HH时mm分ss秒'));
+                currentTime.html(zero.datetimeFormat(new Date(), '<span class="MCW320H">yyyy年MM月dd日 week </span>HH时mm分ss秒'));
             }, 1000);
         });
     </script>
@@ -159,7 +159,7 @@
         </div>
         <div id="zero_ap_layout_right">
             <div id="zero_ap_layout_right_header">
-                <div class="zero_left">欢迎光临！<span class="MCW640H">现在是 <span id="currentTime"></span></span></div>
+                <div class="zero_left"><span class="MCW320H">欢迎光临！</span>现在是<span id="currentTime"></span></div>
                 <div class="zero_right"><span class="zero_bg_icon zero_bg_icon_switch">退出</span></div>
             </div>
             <div id="zero_ap_layout_right_tabs"></div>
