@@ -55,7 +55,7 @@ table.zero_datatable input[type=button].zero_bg_icon{background-color:#82d5d6;bo
 .zero_repeat_item_btns input[type=reset].zero_bg_icon,
 .zero_repeat_item_btns button.zero_bg_icon,
 .zero_repeat_item_btns .zero_bg_icon{background-color:#82d5d6;border-color:#39c2c2;color:#fff;}
-.zero_side_bar .zero_mp_main{border-color:#02484f;}/*05a59d*/
+.zero_side_bar .zero_mp_main{border-color:#02484f;}
 .zero_side_bar_header{background:#05a59d;border-bottom-color:#fff;}
 .zero_side_bar_header .zero_bg_icon{background-color:transparent;border-color:#fff;}
 
