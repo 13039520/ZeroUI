@@ -40,8 +40,7 @@ body #zero_date_input .b a{border-left-color:#dedede;}
 .zero_ap_layout_left_hide #zero_ap_layout_left_ctrl_btn{display:block;position:absolute;z-index:2; background-color:#02484f;background-image:url(images/icon/list.png); border:solid 1px #02484f;height:27px;width:27px;margin:-5px 0 0 -5px;}
 .zero_ap_layout_left_hide #zero_ap_layout_right_header{padding-left:32px;}
 
-#zero_ap_layout_left_menu{margin:0;padding:0; border:0;display:block; overflow:hidden;height:100%;}
-#zero_ap_layout_left_menu:hover{overflow-y:auto;}
+#zero_ap_layout_left_menu{margin:0;padding:0; border:0;display:block; overflow:hidden;overflow-y:auto;height:100%;}
 #zero_ap_layout_left_menu dl{padding:0; margin:0;overflow:hidden; display:block;border-bottom:solid 1px #000;  white-space:nowrap;}
 #zero_ap_layout_left_menu dt{padding:0 0 0 26px; cursor:pointer; margin:0 0 -1px 0; background:url(images/icon/folder.png) no-repeat 5px center; overflow:hidden;border-bottom:solid 1px #000;line-height:28px; color:#000;}
 #zero_ap_layout_left_menu dt:hover{color:#05a59d;}
