@@ -24,8 +24,8 @@ body #zero_date_input .b a{border-left-color:#dedede;}
 
 #zero_ap_layout_main{width:100%; height:100%; overflow:hidden;padding:0;margin:0;border:0;}
 #zero_ap_layout_left{width:268px;height:100%;overflow:hidden;padding:0;margin:0;border:0;background-color:#02484f;float:left;}
-#zero_ap_layout_left_header{height:59px;border:solid 1px #000;border-bottom-width:2px;margin:5px 5px 0 5px;overflow:hidden;padding:0;background-color:#02484f;}
-#zero_ap_layout_left_header h1{padding:0;margin:0;height:35px;line-height:48px;font-size:24px;overflow:hidden;text-align:center;color:#05a59d;font-weight:600;}
+#zero_ap_layout_left_header{height:59px;border:solid 1px #000;border-bottom:solid 2px #000;margin:5px 5px 0 5px;overflow:hidden;padding:0;background-color:#05a59d;}
+#zero_ap_layout_left_header h1{padding:0;margin:0;height:35px;line-height:48px;font-size:24px;overflow:hidden;text-align:center;color:#cafdff;font-weight:600;}
 #zero_ap_layout_left_header h2{padding:0;margin:0;height:16px;line-height:12px;font-size:12px;font-weight:normal;overflow:hidden;text-align:center;color:#000;}
 #zero_ap_layout_left_logo{width:238px;height:59px;float:left;overflow:hidden;padding:0;margin:0;}
 #zero_ap_layout_left_ctrl_btn{width:17px;height:59px;float:left;overflow:hidden;padding:0;margin:0;display:none;border-left:solid 1px #000;background:no-repeat center url(images/icon/arrow_left2.png);cursor:pointer;}
