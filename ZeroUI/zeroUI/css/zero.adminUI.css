@@ -9,7 +9,7 @@ body #dialogInit .zero_dialog span.zero_closeBtn:hover{background:#f7f7f7;color:
 body #dialogInit .zero_dialogB a{border-color:#dfdfdf;color:#05a59d;background:#f7f7f7;cursor:pointer;}
 body #dialogInit .zero_dialogB a:hover{color:#05a59d;background:#f7f7f7;}
 body #dialogInit .zero_dialogMaskDiv,body #dialogInit .zero_nDialog .zero_dialogMaskDiv{background:#000;opacity:0.1;}
-body #dialogInit .zero_dialogShowDiv,body #dialogInit .zero_nDialog .zero_dialogShowDiv{border-color:#05a59d;box-shadow:0 0 4px rgba(0,0,0,.4);border-radius:0;}
+body #dialogInit .zero_dialogShowDiv,body #dialogInit .zero_nDialog .zero_dialogShowDiv{border-color:#05a59d;box-shadow:0 0 5px rgba(0,0,0,.7);border-radius:0;}
 body #dialogInit .zero_dialogB{}
 /*以更明确的指向覆盖zero_date_input的默认样式*/
 body #zero_date_input .box{border-color:#05a59d;border-radius:0;}
