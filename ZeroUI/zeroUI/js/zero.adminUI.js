@@ -26,7 +26,7 @@
                 }
             }
             var lSize = $('zero_ap_layout_left').getSize();
-            $('zero_ap_layout_left_menu_init').cssText('height:' + (wSize.height - 66 - 5 - 1) + 'px');
+            $('zero_ap_layout_left_menu_init').cssText('height:' + (wSize.height - 66 - 10 - 3) + 'px');
             $('zero_ap_layout_right').cssText('width:' + (wSize.width - (wSize.width>1024?lSize.width:0)) + 'px');
             $('zero_ap_layout_right_iframes').cssText('height:' + (wSize.height - 66) + 'px');
         },
