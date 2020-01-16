@@ -8,7 +8,7 @@ body #dialogInit .zero_dialog span.zero_closeBtn{border:solid 1px #05a59d;color:
 body #dialogInit .zero_dialog span.zero_closeBtn:hover{background:#f7f7f7;color:#05a59d;border-color:#05a59d;}
 body #dialogInit .zero_dialogB a{border-color:#dfdfdf;color:#05a59d;background:#f7f7f7;cursor:pointer;}
 body #dialogInit .zero_dialogB a:hover{color:#05a59d;background:#f7f7f7;}
-body #dialogInit .zero_dialogMaskDiv,body #dialogInit .zero_nDialog .zero_dialogMaskDiv{background:#000;opacity:0.1;}
+body #dialogInit .zero_dialogMaskDiv,body #dialogInit .zero_nDialog .zero_dialogMaskDiv{background:#000;opacity:0.05;}
 body #dialogInit .zero_dialogShowDiv,body #dialogInit .zero_nDialog .zero_dialogShowDiv{border-color:#05a59d;box-shadow:0 0 5px rgba(0,0,0,.7);border-radius:0;}
 body #dialogInit .zero_dialogB{}
 /*以更明确的指向覆盖zero_date_input的默认样式*/
@@ -42,17 +42,17 @@ body #zero_date_input .b a{border-left-color:#dedede;}
 #zero_ap_layout_left_menu{margin:0;padding:0; border:0;display:block;overflow:hidden;height:100%;}
 #zero_ap_layout_left_menu dl{padding:0; margin:0;overflow:hidden; display:block;border-bottom:solid 1px #000;  white-space:nowrap;}
 #zero_ap_layout_left_menu dt{padding:0 0 0 26px; cursor:pointer; margin:0 0 -1px 0; background:url(images/icon/folder.png) no-repeat 5px center; overflow:hidden;border-bottom:solid 1px #000;line-height:28px; color:#000;}
-#zero_ap_layout_left_menu dt:hover{/*color:#05a59d;*/font-weight:bold;}
+#zero_ap_layout_left_menu dt:hover{font-weight:bold;}
 #zero_ap_layout_left_menu dd{padding:0 0 0 26px; color:#000; cursor:pointer; margin:0 0 -1px 16px; line-height:28px; background:url(images/icon/file4.png) no-repeat 5px center; overflow:hidden; border-left:solid 1px #000;border-bottom:solid 1px #000;font-size:14px;}
 #zero_ap_layout_left_menu dl dd{display:none;}
-#zero_ap_layout_left_menu dl dd:hover{/*color:#05a59d;*/font-weight:bold;}
+#zero_ap_layout_left_menu dl dd:hover{font-weight:bold;}
 #zero_ap_layout_left_menu .zero_open dt{background-image:url(images/icon/folder_open.png);}
 #zero_ap_layout_left_menu .zero_open dd{display:block;}
-#zero_ap_layout_left_menu dl.zero_selected{/*border-bottom-color:#05a59d;*/}
-#zero_ap_layout_left_menu .zero_selected dt{/*color:#05a59d;border-bottom-color:#05a59d;*/font-weight:bold;}
-#zero_ap_layout_left_menu .zero_selected dd{/*border-left-color:#05a59d;*/}
-#zero_ap_layout_left_menu .zero_selected .zero_selected{/*color:#05a59d;border-bottom-color:#05a59d;*/background-image:url(images/icon/file.png);font-weight:bold;}
-#zero_ap_layout_left_menu .zero_selected_close dt{/*color:#05a59d;*/}
+#zero_ap_layout_left_menu dl.zero_selected{}
+#zero_ap_layout_left_menu .zero_selected dt{font-weight:bold;}
+#zero_ap_layout_left_menu .zero_selected dd{}
+#zero_ap_layout_left_menu .zero_selected .zero_selected{background-image:url(images/icon/file.png);font-weight:bold;}
+#zero_ap_layout_left_menu .zero_selected_close dt{}
 #zero_ap_layout_left_menu dl:last-child{border-bottom:0;}
 
 #zero_ap_layout_left:hover #zero_ap_layout_left_menu{overflow-y:auto;}
@@ -67,7 +67,7 @@ body #zero_date_input .b a{border-left-color:#dedede;}
 #zero_ap_layout_right_tabs .zero_r_tabs_init{height:32px;width:100%;overflow:hidden;padding:0;margin:0;float:left;}
 #zero_ap_layout_right_tabs .zero_r_tabs_init .zero_init{height:31px;margin:1px 31px 0 31px;overflow:hidden;padding:0;}
 #zero_ap_layout_right_tabs .zero_r_tabs_init .zero_tabs{width:121px;height:31px;overflow:hidden;padding:0;margin:0;border:0;}
-#zero_ap_layout_right_tabs .zero_r_tabs_init .zero_tab{width:118px; height:31px;overflow:hidden;float:left;background:#68d1ce;margin:0 1px 0 0;border:solid 1px #05a59d; border-radius:0;}
+#zero_ap_layout_right_tabs .zero_r_tabs_init .zero_tab{width:118px; height:31px;overflow:hidden;float:left;background-color:transparent;margin:0 1px 0 0;border:solid 1px #05a59d; border-radius:0;}
 #zero_ap_layout_right_tabs .zero_r_tabs_init .zero_tab_text{display:block;padding:0;margin:0;width:102px;height:31px;overflow:hidden;float:left;white-space:nowrap;text-overflow:ellipsis;color:#05a59d; text-indent:4px;line-height:28px;font-size:14px;cursor:default;}
 #zero_ap_layout_right_tabs .zero_r_tabs_init .zero_tab_close{display:block;padding:0;margin:6px 0 0 0;width:16px;height:16px;overflow:hidden;float:right;background:#05a59d;color:#cafdff;line-height:12px;text-align:center;cursor:pointer;border-radius:0;}
 #zero_ap_layout_right_tabs .zero_r_tabs_init .zero_selected{background:#037676;border-color:#037676;}
