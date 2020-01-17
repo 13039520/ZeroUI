@@ -112,9 +112,9 @@ dl.zero_form_group dd.zero_tips .zero_form_input {border-color: #f90;}
 .zero_repeat_news .zero_repeat_item_btns{text-align:right;}
 
 table.zero_datatable {width: 100%;border-spacing: 0;border-collapse: collapse;}
-table.zero_datatable thead{background:#236363;}
+table.zero_datatable thead{background:#037676;}
 table.zero_datatable p{padding:0;margin:0;}
-table.zero_datatable thead th,table.zero_datatable thead td{text-align:left;border:solid 1px #236363;color:#fff;line-height:1;padding:0;font-size:12px;}
+table.zero_datatable thead th,table.zero_datatable thead td{text-align:left;border:solid 1px #037676;color:#fff;line-height:1;padding:0;font-size:12px;}
 table.zero_datatable tbody{color:#666;font-size:14px;}
 table.zero_datatable tfoot td{background:#fff;border:solid 1px #dedede;} 
 table.zero_datatable tfoot td .zero_left{width:49%; height:30px; padding-top:4px;}
