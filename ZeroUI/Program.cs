@@ -18,10 +18,10 @@ namespace ZeroUI
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) => WebHost.CreateDefaultBuilder(args)
-                .UseKestrel(options =>
+                /*.UseKestrel(options =>
                 {
                     options.Listen(System.Net.IPAddress.Any, 5000);
-                })
+                })*/
             .UseContentRoot(Directory.GetCurrentDirectory())
             .UseWebRoot(System.IO.Path.Combine(Directory.GetCurrentDirectory(), @"zeroUI"))
             .UseStartup<Startup>();
