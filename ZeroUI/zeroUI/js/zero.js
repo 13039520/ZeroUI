@@ -1917,7 +1917,7 @@
                         }
                         req.open(reqMethod, url, true);
                         $.log('ajax ' + reqMethod);
-                        if (postStr) { req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); }
+                        //if (postStr) {req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');}
                         if (headData) {
                             for (var key in headData) {
                                 req.setRequestHeader(key, headData[key]);
@@ -2787,7 +2787,7 @@
                 showHeader: false
             })
         };
-        this.loadIframe = function (title, url, width, height, onLoad, onDataCallback) {
+        this.loadIframe = function (title, url, width, height, onLoad, onDataCallback, onClosed) {
             var size = $(this.win).getSize();
             size.width -= 10;
             size.height -= 10;
@@ -2802,9 +2802,10 @@
                 content: '<div style="width:' + (width) + 'px;height:' + (height - 37) + 'px;overflow:hidden;padding:0;margin:0;border:0;"></div>',
                 width: width,
                 showHeader: true,
+                onClosed: onClosed,
                 onShowed: function () {
                     var o = this, iframe = document.createElement('iframe');
-                    o.dataCallback = function (data) {
+                    o.onDataCallback = function (data) {
                         if (isFunc(onDataCallback)) {
                             onDataCallback.apply(this, [data]);
                         }

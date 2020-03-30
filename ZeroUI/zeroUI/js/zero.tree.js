@@ -535,7 +535,14 @@
                     $(rootNode).addClass('zero_tree_edit');
                 }
             }
-            $(rootNode).html(htmlBuild(dataToTree(config.data)).replace(/#DCSV#/g, DCSV));
+            if (config.data && isArray(config.data) && config.data.length == 1 && isStr(config.data[0])) {
+                zero.ajax(config.data[0]).send(function (res) {
+                    var d = eval('(' + res + ')');
+                    $(rootNode).html(htmlBuild(dataToTree(d.data)).replace(/#DCSV#/g, DCSV));
+                });
+            } else {
+                $(rootNode).html(htmlBuild(dataToTree(config.data)).replace(/#DCSV#/g, DCSV));
+            }
             setStyle();
             bindClickEvent();
         };

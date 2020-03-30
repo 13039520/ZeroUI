@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
@@ -9,6 +9,10 @@
   <ItemGroup>
     <None Remove="zeroUI\adminUI\index.html" />
     <None Remove="zeroUI\css\zero.adminUI.css" />
+    <None Remove="zeroUI\css\zero.common.css" />
+    <None Remove="zeroUI\css\zero.icons.css" />
+    <None Remove="zeroUI\css\zero.icons.white.css" />
+    <None Remove="zeroUI\css\zero.mobileUI.css" />
     <None Remove="zeroUI\js\zero.adminUI.js" />
   </ItemGroup>
   <ItemGroup>
