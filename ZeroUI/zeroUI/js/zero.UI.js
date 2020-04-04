@@ -772,7 +772,7 @@
         var con = $(bar).find('class>zero_mp_main', 1);
         if (con.length != 1) { return; }
         if (!$(bar).attribute('data-e-close')) {
-            if (isTouchScreen) { $(bar).addEvent('touchmove', function (e) { $.stopEventBubble(e); });}
+            //if (isTouchScreen) { $(bar).addEvent('touchmove', function (e) { $.stopEventBubble(e); });}
             $(bar).attribute('data-e-close', 1).find('class>zero_side_bar_close').addEvent('click', function (e) {
                 UI.sideBar(node,cmd, false);
             });
@@ -806,14 +806,9 @@
                         $(con).cssText('height:' + (size.height - dif -2) + 'px;margin:' + dif + 'px 0 0 0');
                         break;
                 }
-                var hc = $(bar).find('class>zero_mp_main', 1).first().find('class>zero_side_bar_header_c');
-                if (hc.length) {
-                    if ($(bar).hasClass('zero_side_bar_header_fixed')) {
-                        hc.cssText('width:' + (con[0].offsetWidth - 64) + 'px');
-                    } else {
-                        hc.cssText('width:auto');
-                    }
-                }
+                size = $(con).getSize();
+                $(bar).find('class>zero_mp_main', 1).first().find('class>zero_side_bar_header_c').cssText('width:' + (size - 66) + 'px');
+                $(con).find('class>zero_side_bar_main', 1).cssText('width:' + (size.width - 2) + 'px;height:' + (size.height - 35) + 'px');
                 temp.prependTo().changeSize({
                     to: size,
                     change: function (s, r) {
