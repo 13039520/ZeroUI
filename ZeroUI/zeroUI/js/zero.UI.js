@@ -772,7 +772,6 @@
         var con = $(bar).find('class>zero_mp_main', 1);
         if (con.length != 1) { return; }
         if (!$(bar).attribute('data-e-close')) {
-            //if (isTouchScreen) { $(bar).addEvent('touchmove', function (e) { $.stopEventBubble(e); });}
             $(bar).attribute('data-e-close', 1).find('class>zero_side_bar_close').addEvent('click', function (e) {
                 UI.sideBar(node,cmd, false);
             });
@@ -780,8 +779,43 @@
         bar.cssText('display:block;');
         con.cssText('visibility:hidden;');
         var bod = $(document.body),
+            barMain = $(con).find('class>zero_side_bar_main', 1),
+            maxScrollHeight = 0,
+            pointY = 0,
+            touchstart = function (e) {
+                pointY = Number(e.touches[0].pageY);
+            },
+            touchmove = function (e) {
+                var y = Number(e.touches[0].pageY);
+                var target = e.target || e.srcElement;
+                if (target != barMain[0] && !barMain[0].contains(target)) {
+                    $.stopEventBubble(e);
+                    return;
+                }
+                if (maxScrollHeight < 1) {
+                    $.stopEventBubble(e);
+                    return;
+                }
+                var t = barMain[0].scrollTop;
+                if (y < pointY) {//up
+                    if (t == maxScrollHeight) {
+                        $.stopEventBubble(e);
+                        return;
+                    }
+                } else {//down                    
+                    if (t == 0) {
+                        $.stopEventBubble(e);
+                        return;
+                    }
+                }
+                pointY = y;
+                
+            },
             show = function () {
                 bod.addClass('zero_side_bar_show');
+                if (isTouchScreen) {
+                    bar.addEvent('touchstart', touchstart).addEvent('touchmove', touchmove);
+                }
                 var size = $(bar).getSize(),
                     temp = $(document.createElement('div')).cssText('background:#fff;position:fixed;width:1px;z-index:10000;'),
                     isLeftOrRight = false,
@@ -808,7 +842,7 @@
                 }
                 size = $(con).getSize();
                 $(bar).find('class>zero_mp_main', 1).first().find('class>zero_side_bar_header_c').cssText('width:' + (size - 66) + 'px');
-                $(con).find('class>zero_side_bar_main', 1).cssText('width:' + (size.width - 2) + 'px;height:' + (size.height - 35) + 'px');
+                barMain.cssText('width:' + (size.width - 2) + 'px;height:' + (size.height - 35) + 'px');
                 temp.prependTo().changeSize({
                     to: size,
                     change: function (s, r) {
@@ -819,11 +853,18 @@
                         o.remove();
                         con.cssText('visibility:visible;');
                     }
-                })
+                });
+                maxScrollHeight = barMain[0].scrollHeight - barMain[0].clientHeight;
             },
             hide = function () {
                 con.cssText('visibility:hidden;');
-                setTimeout(function () { bod.removeClass('zero_side_bar_show'); bar.cssText('display:none;'); }, 100);
+                setTimeout(function () {
+                    bod.removeClass('zero_side_bar_show');
+                    bar.cssText('display:none;');
+                    if (isTouchScreen) {
+                        bar.removeEvent('touchstart', touchstart).removeEvent('touchmove', touchmove);
+                    }
+                }, 100);
             };
 
         isShow ? show() : hide();

@@ -163,7 +163,7 @@ table.zero_datatable span em{font-size:12px;font-style:normal;color:#037676;}
 .zero_side_bar_header .zero_bg_icon{padding:0;margin:-1px;width:32px;height:32px;display:block;background-position:center;background-color:#037676;position:absolute;border:solid 1px #000;}
 .zero_side_bar_header_r .zero_bg_icon{margin:-33px 0 0 -33px;}
 .zero_side_bar_main{padding:0;margin:0;display:block;position:absolute;overflow-x:hidden;overflow-y:auto;background:#fff;}
-body.zero_side_bar_show{overflow:hidden;}
+html.zero_side_bar_show,body.zero_side_bar_show{overflow:hidden;}
 
 .zero_icon_nav_list{padding:0;margin:0;border:0;overflow:hidden;}
 .zero_icon_nav_list dl{padding:0 0 10px 0;margin:10px;border:0;overflow:hidden;list-style:none;zoom:1;background:rgba(255,255,255,.9);}
