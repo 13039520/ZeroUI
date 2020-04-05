@@ -813,8 +813,8 @@
             },
             show = function () {
                 bod.addClass('zero_side_bar_show');
-                if (isTouchScreen) {
-                    bar.addEvent('touchstart', touchstart).addEvent('touchmove', touchmove);
+                if (isTouchScreen && '1' !==$(bar).attribute('data-touch-event')) {
+                    bar.attribute('data-touch-event',1).addEvent('touchstart', touchstart).addEvent('touchmove', touchmove);
                 }
                 var size = $(bar).getSize(),
                     temp = $(document.createElement('div')).cssText('background:#fff;position:fixed;width:1px;z-index:10000;'),
@@ -861,9 +861,6 @@
                 setTimeout(function () {
                     bod.removeClass('zero_side_bar_show');
                     bar.cssText('display:none;');
-                    if (isTouchScreen) {
-                        bar.removeEvent('touchstart', touchstart).removeEvent('touchmove', touchmove);
-                    }
                 }, 100);
             };
 
