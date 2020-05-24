@@ -2325,7 +2325,7 @@
                     } else {
                         var ajax = $.ajax(this.action).error(function (e) { return e.message;}).method(this.method);
                         if (this.method.toLowerCase() !== 'get') {
-                            ajax.headData({ 'Content-type': this.enctype })
+                            ajax.headData({ 'Content-type': this.enctype });
                             ajax.postData(data);
                         } else {
                             ajax.queryData(data);
