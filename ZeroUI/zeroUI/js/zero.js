@@ -209,10 +209,22 @@
                 height: Math.max(ele.documentElement.clientHeight, ele.body.clientHeight)
             };
         } else if (isWin(ele)) {
-            return {
-                width: ele.innerWidth ? ele.innerWidth : Math.max(ele.document.documentElement.clientWidth, ele.document.body.clientWidth),
-                height: ele.innerHeight ? ele.innerHeight : Math.max(ele.document.documentElement.clientHeight, ele.document.body.clientHeight)
-            };
+            var w = ele.innerWidth, h = ele.innerHeight;
+            if (w && h) {
+                //判断是否有滚动条
+                var vVal = Math.max(ele.document.documentElement.scrollHeight, ele.document.body.scrollHeight);
+                var hVal = Math.max(ele.document.documentElement.scrollWidth, ele.document.body.scrollWidth);
+                if (vVal > h) {
+                    w = Math.max(ele.document.documentElement.clientWidth, ele.document.body.clientWidth);
+                }
+                if (hVal > w) {
+                    h = Math.max(ele.document.documentElement.clientHeight, ele.document.body.clientHeight);
+                }
+            } else {
+                w = Math.max(ele.document.documentElement.clientWidth, ele.document.body.clientWidth);
+                h = Math.max(ele.document.documentElement.clientHeight, ele.document.body.clientHeight);
+            }
+            return { width: w, height: h };
         }
         return { width: 0, height: 0 };
     },
@@ -2637,7 +2649,11 @@
                     btnDiv.html('<a></a>').cssText('height:0px;overflow:hidden;border:none;');
                     isFooterHide = true;
                 }
-                var size = $(this.doc).getSize();
+                var size = $(this.doc).getSize(),
+                    scrollT = Math.max(this.doc.documentElement.scrollTop, this.bod.scrollTop),
+                    scrollL = Math.max(this.doc.documentElement.scrollLeft, this.bod.scrollLeft);
+                
+                if (this.doc.documentElement)
                 maskDiv.cssText('height:' + size.height + 'px');
                 btnConfigObj[dnum] = config;
                 this.win.focus();
@@ -2660,9 +2676,7 @@
                     conDiv[0].style.width = (cW - 2) + 'px';
                     conDiv[0].style.overflowX = "scroll";
                 }
-                var scrollT = Math.max(this.doc.documentElement.scrollTop, this.bod.scrollTop),
-                    scrollL = Math.max(this.doc.documentElement.scrollLeft, this.bod.scrollLeft),
-                    endFunc = function () {
+                var endFunc = function () {
                         $(showDiv).cssText('visibility:visible;');
                         if (config.showHeader) {
                             drag(nDialog)
@@ -2708,17 +2722,23 @@
                                 w = w.parent;
                             }
                         }
+                        
                         return mp;
                     };
                 if (followTriggerPoint) {
                     mousePos = mousePosCorrect(getMousePos(), this.win);
-                    toPoint.x = mousePos.x - parseInt(toSize.width / 2, 10);
-                    toPoint.y = mousePos.y - parseInt(toSize.height / 2, 10);
-                    if (toPoint.x < 0) { toPoint.x = 0; }
-                    if (toPoint.y < 0) { toPoint.y = 0; }
-                    if (toPoint.x + toSize.width > cW) { toPoint.x = cW - toSize.width; }
-                    if (toPoint.y + toSize.height > cH) { toPoint.y = cH - toSize.height; }
+                    if (!mousePos.unusual) {
+                        toPoint.x = mousePos.x + scrollL - parseInt(toSize.width / 2, 10);
+                        toPoint.y = mousePos.y + scrollT - toSize.height;
+                        if (toPoint.x < 0) { toPoint.x = 0; }
+                        if (toPoint.y < 0) { toPoint.y = 0; }
+                        var endX = toPoint.x + toSize.width;
+                        var endY = toPoint.y;
+                        if (endX > cW) { toPoint.x = cW - toSize.width; }
+                        if (endY > cH) { toPoint.y = cH - toSize.height; }
+                    }
                 }
+
                 showDiv.style.marginTop = (toPoint.y) + "px";
                 showDiv.style.marginLeft = (toPoint.x) + "px";
                 
@@ -2730,7 +2750,6 @@
                     isFast: !0,
                     change: function (point, rate, step, distance) {
                         var v = rate / 100;
-                        log(step + '>' + JSON.stringify(point))
                         zero(this).cssText('width:' + parseInt(toSize.width * v,10) + 'px;height:' + parseInt(toSize.height * v,10) + 'px;margin:' + (point.y) + 'px 0 0 ' + (point.x) + 'px;');
                     },
                     end: function (_zero) { _zero.remove();  endFunc(); }
