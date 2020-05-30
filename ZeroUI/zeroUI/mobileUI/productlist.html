@@ -27,7 +27,7 @@
         <div class="zero_data_list zero_page_bar_fixed zero_repeat_init">
             <div class="zero_repeat zero_repeat_col4" id="dataInit">
                 <div class="zero_repeat_item"><div class="zero_repeat_item_inside">
-                    <div class="zero_repeat_item_cover"><img src="@cover" onload="zero.UI.imgFullParentNode(this)" onclick="dialog.loadBigImage('@name','@cover')" /></div>
+                    <div class="zero_repeat_item_cover">@cover</div>
                     <div class="zero_repeat_item_title"><span>@name</span></div>
                     <div class="zero_repeat_item_con">
                         <div>￥@price</div>
@@ -175,8 +175,8 @@
                     rowFormat: function (html, index, page, size, row) { return html.replace('#rownum#', page * size + index + 1); },
                     cellFormat: function (name, value, row) {
                         switch (name) {
-                            case 'createTime':
-
+                            case 'cover':
+                                value = '<img src="'+value+'" onload="zero.UI.imgFullParentNode(this)" onclick="dialog.loadBigImage(\''+row.name+'\',\''+value+'\')" />';
                                 break;
                         }
                         return value;
