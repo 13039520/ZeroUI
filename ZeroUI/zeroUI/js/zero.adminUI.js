@@ -15,7 +15,7 @@
     var UI = {};
 
     UI.mainPage = function () {
-        var rtabs, riframes, wSize;
+        var rtabs, riframes, wSize, isMultiTabs=true;
         var winResize = function (isClick) {
             wSize = $(win).getSize();
             if (undefined === isClick) {
@@ -28,7 +28,7 @@
             var lSize = $('zero_ap_layout_left').getSize();
             $('zero_ap_layout_left_menu_init').cssText('height:' + (wSize.height - 66 - 10 - 3) + 'px');
             $('zero_ap_layout_right').cssText('width:' + (wSize.width - (wSize.width>1024?lSize.width:0)) + 'px');
-            $('zero_ap_layout_right_iframes').cssText('height:' + (wSize.height - 66) + 'px');
+            $('zero_ap_layout_right_iframes').cssText('height:' + (wSize.height - (isMultiTabs?66:32)) + 'px');
         },
         selectionEmpty = function () {
             document.selection ? document.selection.empty() : window.getSelection && window.getSelection().removeAllRanges()
@@ -90,6 +90,13 @@
                         var a = $(this),
                             d = $(this.parentNode);
                         if (wSize && wSize.width < 1024) { btn.fireEvent('click'); }
+                        if (!isMultiTabs) {
+                            $(menu).find('dd').removeClass('zero_selected');
+                            $(this).addClass('zero_selected');
+                            $(d).addClass('zero_selected');
+                            menuOpen(this);
+                            return;
+                        }
                         a.hasClass("zero_selected") ? (a = $(this).attribute("id").replace("nav", ""), tabSelected($("tab" + a))) : (a.addClass("zero_selected"), d.hasClass("zero_selected") || d.addClass("zero_selected"), menuOpen(this));
                     };
                     switch (a.nodeName.toLowerCase()) {
@@ -130,17 +137,38 @@
         },
         menuOpen = function (menu) {
             var num = $(menu).attribute("id").replace("nav", ""),
-                 title = $(menu).html(),
-                 src = $(menu).attribute("link");
+                title = $(menu).html(),
+                src = $(menu).attribute("link");
+            if (!isMultiTabs) {
+                var pTitle = $(menu).parent().find('dt').html().replace(/[<>]/g, '');
+                $(rtabs).html('<div class="zero_tabs_single"><span class="zero_bg_icon zero_bg_icon_home"></span><span>' + pTitle + '</span><span class="gt">&gt;&gt;</span><span>' + title.replace(/[<>]/g, '') + '</span></div>');
+                if ($(riframes).find("iframe").length) {
+                    $(riframes).find("iframe")[0].id = 'iframe'+num;
+                    $(riframes).find("iframe")[0].src = src;
+                    return;
+                }
+                var h = function () {
+                    iframe[0].style.visibility = "visible";
+                };
+                var iframe = $.htmlStrToDom('<iframe frameBorder="0" class="zero_selected" style="visibility:hidden;" allowTransparency="true" src="' + src + '" id="iframe' + num + '"></iframe>');
+                iframe[0].attachEvent ? iframe[0].attachEvent("onload", h) : iframe[0].onload = h;
+                iframe.appendTo(riframes[0]);
+                return;
+            }
             tabCreate(title, src, num);
             tabSelected($(rtabs).find("class>zero_tab", 1).foreach(function (n) {
                 $(this).attribute("n", n)
             }).last()[0]);
         },
         tabsInit = function () {
+            if (!isMultiTabs) {
+                rtabs = $("zero_ap_layout_right_tabs").cssText('display:none;');
+                riframes = $("zero_ap_layout_right_iframes");
+                return;
+            }
             var d = $("zero_ap_layout_right_tabs").html('<div class="zero_r_arrow_l"><span class="zero_arrow_l zero_bg_icon zero_bg_icon_arrow_left3"></span></div><div class="zero_r_tabs_init"><div class="zero_init"><div class="zero_tabs"></div></div></div><div class="zero_r_arrow_r"><span class="zero_arrow_r zero_bg_icon zero_bg_icon_arrow_right3"></span></div>'),
             a = rtabs = $(d).find("class=zero_tabs"),
-            b = riframes = $("zero_ap_layout_right_iframes")
+            b = riframes = $("zero_ap_layout_right_iframes"),
             e = $(d).find("class=zero_arrow_l"),
             c = $(d).find("class=zero_arrow_r");
             d.addEvent("click", function (d) {
@@ -312,8 +340,13 @@
              var id = 'zero_ap_fit_back', c = $(id);
              if (c.length) { c.fireEvent("click"); }
              else {
-                 var b = $("iframe" + $(tab).attribute("id").replace("tab", "")).addClass('zero_ap_fit'),
-                     f = $.htmlStrToDom('<a id="zero_ap_fit_back">退出全屏</a>').insertAfter(b[0]);
+                 var b;
+                 if (isStr(tab)) {
+                     b = $("iframe" + tab).addClass('zero_ap_fit')
+                 } else {
+                     b = $("iframe" + $(tab).attribute("id").replace("tab", "")).addClass('zero_ap_fit');
+                 }
+                 var f = $.htmlStrToDom('<a id="zero_ap_fit_back">退出全屏</a>').insertAfter(b[0]);
                  var e = document.title;
                  iframeTitle = $(tab).find("class=zero_tab_text").html();
                  try {
@@ -335,8 +368,9 @@
 
         return new function () {
             this.isTopWin = isTopWin;
-            this.init = function () {
+            this.init = function (multiTabs) {
                 if (!$(document.body).hasClass("zero_top_page")) { return; }
+                UI.isMultiTabs = isMultiTabs = (multiTabs === undefined ? true : multiTabs ? true : false);
                 $(win).addEvent("resize", function (e) { winResize() });
                 winResize();
                 menuInit();
@@ -344,15 +378,28 @@
                 menuSelected();
             };
             this.tabClose = function (num) {
+                if (!isMultiTabs) {
+                    return;
+                }
                 num && (num = $("tab" + num), num.length && tabClose(num[0]));
             };
             this.tabFocus = function (num) {
+                if (!isMultiTabs) {
+                    return;
+                }
                 num && (num = $("tab" + num), num.length && tabFocus(num[0]));
             };
             this.tabFitShow = function (num) {
+                if (!isMultiTabs) {
+                    tabFitShow(num);
+                    return;
+                }
                 num && (num = $("tab" + num), num.length && tabFitShow(num[0]))
             };
             this.tabLock = function (num, isLock) {
+                if (!isMultiTabs) {
+                    return;
+                }
                 if (num) {
                     var b = $("tab" + num);
                     b.length && (isLock ? b.attribute("locked", 1) : b.removeAttribute("locked"))
@@ -410,6 +457,7 @@
         },
         pageReadyFunc = function () {
             tabIframePageCtrl();
+            $('zero_data_list_header').find('select').foreach(function (num) { $.UI.imitateSelecte(this); });
         };
         this.isTabIframePage = win !== topWin;
         this.topWin = topWin;

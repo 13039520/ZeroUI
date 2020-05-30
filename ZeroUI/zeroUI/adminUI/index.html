@@ -11,7 +11,7 @@
     <script type="text/javascript" src="../js/zero.adminUI.js"></script>
     <script type="text/javascript">
         zero.ready(function () {
-            zeroAdminUI.mainPage.init();
+            zeroAdminUI.mainPage.init(false);
             var currentTime = zero('currentTime');
             if (currentTime.length !== 1) { return; }
             setInterval(function () {
