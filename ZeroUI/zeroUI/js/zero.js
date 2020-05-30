@@ -2735,7 +2735,7 @@
                         var endX = toPoint.x + toSize.width;
                         var endY = toPoint.y;
                         if (endX > cW) { toPoint.x = cW - toSize.width; }
-                        if (endY > cH) { toPoint.y = cH - toSize.height; }
+                        if (endY > cH) { toPoint.y = cH; }
                     }
                 }
 
