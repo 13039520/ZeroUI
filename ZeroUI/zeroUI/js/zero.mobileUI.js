@@ -21,6 +21,10 @@
     $.mobileUI = window.mobileUI = UI;
 
     $.ready(function () {
+        if (isTouchScreen) {
+            document.addEventListener('touchstart', function () { return false; }, true);
+            document.oncontextmenu = function () { return false; };
+        }
         $.mobileUI.mobilePageRemarkBar();
         $.mobileUI.iconNavListColors();
     });
