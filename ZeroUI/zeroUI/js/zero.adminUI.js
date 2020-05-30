@@ -89,8 +89,8 @@
                     c = function () {
                         var a = $(this),
                             d = $(this.parentNode);
-                        a.hasClass("zero_selected") ? (a = $(this).attribute("id").replace("nav", ""), tabSelected($("tab" + a))) : (a.addClass("zero_selected"), d.hasClass("zero_selected") || d.addClass("zero_selected"), menuOpen(this));
                         if (wSize && wSize.width < 1024) { btn.fireEvent('click'); }
+                        a.hasClass("zero_selected") ? (a = $(this).attribute("id").replace("nav", ""), tabSelected($("tab" + a))) : (a.addClass("zero_selected"), d.hasClass("zero_selected") || d.addClass("zero_selected"), menuOpen(this));
                     };
                     switch (a.nodeName.toLowerCase()) {
                         case "dt":

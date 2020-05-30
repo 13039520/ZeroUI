@@ -112,6 +112,8 @@ body #zero_date_input .b a{border-left-color:#dedede;}
     #zero_ap_layout_right_header{padding-left:32px;}
     .zero_ap_layout_left_hide #zero_ap_layout_left{width:0;position:static;}
     .zero_ap_layout_left_hide #zero_ap_layout_right_header{padding-left:32px;}
+    .zero_ap_layout_left_hide #zero_ap_layout_left_menu_init,
+    .zero_ap_layout_left_hide #zero_ap_layout_left_header{border-color:transparent;}
  }
 @media screen and (max-width: 640px) {
     #zero_ap_header .zero_left{width:0;}
