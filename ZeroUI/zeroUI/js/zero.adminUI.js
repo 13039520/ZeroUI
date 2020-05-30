@@ -28,7 +28,7 @@
             var lSize = $('zero_ap_layout_left').getSize();
             $('zero_ap_layout_left_menu_init').cssText('height:' + (wSize.height - 66 - 10 - 3) + 'px');
             $('zero_ap_layout_right').cssText('width:' + (wSize.width - (wSize.width>1024?lSize.width:0)) + 'px');
-            $('zero_ap_layout_right_iframes').cssText('height:' + (wSize.height - (isMultiTabs?66:32)) + 'px');
+            $('zero_ap_layout_right_iframes').cssText('height:' + (wSize.height - (isMultiTabs?66:34)) + 'px');
         },
         selectionEmpty = function () {
             document.selection ? document.selection.empty() : window.getSelection && window.getSelection().removeAllRanges()
@@ -162,7 +162,7 @@
         },
         tabsInit = function () {
             if (!isMultiTabs) {
-                rtabs = $("zero_ap_layout_right_tabs").cssText('display:none;');
+                rtabs = $("zero_ap_layout_right_tabs").cssText('height:0;');
                 riframes = $("zero_ap_layout_right_iframes");
                 return;
             }
