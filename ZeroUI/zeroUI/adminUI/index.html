@@ -11,7 +11,8 @@
     <script type="text/javascript" src="../js/zero.adminUI.js"></script>
     <script type="text/javascript">
         zero.ready(function () {
-            zeroAdminUI.mainPage.init(false);
+            //启用单选项卡模式并设定页面被锁定时的提示内容
+            zeroAdminUI.mainPage.init(true, '当前页面被锁定，可能有未完成的操作。你确定要替换该页面吗？');
             var currentTime = zero('currentTime');
             if (currentTime.length !== 1) { return; }
             setInterval(function () {

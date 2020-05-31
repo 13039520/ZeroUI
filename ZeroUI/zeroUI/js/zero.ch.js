@@ -39,7 +39,7 @@
     $.copy = '拷贝';
     $.paste = '粘贴';
     $.dialog = '对话框';
-    $.tips = '对话框';
+    $.tips = '提示';
     $.refresh = '刷新';
     $.open = '打开';
     $.close = '关闭';

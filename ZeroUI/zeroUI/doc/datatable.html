@@ -13,23 +13,15 @@
             <div class="zero_left"><span class="zero_title">用户列表</span><a class="zero_bg_icon zero_bg_icon_filter2" onclick="zero.UI.upSideBar('filterSideBar', true)">过滤</a></div>
             <div class="zero_right">
                 <input type="button" value="新建" class="zero_bg_icon zero_bg_icon_plus" onclick="myPage.addFunc()" />
-                <!--页面最大宽度只有600像素时隐藏-->
-                <select class="zero_bg_icon zero_bg_icon_checkmark_circle MCW640H" onchange="myPage.selCmd(this)">
-                    <option value="">选择</option>
-                    <option value="all" class="zero_bg_icon zero_bg_icon_checkbox_checked">全选</option>
-                    <option value="reverse" class="zero_bg_icon zero_bg_icon_checkmark">反选</option>
-                    <option value="cancel" class="zero_bg_icon zero_bg_icon_checkbox_unchecked">弃选</option>
-                </select>
                 <input type="button" value="删除" class="zero_bg_icon zero_bg_icon_remove" onclick="myPage.bulkDeleteFunc()" />
-                <!--页面最大宽度只有600像素时隐藏-->
-                <select class="zero_bg_icon zero_bg_icon_enter MCW640H" onchange="myPage.datafileFunc(this)">
-                    <option value="">导入导出</option>
-                    <option value="export" class="zero_bg_icon zero_bg_icon_download2">导出用户</option>
-                    <option value="import" class="zero_bg_icon zero_bg_icon_upload2">导入用户</option>
-                </select>
-                <!--页面最大宽度只有1000像素时就隐藏-->
-                <select class="zero_iframe_page_ctrl zero_bg_icon zero_bg_icon_screen MCW1024H">
+                <!--页面最大宽度只有1024像素时就隐藏-->
+                <select onchange="myPage.selCmd(this)" class="zero_iframe_page_ctrl zero_bg_icon zero_bg_icon_screen MCW1024H">
                     <option value="">页面操作</option>
+                    <option value="select_all" class="zero_bg_icon zero_bg_icon_checkbox_checked">全选</option>
+                    <option value="select_reverse" class="zero_bg_icon zero_bg_icon_checkmark">反选</option>
+                    <option value="select_cancel" class="zero_bg_icon zero_bg_icon_checkbox_unchecked">弃选</option>
+                    <option value="data_export" class="zero_bg_icon zero_bg_icon_download2">导出数据</option>
+                    <option value="data_import" class="zero_bg_icon zero_bg_icon_upload2">导入数据</option>
                     <option value="page_lock" class="zero_bg_icon zero_bg_icon_lock">锁定页面</option>
                     <option value="page_unlock" class="zero_bg_icon zero_bg_icon_unlocked">解锁页面</option>
                     <option value="page_refresh" class="zero_bg_icon zero_bg_icon_loop2">刷新页面</option>
@@ -128,10 +120,10 @@
                     text = sel.options[sel.selectedIndex].innerHTML;
                 sel.selectedIndex = 0;
                 switch (v) {
-                    case 'export':
+                    case 'data_export':
                         dialog.alert(text, '该功能\'尚未\'实现，敬请期待！');
                         break;
-                    case 'import':
+                    case 'data_import':
                         var uploadBtnFunc = function () {
                             var _this = this,
                                 form = this.form(),
@@ -177,14 +169,56 @@
             },
             selCmd:function(sel){
                 switch (sel.value) {
-                    case 'all':
+                    case 'select_all':
                         this.dataSource.selectedAll();
                         break;
-                    case 'reverse':
+                    case 'select_reverse':
                         this.dataSource.selectedReverse();
                         break;
-                    case 'cancel':
+                    case 'select_cancel':
                         this.dataSource.selectedCancel();
+                        break;
+                    case 'data_export':
+                        //dialog.alert('操作提示', '<p>该功能暂未实现，敬请期待……</p>');
+                        this.datafileFunc(sel);
+                        break;
+                    case 'data_import':
+                        //dialog.alert('操作提示', '<p>该功能暂未实现，敬请期待……</p>');
+                        this.datafileFunc(sel);
+                        break;
+                    case 'page_lock':
+                        zeroAdminUI.tabIframePage.pageTabLock(true);
+                        break;
+                    case 'page_unlock':
+                        zeroAdminUI.tabIframePage.pageTabLock(false);
+                        break;
+                    case 'page_refresh':
+                        window.location.reload(true);
+                        break;
+                    case 'page_print':
+                        window.print();
+                        break;
+                    case 'page_full':
+                        zeroAdminUI.tabIframePage.pageTabFitShow();
+                        break;
+                    case 'page_source':
+                        var w = dialog.waiting('……请稍候……');
+                        zero.ajax(document.URL).error(function (e) { return e; }).send(function (res) {
+                            w.close();
+                            dialog.alert(document.URL + '-source', '<ol class="zero_code_highlight"><li>' + zero.codeHighlight.html(res).replace(/(\r\n|\n)/g, '</li><li>') + '</li></ol>', null, 1024);
+                        });
+                        break;
+                    case 'page_source_now':
+                        if (document.documentElement && document.documentElement.outerHTML) {
+                            var w = dialog.waiting('……请稍候……');
+                            setTimeout(function () {
+                                w.close();
+                                dialog.alert(document.URL + '-source', '<ol class="zero_code_highlight"><li>' + zero.codeHighlight.html(document.documentElement.outerHTML).replace(/(\r\n|\n)/g, '</li><li>') + '</li></ol>', null, 1024);
+                            }, 1000);
+
+                        } else {
+                            dialog.alert('操作提示', '浏览器不支持该操作');
+                        }
                         break;
                 }
                 sel.selectedIndex = 0;

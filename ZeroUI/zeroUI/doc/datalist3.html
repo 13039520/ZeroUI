@@ -13,15 +13,16 @@
             <div class="zero_left"><span class="zero_title">线路列表</span><a class="zero_bg_icon zero_bg_icon_filter2" onclick="zero.UI.upSideBar('filterSideBar', true)">过滤</a></div>
             <div class="zero_right">
                 <input type="button" value="新建" class="zero_bg_icon zero_bg_icon_plus" onclick="myPage.addFunc()" />
-                <select class="zero_iframe_page_ctrl zero_bg_icon zero_bg_icon_screen MCW1024H">
-                    <option value="">--页面操作--</option>
-                    <option value="page_lock">锁定页面</option>
-                    <option value="page_unlock">解锁页面</option>
-                    <option value="page_refresh">刷新页面</option>
-                    <option value="page_print">打印页面</option>
-                    <option value="page_source">查看原始源码</option>
-                    <option value="page_source_now">查看当前源码</option>
-                    <option value="page_full">全屏切换</option>
+                <!--页面最大宽度只有1024像素时就隐藏-->
+                <select onchange="myPage.selCmd(this)" class="zero_iframe_page_ctrl zero_bg_icon zero_bg_icon_screen MCW1024H">
+                    <option value="">页面操作</option>
+                    <option value="page_lock" class="zero_bg_icon zero_bg_icon_lock">锁定页面</option>
+                    <option value="page_unlock" class="zero_bg_icon zero_bg_icon_unlocked">解锁页面</option>
+                    <option value="page_refresh" class="zero_bg_icon zero_bg_icon_loop2">刷新页面</option>
+                    <option value="page_print" class="zero_bg_icon zero_bg_icon_print">打印页面</option>
+                    <option value="page_source" class="zero_bg_icon zero_bg_icon_file_xml">查看原始源码</option>
+                    <option value="page_source_now" class="zero_bg_icon zero_bg_icon_file_xml">查看当前源码</option>
+                    <option value="page_full" class="zero_bg_icon zero_bg_icon_expand">全屏切换</option>
                 </select>
             </div>
             </div>
@@ -89,6 +90,45 @@
                 dialog.confirm('操作确认', '确定要删除“' + data.name + '”吗？', function (flag) {
                     flag && myPage.dataSource.removeRow(row);
                 });
+            },
+            selCmd: function (sel) {
+                switch (sel.value) {
+                    case 'page_lock':
+                        zeroAdminUI.tabIframePage.pageTabLock(true);
+                        break;
+                    case 'page_unlock':
+                        zeroAdminUI.tabIframePage.pageTabLock(false);
+                        break;
+                    case 'page_refresh':
+                        window.location.reload(true);
+                        break;
+                    case 'page_print':
+                        window.print();
+                        break;
+                    case 'page_full':
+                        zeroAdminUI.tabIframePage.pageTabFitShow();
+                        break;
+                    case 'page_source':
+                        var w = dialog.waiting('……请稍候……');
+                        zero.ajax(document.URL).error(function (e) { return e; }).send(function (res) {
+                            w.close();
+                            dialog.alert(document.URL + '-source', '<ol class="zero_code_highlight"><li>' + zero.codeHighlight.html(res).replace(/(\r\n|\n)/g, '</li><li>') + '</li></ol>', null, 1024);
+                        });
+                        break;
+                    case 'page_source_now':
+                        if (document.documentElement && document.documentElement.outerHTML) {
+                            var w = dialog.waiting('……请稍候……');
+                            setTimeout(function () {
+                                w.close();
+                                dialog.alert(document.URL + '-source', '<ol class="zero_code_highlight"><li>' + zero.codeHighlight.html(document.documentElement.outerHTML).replace(/(\r\n|\n)/g, '</li><li>') + '</li></ol>', null, 1024);
+                            }, 1000);
+
+                        } else {
+                            dialog.alert('操作提示', '浏览器不支持该操作');
+                        }
+                        break;
+                }
+                sel.selectedIndex = 0;
             },
             searchFunc: function () {
                 //收起弹出层

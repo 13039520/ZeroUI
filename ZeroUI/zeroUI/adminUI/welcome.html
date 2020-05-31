@@ -28,7 +28,11 @@ p{font-size:12px; padding:0; margin:0; color:#999; line-height:1.1;}
 <script src="../js/zero.adminUI.js" type="text/javascript"></script>
 <script type="text/javascript">
     zero.ready(function () {
-        zeroAdminUI.tabIframePage.pageTabLock(true);
+        //判断是否为多选项卡模式
+        if (zeroAdminUI.isMultiTabs) {
+            //锁定该欢迎页面
+            zeroAdminUI.tabIframePage.pageTabLock(true);
+        }
         var myBox = zero('myBox');
         if (myBox.length !== 1) { return; }
         var size = zero(myBox).getSize(),

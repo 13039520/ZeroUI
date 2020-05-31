@@ -14,6 +14,8 @@
 
     var UI = {};
 
+    UI.singleTabPageReplacementTips = 'The current page is locked. There may be unfinished tasks. Are you sure you want to replace it? ';
+
     UI.mainPage = function () {
         var rtabs, riframes, wSize, isMultiTabs=true;
         var winResize = function (isClick) {
@@ -91,10 +93,29 @@
                             d = $(this.parentNode);
                         if (wSize && wSize.width < 1024) { btn.fireEvent('click'); }
                         if (!isMultiTabs) {
-                            $(menu).find('dd').removeClass('zero_selected');
-                            $(this).addClass('zero_selected');
-                            $(d).addClass('zero_selected');
-                            menuOpen(this);
+                            var num = $(rtabs).find('class=zero_tabs_single').attribute('id');
+                            if (num) { num = num.replace('tab', ''); }
+                            var num2 = $(this).attribute('id').replace('nav', '');
+                            if (num == num2) { return;}
+                            var locked = $(rtabs).find('class=zero_tabs_single').attribute('locked');
+                            if (locked) {
+                                var _this = this;
+                                dialog.confirm(
+                                    $.lan.tips,
+                                    '<p style="font-size:12px;">'+UI.singleTabPageReplacementTips+'</p>',
+                                    function (flag) {
+                                        if (!flag) { return; }
+                                        $(menu).find('dd').removeClass('zero_selected');
+                                        $(_this).addClass('zero_selected');
+                                        $(d).addClass('zero_selected');
+                                        menuOpen(_this);
+                                    },320);
+                            } else {
+                                $(menu).find('dd').removeClass('zero_selected');
+                                $(this).addClass('zero_selected');
+                                $(d).addClass('zero_selected');
+                                menuOpen(this);
+                            }
                             return;
                         }
                         a.hasClass("zero_selected") ? (a = $(this).attribute("id").replace("nav", ""), tabSelected($("tab" + a))) : (a.addClass("zero_selected"), d.hasClass("zero_selected") || d.addClass("zero_selected"), menuOpen(this));
@@ -141,7 +162,7 @@
                 src = $(menu).attribute("link");
             if (!isMultiTabs) {
                 var pTitle = $(menu).parent().find('dt').html().replace(/[<>]/g, '');
-                $(rtabs).html('<div class="zero_tabs_single"><span class="zero_bg_icon zero_bg_icon_home"></span><span>' + pTitle + '</span><span class="gt">&gt;&gt;</span><span>' + title.replace(/[<>]/g, '') + '</span></div>');
+                $(rtabs).html('<div class="zero_tabs_single" id="tab'+num+'"><span class="zero_bg_icon zero_bg_icon_home"></span><span>' + pTitle + '</span><span class="gt">&gt;&gt;</span><span>' + title.replace(/[<>]/g, '') + '</span></div>');
                 if ($(riframes).find("iframe").length) {
                     $(riframes).find("iframe")[0].id = 'iframe'+num;
                     $(riframes).find("iframe")[0].src = src;
@@ -368,9 +389,17 @@
 
         return new function () {
             this.isTopWin = isTopWin;
-            this.init = function (multiTabs) {
+            this.init = function (singleTabs,singleTabLockedTips) {
                 if (!$(document.body).hasClass("zero_top_page")) { return; }
-                UI.isMultiTabs = isMultiTabs = (multiTabs === undefined ? true : multiTabs ? true : false);
+                if (singleTabs !== undefined && singleTabs !== null) {
+                    UI.isMultiTabs = singleTabs ? false : true;
+                } else {
+                    UI.isMultiTabs = true;
+                }
+                isMultiTabs = UI.isMultiTabs;
+                if (isStr(singleTabLockedTips) && singleTabLockedTips.length > 0) {
+                    UI.singleTabPageReplacementTips = singleTabLockedTips;
+                }
                 $(win).addEvent("resize", function (e) { winResize() });
                 winResize();
                 menuInit();
@@ -397,66 +426,16 @@
                 num && (num = $("tab" + num), num.length && tabFitShow(num[0]))
             };
             this.tabLock = function (num, isLock) {
-                if (!isMultiTabs) {
-                    return;
-                }
-                if (num) {
-                    var b = $("tab" + num);
-                    b.length && (isLock ? b.attribute("locked", 1) : b.removeAttribute("locked"))
-                }
+                if (!num) { return; }
+                var b = $("tab" + num);
+                b.length && (isLock ? b.attribute("locked", 1) : b.removeAttribute("locked"));
             };
         }();
     }();
 
     UI.tabIframePage = new function () {
         var _this = this,
-        tabIframePageCtrl = function () {
-            $(document.body, 'select').filter('class>zero_iframe_page_ctrl').addEvent('change', function (e) {
-                var s = this.options[this.selectedIndex].innerHTML;
-                switch (this.value) {
-                    case 'page_lock':
-                        _this.pageTabLock(true);
-                        break;
-                    case 'page_unlock':
-                        _this.pageTabLock(false);
-                        break;
-                    case 'page_refresh':
-                        window.location.reload(true);
-                        s = '';
-                        break;
-                    case 'page_print':
-                        window.print();
-                        break;
-                    case 'page_full':
-                        _this.pageTabFitShow();
-                        break;
-                    case 'page_source':
-                        s = '';
-                        var w = dialog.waiting('……请稍候……');
-                        $.ajax(document.URL).error(function (e) { return e; }).send(function (res) {
-                            w.close();
-                            dialog.alert(document.URL + '-source', '<ol class="zero_code_highlight"><li>' + $.codeHighlight.html(res).replace(/(\r\n|\n)/g, '</li><li>') + '</li></ol>', null, 1024);
-                        });
-                        break;
-                    case 'page_source_now':
-                        s = '';
-                        if (document.documentElement && document.documentElement.outerHTML) {
-                            var w = dialog.waiting('……请稍候……');
-                            setTimeout(function () {
-                                w.close();
-                                dialog.alert(document.URL + '-source', '<ol class="zero_code_highlight"><li>' + $.codeHighlight.html(document.documentElement.outerHTML).replace(/(\r\n|\n)/g, '</li><li>') + '</li></ol>', null, 1024);
-                            }, 1000);
-
-                        } else {
-                            dialog.alert('操作提示', '浏览器不支持该操作');
-                        }
-                        break;
-                }
-                this.selectedIndex = 0;
-            });
-        },
         pageReadyFunc = function () {
-            tabIframePageCtrl();
             $('zero_data_list_header').find('select').foreach(function (num) { $.UI.select(this); });
         };
         this.isTabIframePage = win !== topWin;
