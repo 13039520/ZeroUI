@@ -2002,7 +2002,7 @@
             var _this = this,
                 isFormNode = false,
                 inputs = {},
-                checkResult={},
+                checkResult = {},
                 groupInputExtend = function (group) {
                     group['getValue'] = function () {
                         var reval = [];
@@ -2097,6 +2097,18 @@
                     var tipsFunc = isFunc(_this.onCustomTips) ? _this.onCustomTips : inputTips;
                     tipsFunc(input, isError, msg);
                 },
+                fireSelectChange = function () {
+                    setTimeout(function () {
+                        for (var key in inputs) {
+                            if (isArray(inputs[key])) {
+                                continue;
+                            }
+                            if ('SELECT' === inputs[key].nodeName) {
+                                $(inputs[key]).fireEvent('onchange');
+                            }
+                        }
+                    }, 1);//要稍作延迟，否则selectedIndex可能还没有改变
+                },
                 init = function () {
                     ele = $(ele);
                     if (!ele.length) { return; }
@@ -2115,6 +2127,7 @@
                             for (var o in _this.inputs) {
                                 doTips(_this.inputs[o], false, 'OK');
                             }
+                            fireSelectChange();
                         });
                     }
                     var getName = function (node, index) {
@@ -2189,7 +2202,7 @@
             this.onRequest = function () { };
             this.onResponse = function (res) { };
             this.reset = function () {
-                if (isFormNode) { ele.reset(); }
+                if (isFormNode) { ele.reset(); fireSelectChange(); }
                 else {
                     this.loadData(initData);
                     for (var o in _this.inputs) {
@@ -2364,9 +2377,11 @@
                             input[i].checked = hasVal(input[i].value);
                         }
                         continue;
+                    } else {
+                        input.value = val;
                     }
-                    input.value = val;
                 }
+                fireSelectChange();
             };
             init();
         }(ele);

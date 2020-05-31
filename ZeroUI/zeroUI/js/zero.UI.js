@@ -42,63 +42,62 @@
         func(box);
     };
     var UI = {};
-    UI.imitateSelecte = function (ele) {
+    UI.select = function (ele) {
         if (ele.nodeName !== 'SELECT'||$(ele).parent().hasClass('imitateSelecte')) { return; }
-        var p = $.htmlStrToDom('<p class="imitateSelecte"></p>').insertBefore(ele).addClass(ele.className)[0];
-        var n = ['width', 'padding', 'margin', 'background'];
-        for (var i = 0; i < n.length; i++) {
-            $(p).cssText(n[i] + ':' + $(ele).getStyle(n[i]));
+        var pNode = $.htmlStrToDom('<p class="imitateSelecte"></p>').insertBefore(ele).addClass(ele.className)[0];
+        var styles = ['width', 'padding', 'margin', 'background'];
+        for (var i = 0; i < styles.length; i++) {
+            $(pNode).cssText(styles[i] + ':' + $(ele).getStyle(styles[i]));
         }
         var lh = $(ele).getStyle('height');
-        $(p).cssText('height:' + lh+';line-height:'+lh);
-
+        $(pNode).cssText('height:' + lh + ';line-height:' + lh);
         var h = parseInt((ele.offsetHeight - 16) / 2, 10);
-        $(p).html('<b style="margin-top:' + (h > 0 ? h : 0) + 'px;">▽</b><a style="display:inline-block;margin:0 20px 0 0;">' + ele.options[ele.selectedIndex].innerHTML + '</a>');
-        $(ele).appendTo(p);
-        var div = null;
-        var listen = function (e) {
-            var target = e.target || e.srcElement;
-            if (!target) { return }
-            if (div.contains(target)) {
-                var n = parseInt($(target).attribute('n'), 10);
-                var t = ele.selectedIndex;
-                if (t != n) {
-                    ele.selectedIndex = n;
-                    $(ele).fireEvent('onchange');
+        $(pNode).html('<b style="margin-top:' + (h > 0 ? h : 0) + 'px;">▽</b><a style="display:inline-block;margin:0 20px 0 0;">' + ele.options[ele.selectedIndex].innerHTML + '</a>');
+        $(ele).appendTo(pNode);
+        var divNode = null,
+            listenClick = function (e) {
+                var target = e.target || e.srcElement;
+                if (!target) { return }
+                if (divNode.contains(target)) {
+                    var n = parseInt($(target).attribute('n'), 10);
+                    var t = ele.selectedIndex;
+                    if (t != n) {
+                        ele.selectedIndex = n;
+                        $(ele).fireEvent('onchange');
+                    }
+                    doListen(false);
+                    $(divNode).remove();
+                    $(pNode).removeAttribute('s');
+                } else {
+                    if (target != divNode) {
+                        doListen(false);
+                        $(divNode).remove();
+                        $(pNode).removeAttribute('s');
+                    }
                 }
-                docListener(false);
-                $(div).remove();
-                $(p).removeAttribute('s');
-            } else {
-                if (target != div) {
-                    docListener(false);
-                    $(div).remove();
-                    $(p).removeAttribute('s');
+            },
+            listenScroll = function (e) {
+                doListen(false);
+                $(divNode).remove();
+                $(pNode).removeAttribute('s');
+            },
+            doListen = function (isBind) {
+                if (isBind) {
+                    if ($(divNode).attribute('l')) { return; }
+                    $(divNode).attribute('l', '1');
+                    $(document).addEvent('click', listenClick);
+                    $(window).addEvent('onscroll', listenScroll);
+                } else {
+                    $(document).removeEvent('click', listenClick);
+                    $(window).removeEvent('onscroll', listenScroll);
                 }
-            }
-        };
-        var scrollListen = function (e) {
-            docListener(false);
-            $(div).remove();
-            $(p).removeAttribute('s');
-        };
-        var docListener = function (isBind) {
-            if (isBind) {
-                if ($(div).attribute('l')) { return; }
-                $(div).attribute('l','1');
-                $(document).addEvent('click', listen);
-                $(window).addEvent('onscroll', scrollListen);
-            } else {
-                $(document).removeEvent('click', listen);
-                $(window).removeEvent('onscroll', scrollListen);
-            }
-        };
-        $(p).addEvent('click', function (e) {
+            };
+        $(pNode).addEvent('click', function (e) {
             if ($(this).attribute('s')) { return; }
             $(this).attribute('s', '1');
             var point = $(this).getAbsPoint();
             var size = $(this).getSize();
-            div = $.htmlStrToDom('<div class="imitateSelecte" style="visibility:hidden"></div>').prependTo();
+            divNode = $.htmlStrToDom('<div class="imitateSelecte" style="visibility:hidden"></div>').prependTo();
             var pd=$(ele).getStyle('padding');
             var ops = [], index = ele.selectedIndex;
             for (var i = 0; i < ele.options.length; i++) {
@@ -107,16 +106,13 @@
                 if (cla.length > 0) { cla = ' class="' + cla + '"';}
                 ops.push('<p n="'+i+'"'+(cla)+' style="padding:'+pd+'">' + ele.options[i].innerHTML + '</p>');
             }
-            div.html(ops.join(''));
-            n = ['background-color'];
-            for (var i = 0; i < n.length; i++) {
-                $(div).cssText(n[i] + ':' + $(ele).getStyle(n[i]));
-            }
-            $(div).cssText('line-height:' + lh);
+            divNode.html(ops.join(''));
+            $(divNode).cssText('background-color:' + $(ele).getStyle('background-color'));
+            $(divNode).cssText('line-height:' + lh);
             var bW = parseInt($(ele).getStyle('borderLeftWidth'),10)+parseInt($(ele).getStyle('borderRightWidth'),10);
-            $(div).cssText('width:' + (size.width-(bW>0?2:0)) + 'px');
-            div = div[0];
-            var divH = div.offsetHeight;
+            $(divNode).cssText('width:' + (size.width-(bW>0?2:0)) + 'px');
+            divNode = divNode[0];
+            var divH = divNode.offsetHeight;
             var docSize = $(document).getSize();
             var upH = point.y;
             var downH = docSize.height - point.y - size.height;
@@ -124,24 +120,24 @@
             var sl = Math.max(document.documentElement.scrollLeft, document.body.scrollLeft);
             if (upH > downH) {
                 if (divH > upH) {
-                    div.style.height = (upH - 2) + 'px';
-                    div.style.overflowY = 'scroll';
+                    divNode.style.height = (upH - 2) + 'px';
+                    divNode.style.overflowY = 'scroll';
                 }
-                div.style.marginTop = (point.y - size.height + st) + 'px';
-                div.style.marginLeft = (point.x + sl) + 'px';
+                divNode.style.marginTop = (point.y - size.height + st) + 'px';
+                divNode.style.marginLeft = (point.x + sl) + 'px';
             } else {
                 if (divH > downH) {
-                    div.style.height = (downH - 2) + 'px';
-                    div.style.overflowY = 'scroll';
+                    divNode.style.height = (downH - 2) + 'px';
+                    divNode.style.overflowY = 'scroll';
                 }
-                div.style.marginTop = (point.y - 2 + size.height + st) + 'px';
-                div.style.marginLeft = (point.x + sl) + 'px';
+                divNode.style.marginTop = (point.y - 2 + size.height + st) + 'px';
+                divNode.style.marginLeft = (point.x + sl) + 'px';
             }
-            div.style.visibility = 'visible';
-            setTimeout(function () { docListener(true); }, 200);
+            divNode.style.visibility = 'visible';
+            setTimeout(function () { doListen(true); }, 100);
         });
         $(ele).addEvent('onchange', function (e) {
-            $(p).find('a').html(this.options[this.selectedIndex].innerHTML);
+            $(pNode).find('a').html(this.options[this.selectedIndex].innerHTML);
         });
     };
     UI.zeroFormInputBoxWatcher = function (ele) {
@@ -954,7 +950,7 @@
                     end: function (o) {
                         o.remove();
                         con.cssText('visibility:visible;');
-                        $(con).find('select').foreach(function () { UI.imitateSelecte(this); });
+                        $(con).find('select').foreach(function () { UI.select(this); });
                     }
                 });
                 maxScrollHeight = barMain[0].scrollHeight - barMain[0].clientHeight;

@@ -457,7 +457,7 @@
         },
         pageReadyFunc = function () {
             tabIframePageCtrl();
-            $('zero_data_list_header').find('select').foreach(function (num) { $.UI.imitateSelecte(this); });
+            $('zero_data_list_header').find('select').foreach(function (num) { $.UI.select(this); });
         };
         this.isTabIframePage = win !== topWin;
         this.topWin = topWin;
