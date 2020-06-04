@@ -49,10 +49,12 @@
         for (var i = 0; i < styles.length; i++) {
             $(pNode).cssText(styles[i] + ':' + $(ele).getStyle(styles[i]));
         }
+        var bColor = $(ele).getStyle('backgroundColor');
+        bColor = this.colorReverse(bColor);
         var lh = $(ele).getStyle('height');
         $(pNode).cssText('height:' + lh + ';line-height:' + lh);
         var h = parseInt((ele.offsetHeight - 16) / 2, 10);
-        $(pNode).html('<b style="margin-top:' + (h > 0 ? h : 0) + 'px;">▽</b><a style="display:inline-block;margin:0 20px 0 0;">' + ele.options[ele.selectedIndex].innerHTML + '</a>');
+        $(pNode).html('<b style="margin-top:' + (h > 0 ? h : 0) + 'px;color:' + bColor + '">▽</b><a style="display:inline-block;margin:0 20px 0 0;">' + ele.options[ele.selectedIndex].innerHTML + '</a>');
         $(ele).appendTo(pNode);
         var divNode = null,
             listenClick = function (e) {
@@ -985,6 +987,35 @@
             return v;
         }
         return colors[Math.floor(Math.random() * colors.length)];
+    };
+    UI.colorReverse = function (color) {
+        color = '' + color;
+        var _ = '';
+        if (color[0] === '#') { _ = '#'; color = color.substr(1); }
+        if (/^rgb\((\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\)$/i.exec(color)) {
+            var r = parseInt(RegExp.$1, 10), g = parseInt(RegExp.$2, 10), b = parseInt(RegExp.$3, 10);
+            return 'rgb(' + (255 - r) + ',' + (255 - g) + ',' + (255 - b) + ')';
+        } else if (/^[0-9a-fA-F]{3}|[0-9a-fA-F]{6}$/.test(color)) {
+            var r, g, b;
+            if (color.length === 3) {
+                r = color[0] + color[0];
+                g = color[1] + color[1];
+                b = color[2] + color[2];
+            } else {
+                r = color.substr(0, 2);
+                g = color.substr(2, 2);
+                b = color.substr(4, 2);
+            }
+            r = (255 - parseInt('0x' + r)).toString(16);
+            g = (255 - parseInt('0x' + g)).toString(16);
+            b = (255 - parseInt('0x' + b)).toString(16);
+
+            r = r.length<2?'0'+r:r;
+            g = g.length<2?'0'+g:g;
+            b = b.length<2?'0'+b:b;
+            return _ + r + g + b;
+        }
+        return color;
     };
 
     window.zeroUI = $.UI = UI;

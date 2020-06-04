@@ -106,12 +106,14 @@
                                     function (flag) {
                                         if (!flag) { return; }
                                         $(menu).find('dd').removeClass('zero_selected');
+                                        $(menu).find('dl').removeClass('zero_selected');
                                         $(_this).addClass('zero_selected');
                                         $(d).addClass('zero_selected');
                                         menuOpen(_this);
                                     },320);
                             } else {
                                 $(menu).find('dd').removeClass('zero_selected');
+                                $(menu).find('dl').removeClass('zero_selected');
                                 $(this).addClass('zero_selected');
                                 $(d).addClass('zero_selected');
                                 menuOpen(this);
