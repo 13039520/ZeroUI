@@ -19,10 +19,10 @@ div.imitateSelecte p.zero_selected,div.imitateSelecte p:hover{color:#000;backgro
 
 input{vertical-align:middle;}
 input[type=text],input[type=password],input[type=time],input[type=tel],textarea,select,input[type=radio],input[type=checkbox],select{border:solid 1px #dfdfdf;border-radius:0;background:#f2f2f2;color:#000;margin:1px;padding:0;height:22px;line-height:22px; outline:none;}
-select{height:26px;}
+select{height:28px;line-height:28px;overflow:hidden;}
 input[type=checkbox],input[type=radio]{background:none;}
 input[disabled="disabled"],input[readonly="readonly"]{border:solid 1px #dedede;background-color:#f2f2f2;color:#999;margin:1px;padding:0;}
-input[type=button],input[type=submit],input[type=reset],button{border:solid 1px #999;background-color:#f2f2f2;color:#333;margin:1px;padding:0 4px;cursor:pointer;border-radius:0;height:28px;}
+input[type=button],input[type=submit],input[type=reset],button{border:solid 1px #999;background-color:#999;color:#000;margin:1px;padding:0 4px;cursor:pointer;border-radius:0;height:28px;}
 input[type=button]:hover,input[type=submit]:hover,input[type=reset]:hover,button:hover,select option:hover{border-color:#037676;}
 input[type=button]:focus,input[type=submit]:focus,input[type=reset]:focus,button:focus,input[type=text]:focus,input[type=password]:focus,input[type=time]:focus,input[type=tel]:focus,textarea:focus,select:focus,input[type=radio]:focus,input[type=checkbox]:focus,select:focus,select option:focus{outline:none;}
 
@@ -140,7 +140,7 @@ table.zero_datatable tbody tr.zero_selected a{color:#037676;}
 table.zero_datatable tbody tr.zero_selected a:hover{color:#f00;}
 table.zero_datatable .zero_ctrl a,
 table.zero_datatable button,
-table.zero_datatable input[type=button]{display:inline-block;height:20px; font-size:12px;background-color:transparent;color:#000;}
+table.zero_datatable input[type=button]{display:inline-block;height:20px;font-size:12px;}
 table.zero_datatable .zero_ctrl a:hover,
 table.zero_datatable button:hover,
 table.zero_datatable input[type=button]:hover{border-color:#037676;}

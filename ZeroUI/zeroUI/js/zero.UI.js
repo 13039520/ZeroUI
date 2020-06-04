@@ -49,12 +49,12 @@
         for (var i = 0; i < styles.length; i++) {
             $(pNode).cssText(styles[i] + ':' + $(ele).getStyle(styles[i]));
         }
-        var bColor = $(ele).getStyle('backgroundColor');
-        bColor = this.colorReverse(bColor);
-        var lh = $(ele).getStyle('height');
-        $(pNode).cssText('height:' + lh + ';line-height:' + lh);
+        var bColor = this.colorReverse($(ele).getStyle('backgroundColor'));
+        var bH = parseInt($(ele).getStyle('borderTopWidth'), 10) + parseInt($(ele).getStyle('borderBottomWidth'), 10);
+        var lh = ele.offsetHeight+(bH>0?0-bH:0)+'px';
+        $(pNode).cssText('height:' + lh + ';line-height:' + lh+';font-size:' + $(ele).getStyle('font-size'));
         var h = parseInt((ele.offsetHeight - 16) / 2, 10);
-        $(pNode).html('<b style="margin-top:' + (h > 0 ? h : 0) + 'px;color:' + bColor + '">▽</b><a style="display:inline-block;margin:0 20px 0 0;">' + ele.options[ele.selectedIndex].innerHTML + '</a>');
+        $(pNode).html('<b style="margin-top:' + (h > 0 ? h : 0) + 'px;color:' + bColor + '">▽</b><a style="display:block;margin:0 20px 0 0;">' + ele.options[ele.selectedIndex].innerHTML + '</a>');
         $(ele).appendTo(pNode);
         var divNode = null,
             listenClick = function (e) {
@@ -99,7 +99,7 @@
             $(this).attribute('s', '1');
             var point = $(this).getAbsPoint();
             var size = $(this).getSize();
-            divNode = $.htmlStrToDom('<div class="imitateSelecte" style="visibility:hidden"></div>').prependTo();
+            divNode = $.htmlStrToDom('<div class="imitateSelecte noprint" style="visibility:hidden"></div>').prependTo();
             var pd=$(ele).getStyle('padding');
             var ops = [], index = ele.selectedIndex;
             for (var i = 0; i < ele.options.length; i++) {
@@ -109,7 +109,7 @@
                 ops.push('<p n="'+i+'"'+(cla)+' style="padding:'+pd+'">' + ele.options[i].innerHTML + '</p>');
             }
             divNode.html(ops.join(''));
-            $(divNode).cssText('background-color:' + $(ele).getStyle('background-color'));
+            $(divNode).cssText('background-color:' + $(ele).getStyle('background-color')+';font-size:' + $(ele).getStyle('font-size'));
             $(divNode).cssText('line-height:' + lh);
             var bW = parseInt($(ele).getStyle('borderLeftWidth'),10)+parseInt($(ele).getStyle('borderRightWidth'),10);
             $(divNode).cssText('width:' + (size.width-(bW>0?2:0)) + 'px');

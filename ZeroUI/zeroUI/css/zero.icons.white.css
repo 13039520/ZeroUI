@@ -1,9 +1,9 @@
 ﻿/*图标*/
-body .zero_bg_icon{background-position:2px center;background-repeat:no-repeat;padding-left:20px;vertical-align:middle;background-color:#333;color:#fff;}
+.zero_bg_icon{background-position:2px center;background-repeat:no-repeat;padding-left:20px;vertical-align:middle;background-color:#999;color:#fff;font-size:14px;}
 input[type=button].zero_bg_icon,
 input[type=submit].zero_bg_icon,
 input[type=reset].zero_bg_icon,
-button.zero_bg_icon{padding-left:20px;}
+button.zero_bg_icon{padding-left:20px;background-color:#999;color:#fff;font-size:14px;}
 
 .zero_bg_icon_accessibility{background-image:url(images/icon/white/accessibility.png);}
 .zero_bg_icon_address_book{background-image:url(images/icon/white/address_book.png);}
@@ -474,7 +474,7 @@ body #zero_ap_layout_left_menu dd{color:#fff; background-image:url(images/icon/w
 body #zero_ap_layout_left_menu .zero_open dt{background-image:url(images/icon/white/folder_open.png);}
 body #zero_ap_layout_left_menu .zero_selected .zero_selected{background-image:url(images/icon/white/file.png);font-weight:bold;}
 body .zero_data_list .zero_title_bar .zero_bg_icon{border:solid 1px #666;cursor:pointer;padding-right:3px;}
-body table.zero_datatable input[type=button]{background-color:#333;color:#fff;border-color:#000;}
+
 html body #dialogInit .zero_dialog .zero_dialogT .dialog_icon{border:solid 1px #05a59d; background-color:#333; background-image:url(images/icon/white/info2.png);}
 html body #dialogInit .zero_dialog span.zero_closeBtn{border:solid 1px #05a59d;color:#05a59d;background-color:#333;}
 
