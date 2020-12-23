@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <None Remove="zeroUI\adminUI\index.html" />
+    <None Remove="zeroUI\adminUI\welcome002.html" />
     <None Remove="zeroUI\css\zero.adminUI.css" />
     <None Remove="zeroUI\css\zero.common.css" />
     <None Remove="zeroUI\css\zero.icons.css" />
@@ -16,9 +17,18 @@
     <None Remove="zeroUI\js\zero.adminUI.js" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="zeroUI\adminUI\about.html" />
-    <Content Include="zeroUI\adminUI\index.html" />
-    <Content Include="zeroUI\adminUI\welcome.html" />
+    <Content Include="zeroUI\adminUI\about.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="zeroUI\adminUI\index.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="zeroUI\adminUI\welcome002.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="zeroUI\adminUI\welcome.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="zeroUI\css\images\icon\accessibility.png" />
     <Content Include="zeroUI\css\images\icon\address_book.png" />
     <Content Include="zeroUI\css\images\icon\aid.png" />
@@ -919,13 +929,25 @@
     <Content Include="zeroUI\css\images\icon\youtube2.png" />
     <Content Include="zeroUI\css\images\icon\zoom_in.png" />
     <Content Include="zeroUI\css\images\icon\zoom_out.png" />
-    <Content Include="zeroUI\css\zero.adminUI.css" />
-    <Content Include="zeroUI\css\zero.common.css" />
-    <Content Include="zeroUI\css\zero.icons.css" />
+    <Content Include="zeroUI\css\zero.adminUI.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="zeroUI\css\zero.common.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="zeroUI\css\zero.icons.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="zeroUI\css\zero.icons.white.css" />
-    <Content Include="zeroUI\css\zero.mobileUI.css" />
-    <Content Include="zeroUI\doc\datalist3.html" />
-    <Content Include="zeroUI\doc\datalist2.html" />
+    <Content Include="zeroUI\css\zero.mobileUI.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="zeroUI\doc\datalist3.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="zeroUI\doc\datalist2.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="zeroUI\favicon.ico" />
     <Content Include="zeroUI\images\001.jpg" />
     <Content Include="zeroUI\images\002.jpg" />
@@ -937,41 +959,111 @@
     <Content Include="zeroUI\images\008.jpg" />
     <Content Include="zeroUI\images\009.jpg" />
     <Content Include="zeroUI\images\010.jpg" />
-    <Content Include="zeroUI\Index.html" />
-    <Content Include="zeroUI\js\data-area.txt" />
-    <Content Include="zeroUI\js\zero.adminUI.js" />
-    <Content Include="zeroUI\js\zero.ch.js" />
-    <Content Include="zeroUI\js\zero.imageShow.js" />
-    <Content Include="zeroUI\js\zero.js" />
-    <Content Include="zeroUI\js\zero.mobileUI.js" />
-    <Content Include="zeroUI\js\zero.tree.js" />
-    <Content Include="zeroUI\js\zero.UI.js" />
-    <Content Include="zeroUI\mobileUI\datalist.html" />
-    <Content Include="zeroUI\mobileUI\datalist_add.html" />
-    <Content Include="zeroUI\mobileUI\datatable.html" />
-    <Content Include="zeroUI\mobileUI\datatable_add.html" />
-    <Content Include="zeroUI\mobileUI\index.html" />
-    <Content Include="zeroUI\mobileUI\news.html" />
-    <Content Include="zeroUI\mobileUI\productlist.html" />
-    <Content Include="zeroUI\doc\ajax.html" />
-    <Content Include="zeroUI\doc\autocomplete.html" />
-    <Content Include="zeroUI\doc\change_opacity.html" />
-    <Content Include="zeroUI\doc\change_position.html" />
-    <Content Include="zeroUI\doc\change_size.html" />
-    <Content Include="zeroUI\doc\datalist1.html" />
-    <Content Include="zeroUI\doc\datatable.html" />
-    <Content Include="zeroUI\doc\datatable_add.html" />
-    <Content Include="zeroUI\doc\date_input.html" />
-    <Content Include="zeroUI\doc\dialog.html" />
-    <Content Include="zeroUI\doc\drag.html" />
-    <Content Include="zeroUI\doc\form.html" />
-    <Content Include="zeroUI\doc\icons.html" />
-    <Content Include="zeroUI\doc\image_show.html" />
-    <Content Include="zeroUI\doc\side_bar.html" />
-    <Content Include="zeroUI\doc\tree_box.html" />
-    <Content Include="zeroUI\doc\tree_edit.html" />
-    <Content Include="zeroUI\doc\tree_input.html" />
-    <Content Include="zeroUI\doc\zero.html" />
+    <Content Include="zeroUI\Index.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="zeroUI\js\data-area.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="zeroUI\js\zero.adminUI.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="zeroUI\js\zero.ch.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="zeroUI\js\zero.imageShow.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="zeroUI\js\zero.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="zeroUI\js\zero.mobileUI.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="zeroUI\js\zero.tree.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="zeroUI\js\zero.UI.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="zeroUI\mobileUI\datalist.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="zeroUI\mobileUI\datalist_add.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="zeroUI\mobileUI\datatable.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="zeroUI\mobileUI\datatable_add.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="zeroUI\mobileUI\index.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="zeroUI\mobileUI\news.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="zeroUI\mobileUI\productlist.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="zeroUI\doc\ajax.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="zeroUI\doc\autocomplete.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="zeroUI\doc\change_opacity.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="zeroUI\doc\change_position.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="zeroUI\doc\change_size.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="zeroUI\doc\datalist1.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="zeroUI\doc\datatable.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="zeroUI\doc\datatable_add.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="zeroUI\doc\date_input.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="zeroUI\doc\dialog.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="zeroUI\doc\drag.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="zeroUI\doc\form.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="zeroUI\doc\icons.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="zeroUI\doc\image_show.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="zeroUI\doc\side_bar.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="zeroUI\doc\tree_box.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="zeroUI\doc\tree_edit.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="zeroUI\doc\tree_input.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="zeroUI\doc\zero.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

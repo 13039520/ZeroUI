@@ -120,6 +120,10 @@
             _this.formFunc();
             var img = zero('zero_login_bg_img');
             if (img.length) {
+                if (img[0].complete) {
+                    _this.showFunc(img[0].src);
+                    return;
+                }
                 img.addEvent('onload', function () {
                     _this.showFunc(this.src);
                 });

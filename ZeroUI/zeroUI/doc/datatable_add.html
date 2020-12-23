@@ -143,6 +143,11 @@
                 }).show(1);
             };
 
+            var loading = null;
+            if (/(MSIE \d)|(rv:11)/i.test(navigator.userAgent)) {
+                //IE浏览器生成树的速度太慢
+                loading = dialog.contentOnly('<p style="color:#f00;text-align:center;font-size:12px;">……正在初始化基础数据……</p>')
+            }
             zero.ajax('../js/data-area.txt').send(function (res) {
                 var d = null;
                 try { d = eval('(' + res + ')'); } catch (e) { d = null; }
@@ -154,8 +159,13 @@
                     textField: 'AreaName',
                     parentField: 'AreaParent',
                     onTextBuilder: function (data) { return '[' + data.AreaCode + ']' + data.AreaName + data.AreaNameSuffix; },
-                    onSelect: function (data) { /*选中项的valueField已经写入到了target中*/ }
+                    onSelect: function (data) {
+                        //选中项的valueField已经写入到了target中
+                    }
                 });
+                if (null != loading) {
+                    loading.close();
+                }
                 zero.log('city data loaded.');
             });
             var waitingDialog = null;

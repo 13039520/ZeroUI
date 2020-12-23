@@ -16,6 +16,8 @@
 
     UI.singleTabPageReplacementTips = 'The current page is locked. There may be unfinished tasks. Are you sure you want to replace it? ';
 
+    UI.isMultiTabs = false;
+
     UI.mainPage = function () {
         var rtabs, riframes, wSize, isMultiTabs=true;
         var winResize = function (isClick) {
@@ -176,6 +178,8 @@
                 var iframe = $.htmlStrToDom('<iframe frameBorder="0" class="zero_selected" style="visibility:hidden;" allowTransparency="true" src="' + src + '" id="iframe' + num + '"></iframe>');
                 iframe[0].attachEvent ? iframe[0].attachEvent("onload", h) : iframe[0].onload = h;
                 iframe.appendTo(riframes[0]);
+                var parent = $(menu).parent().find('dt', 1).first().html();
+                onSelectPage({ name: title, parent: parent, src: src });
                 return;
             }
             tabCreate(title, src, num);
@@ -230,33 +234,19 @@
         tabCreate = function (title, src, num) {
             if (!num) { num = $.guid(); }
             $.htmlStrToDom('<div class="zero_tab" id="tab' + num + '"><span class="zero_tab_text">' + title.replace(/[<>]/g,'') + '</span><span class="zero_tab_close" title="关闭">x</span></div>').appendTo(rtabs[0]);
-            var f = /.*#(\w+)$/.exec(src),
-                e = RegExp.$1.toString();
-            f && (src = src.replace(/^(.*)#(\w+)$/, "$1"));
             var h = function () {
                 iframe[0].style.visibility = "visible";
-                var a = iframe[0];
                 try {
-                    var d = a.contentWindow;
-                    $(d).addEvent("scroll", function () {
-                        var a = d.document.documentElement.scrollTop || d.document.body.scrollTop,
-                            b = d.document.documentElement.scrollLeft || d.document.body.scrollLeft;
-                        if (c) {
-                            var f = $("tab" + c);
-                            f.length && f.attribute("sl", b ? b : 0).attribute("st", a ? a : 0)
+                    $(iframe[0].contentWindow).addEvent('onscroll', function (e) {
+                        var supportPageOffset = this.pageXOffset !== undefined;
+                        var isCSS1Compat = ((this.document.compatMode || "") === "CSS1Compat");
+                        var x = supportPageOffset ? this.pageXOffset : isCSS1Compat ? this.document.documentElement.scrollLeft : this.document.body.scrollLeft;
+                        var y = supportPageOffset ? this.pageYOffset : isCSS1Compat ? this.document.documentElement.scrollTop : this.document.body.scrollTop;
+                        if (x > 0 || y > 0) {
+                            $(iframe[0]).attribute('sl', x).attribute('st', y);
                         }
-                    }).addEvent("unload", function () {
-                        a.style.visibility = "hidden";
-                        $(d).removeEvent("scroll")
                     });
-                    if (f) {
-                        var b = $(d.document, "a").filter("name=" + e);
-                        if (b.length) {
-                            var h = $.getAbsPoint(b[0]);
-                            d.scrollTo(0, h.y)
-                        }
-                    }
-                } catch (k) { }
+                } catch (e) {}
             };
             var iframe = $.htmlStrToDom('<iframe frameBorder="0" style="visibility:hidden;" allowTransparency="true" src="' + src + '" id="iframe' + num + '"></iframe>');
             $(riframes).find("iframe").removeClass("zero_selected");
@@ -266,8 +256,15 @@
         },
         tabSelected = function (tab) {
             var c = $(tab).attribute("id").replace("tab", ""),
-                f = parseInt($(tab).attribute("n"), 10);
+                f = parseInt($(tab).attribute("n"), 10),
+                menu = $('nav' + c),
+                title = $(menu).html(),
+                src = $(menu).attribute('link'),
+                parent = $(menu).parent().find('dt').first().html();
             $(rtabs).find("class>zero_tab", 1).removeClass("zero_selected").filter("n=" + f).addClass("zero_selected");
+
+            onSelectPage({ name: title, parent: parent, src: src });
+
             var e = $(rtabs)[0].style.marginLeft,
                 e = parseInt(e ? e : 0, 10),
                 f = 1 > f ? 0 : 121 * f,
@@ -290,14 +287,16 @@
                     }
                 });
 
-            } else $(riframes).find("iframe").removeClass("zero_selected"), $("iframe" + c).addClass("zero_selected");
-            e = $(rtabs).attribute("sl");
-            f = $(rtabs).attribute("st");
-            e = e ? parseInt(e, 10) : 0;
-            f = f ? parseInt(f, 10) : 0;
-            try {
-                $("iframe" + c)[0].contentWindow.scrollTo(e, f)
-            } catch (m) { }
+            } else { $(riframes).find("iframe").removeClass("zero_selected"), $("iframe" + c).addClass("zero_selected"); }
+
+            var sl = $("iframe" + c).attribute('sl'),
+                st = $("iframe" + c).attribute('st'),
+                x = sl ? parseInt(sl) : 0,
+                y = st ? parseInt(st) : 0;
+            if (x > 0 || y > 0) {
+                $("iframe" + c)[0].contentWindow.scrollTo(x, y);
+            }
+
         },
         tabClose = function (tab) {
             if ($(tab).attribute("locked")) return dialog.tips('<center style="color:#f00;">the tab is locked</center>');
@@ -322,42 +321,13 @@
                 $("iframe" + c).addClass("zero_selected");
                 parseInt($(rtabs)[0].style.marginLeft, 10) < (1 > b ? 0 : 0 - 121 * b) && tabSelected(e[b])
             }
+            try {
+                $(h[0].contentWindow).removeEvent('onscroll');
+            } catch (e) {}
             h.remove();
         },
         tabFocus = function (tab) {
-            var c = $(tab).attribute("id").replace("tab", ""),
-                f = parseInt($(tab).attribute("n"), 10);
-            $(a).find("class>zero_tab", 1).removeClass("zero_selected").filter("n=" + f).addClass("zero_selected");
-            var e = $(a)[0].style.marginLeft,
-                e = parseInt(e ? e : 0, 10),
-                f = 1 > f ? 0 : 121 * f,
-                h = $(a).parent().getSize().width - 121,
-                g = e + f;
-            if (g > h || 0 > g) {
-                var k = $.htmlStrToDom('<div style="width:100%;height:100%;overflow:hidden;position:absolute;z-index:9999;background:#fff;filter:alpha(opacity=10);opacity:0.01;left:0;top:0;"></div>').appendTo();
-                var p = $(a).parent().getAbsPoint();
-                var v = g > h ? 0 - f + h : 0 - f;
-                $(a).changePosition({
-                    to: { x: p.x + v, y: p.y },
-                    isFast: true,
-                    change: function (point, rate, step, distance) {
-                        $(a).cssText("margin-left:" + (point.x - p.x) + "px");
-                    },
-                    end: function () {
-                        $(b).find("iframe").removeClass("zero_selected");
-                        $("iframe" + c).addClass("zero_selected");
-                        k.remove();
-                    }
-                });
-
-            } else $(b).find("iframe").removeClass("zero_selected"), $("iframe" + c).addClass("zero_selected");
-            e = $(d).attribute("sl");
-            f = $(d).attribute("st");
-            e = e ? parseInt(e, 10) : 0;
-            f = f ? parseInt(f, 10) : 0;
-            try {
-                $("iframe" + c)[0].contentWindow.scrollTo(e, f)
-            } catch (m) { }
+            tabSelected(tab);
         },
         tabFitShow = function (tab) {
              var id = 'zero_ap_fit_back', c = $(id);
@@ -387,27 +357,35 @@
                      fsc(false);
                  })
              }
-         };
+            };
+        var onSelectPage = function (obj) { };
 
         return new function () {
             this.isTopWin = isTopWin;
-            this.init = function (singleTabs,singleTabLockedTips) {
+            this.init = function (config) {
                 if (!$(document.body).hasClass("zero_top_page")) { return; }
-                if (singleTabs !== undefined && singleTabs !== null) {
-                    UI.isMultiTabs = singleTabs ? false : true;
-                } else {
-                    UI.isMultiTabs = true;
+                var _default = {
+                    isMultiTabs: true,
+                    tabReplaceTips: '是否确定替换页面？',
+                    onSelectPage: function (obj) { }
+                };
+                if (!config) { config = _default; }
+                if (config.isMultiTabs === undefined) { config.isMultiTabs = _default.isMultiTabs; }
+                if (!isStr(config.tabReplaceTips) || config.tabReplaceTips.length > 0) {
+                    UI.singleTabPageReplacementTips = config.tabReplaceTips = _default.tabReplaceTips;
                 }
-                isMultiTabs = UI.isMultiTabs;
-                if (isStr(singleTabLockedTips) && singleTabLockedTips.length > 0) {
-                    UI.singleTabPageReplacementTips = singleTabLockedTips;
+                if (!isFunc(config.onSelectPage)) {
+                    config.onSelectPage = _default.onSelectPage;
                 }
+                onSelectPage = config.onSelectPage;
+                UI.isMultiTabs = isMultiTabs = config.isMultiTabs;
                 $(win).addEvent("resize", function (e) { winResize() });
                 winResize();
                 menuInit();
                 tabsInit();
                 menuSelected();
             };
+            this.isMultiTabs = isMultiTabs;
             this.tabClose = function (num) {
                 if (!isMultiTabs) {
                     return;
@@ -477,7 +455,10 @@
             a && (b = $(a).attribute("id"));
             return b ? this.pageTabNumber = b.replace(/^iframe/, "") : b
         };
+        this.isMultiTabs = false;
         if (this.isTabIframePage) {
+            var tabs = this.topWin.document.getElementById('zero_ap_layout_right_tabs');
+            UI.isMultiTabs = !($(tabs, 'class>zero_tabs_single', 1).length > 0);
             $.ready(pageReadyFunc);
         }
     }();

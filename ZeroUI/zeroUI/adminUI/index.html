@@ -12,7 +12,10 @@
     <script type="text/javascript">
         zero.ready(function () {
             //启用单选项卡模式并设定页面被锁定时的提示内容
-            zeroAdminUI.mainPage.init(true, '当前页面被锁定，可能有未完成的操作。你确定要替换该页面吗？');
+            zeroAdminUI.mainPage.init({
+                isMultiTabs: true,
+                onSelectPage: function (obj) {}
+            });
             var currentTime = zero('currentTime');
             if (currentTime.length !== 1) { return; }
             setInterval(function () {
@@ -27,15 +30,15 @@
             <a id="zero_ap_layout_left_ctrl_btn"></a>
             <div id="zero_ap_layout_left_header">
                 <div id="zero_ap_layout_left_logo">
-                <h1>ZeroAdminUI V1.0</h1>
-                <h2>zeroAdminUI background management system</h2>
+                    <h1>ZeroAdminUI V1.0</h1>
+                    <h2>zeroAdminUI background management system</h2>
                 </div>
             </div>
             <div id="zero_ap_layout_left_menu_init">
                 <div id="zero_ap_layout_left_menu">
-                <dl>
+                    <dl>
                         <dt>welcome</dt>
-                        <dd><a href="welcome.html">欢迎使用</a></dd>
+                        <dd><a href="welcome002.html">欢迎使用</a></dd>
                         <dd><a href="about.html">关于系统</a></dd>
                     </dl>
                     <dl>
@@ -156,15 +159,38 @@
                         <dd><a href="welcome.html">欢迎使用</a></dd>
                         <dd><a href="about.html">关于系统</a></dd>
                     </dl>
-            </div></div>
+                </div>
+            </div>
         </div>
         <div id="zero_ap_layout_right">
             <div id="zero_ap_layout_right_header">
                 <div class="zero_left"><span class="MCW320H">欢迎光临！</span>现在是<span id="currentTime"></span></div>
-                <div class="zero_right"><span class="zero_bg_icon zero_bg_icon_user4"></span></div>
+                <div class="zero_right">
+                    <span class="zero_bg_icon zero_bg_icon_cog" onclick="zero.UI.sideBar('userSideBar','right',true)"></span>
+                    <span class="zero_bg_icon zero_bg_icon_bubbles2" onclick="zero.UI.sideBar('userSideBar','right',true)"></span>
+                    <span class="zero_bg_icon zero_bg_icon_user" onclick="zero.UI.sideBar('userSideBar','right',true)"></span>
+                </div>
             </div>
             <div id="zero_ap_layout_right_tabs"></div>
             <div id="zero_ap_layout_right_iframes"></div>
+        </div>
+    </div>
+    <div id="userSideBar" class="zero_side_bar">
+        <div class="zero_mp_main">
+            <div class="zero_side_bar_header">
+                <div class="zero_side_bar_header_l"><a class="zero_bg_icon zero_bg_icon_user"></a></div>
+                <div class="zero_side_bar_header_c">用户信息(右侧弹出)</div>
+                <div class="zero_side_bar_header_r"><a class="zero_side_bar_close zero_bg_icon zero_bg_icon_close"></a></div>
+            </div>
+            <div class="zero_side_bar_main">
+                <div style="margin:5px;">
+                    <p>用户：张山</p>
+                    <p>角色：管理员</p>
+                    <center>
+                        <input type="button" name="cancelBtn" value="退出登录" class="zero_side_bar_close" />
+                    </center>
+                </div>
+            </div>
         </div>
     </div>
 </body>

@@ -1,9 +1,9 @@
 ﻿/*图标*/
-.zero_bg_icon{background-position:2px center;background-repeat:no-repeat;padding-left:20px;vertical-align:middle;background-color:#999;}
+.zero_bg_icon{background-position:2px center;background-repeat:no-repeat;padding-left:20px;vertical-align:middle;background-color:#dedede;}
 input[type=button].zero_bg_icon,
 input[type=submit].zero_bg_icon,
 input[type=reset].zero_bg_icon,
-button.zero_bg_icon{padding-left:20px;background-color:#999;font-size:14px;color:#000;}
+button.zero_bg_icon{padding-left:20px;background-color:#dedede;font-size:14px;color:#000;}
 
 .zero_bg_icon_accessibility{background-image:url(images/icon/accessibility.png);}
 .zero_bg_icon_address_book{background-image:url(images/icon/address_book.png);}
@@ -56,8 +56,8 @@ button.zero_bg_icon{padding-left:20px;background-color:#999;font-size:14px;color
 .zero_bg_icon_bookmark{background-image:url(images/icon/bookmark.png);}
 .zero_bg_icon_bookmarks{background-image:url(images/icon/bookmarks.png);}
 .zero_bg_icon_books{background-image:url(images/icon/books.png);}
-.zero_bg_icon_.zero_box_add{background-image:url(images/icon/.zero_box_add.png);}
-.zero_bg_icon_.zero_box_remove{background-image:url(images/icon/.zero_box_remove.png);}
+.zero_bg_icon_box_add{background-image:url(images/icon/box_add.png);}
+.zero_bg_icon_box_remove{background-image:url(images/icon/box_remove.png);}
 .zero_bg_icon_briefcase{background-image:url(images/icon/briefcase.png);}
 .zero_bg_icon_brightness_contrast{background-image:url(images/icon/brightness_contrast.png);}
 .zero_bg_icon_brightness_medium{background-image:url(images/icon/brightness_medium.png);}
@@ -325,7 +325,6 @@ button.zero_bg_icon{padding-left:20px;background-color:#999;font-size:14px;color
 .zero_bg_icon_point_left{background-image:url(images/icon/point_left.png);}
 .zero_bg_icon_point_right{background-image:url(images/icon/point_right.png);}
 .zero_bg_icon_point_up{background-image:url(images/icon/point_up.png);}
-.zero_bg_icon_power_cord{background-image:url(images/icon/power_cord.png);}
 .zero_bg_icon_previous{background-image:url(images/icon/previous.png);}
 .zero_bg_icon_print{background-image:url(images/icon/print.png);}
 .zero_bg_icon_profile{background-image:url(images/icon/profile.png);}

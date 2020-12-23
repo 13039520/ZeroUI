@@ -41,20 +41,34 @@
         }
         func(box);
     };
+
     var UI = {};
+    var imitateSelectNodes = [];
     UI.select = function (ele) {
-        if (ele.nodeName !== 'SELECT'||$(ele).parent().hasClass('imitateSelecte')) { return; }
-        var pNode = $.htmlStrToDom('<p class="imitateSelecte"></p>').insertBefore(ele).addClass(ele.className)[0];
+        if (ele.nodeName !== 'SELECT' || $(ele).parent().hasClass('imitateSelect')) { return; }
+        var pNode = $.htmlStrToDom('<p class="imitateSelect"></p>').insertBefore(ele).addClass(ele.className)[0];
         var styles = ['width', 'padding', 'margin', 'background'];
         for (var i = 0; i < styles.length; i++) {
             $(pNode).cssText(styles[i] + ':' + $(ele).getStyle(styles[i]));
         }
+        $(pNode).cssText('paddingLeft:0');
+        var pl = $(ele).getStyle('paddingLeft');
+        var pln = parseInt($(ele).getStyle('paddingLeft'), 10);
         var bColor = this.colorReverse($(ele).getStyle('backgroundColor'));
         var bH = parseInt($(ele).getStyle('borderTopWidth'), 10) + parseInt($(ele).getStyle('borderBottomWidth'), 10);
-        var lh = ele.offsetHeight+(bH>0?0-bH:0)+'px';
+        var sh = ele.offsetHeight;
+        if (sh < 1) {
+            var sh = $(ele).getStyle('height');
+            if (sh.indexOf('%') < 0) {
+                sh = parseInt(sh, 10);
+            } else {
+                sh = 28;
+            }
+        }
+        var lh = sh + (bH > 0 ? 0 - bH : 0) + 'px';
         $(pNode).cssText('height:' + lh + ';line-height:' + lh+';font-size:' + $(ele).getStyle('font-size'));
-        var h = parseInt((ele.offsetHeight - 16) / 2, 10);
-        $(pNode).html('<b style="margin-top:' + (h > 0 ? h : 0) + 'px;color:' + bColor + '">▽</b><a style="display:block;margin:0 20px 0 0;">' + ele.options[ele.selectedIndex].innerHTML + '</a>');
+        var h = parseInt((sh - 16) / 2, 10);
+        $(pNode).html('<b style="margin-top:' + (h > 0 ? h : 0) + 'px;color:' + bColor + '">▽</b><a style="display:block;margin:0 20px 0 0;text-indent:' + (pln > 0 ? pl:'0')+';">' + ele.options[ele.selectedIndex].innerHTML + '</a>');
         $(ele).appendTo(pNode);
         var divNode = null,
             listenClick = function (e) {
@@ -99,14 +113,14 @@
             $(this).attribute('s', '1');
             var point = $(this).getAbsPoint();
             var size = $(this).getSize();
-            divNode = $.htmlStrToDom('<div class="imitateSelecte noprint" style="visibility:hidden"></div>').prependTo();
-            var pd=$(ele).getStyle('padding');
+            divNode = $.htmlStrToDom('<div class="imitateSelect noprint" style="visibility:hidden"></div>').prependTo();
+            var pd = $(ele).getStyle('paddingLeft');
             var ops = [], index = ele.selectedIndex;
             for (var i = 0; i < ele.options.length; i++) {
                 var cla = index === i ? 'zero_selected' : '';
                 if (ele.options[i].className) { cla = ele.options[i].className + (cla.length > 0 ? ' ' + cla : ''); }
                 if (cla.length > 0) { cla = ' class="' + cla + '"';}
-                ops.push('<p n="'+i+'"'+(cla)+' style="padding:'+pd+'">' + ele.options[i].innerHTML + '</p>');
+                ops.push('<p n="'+i+'"'+(cla)+' style="padding-left:'+pd+'">' + ele.options[i].innerHTML + '</p>');
             }
             divNode.html(ops.join(''));
             $(divNode).cssText('background-color:' + $(ele).getStyle('background-color')+';font-size:' + $(ele).getStyle('font-size'));
@@ -880,6 +894,7 @@
         con.cssText('visibility:hidden;');
         var bod = $(document.body),
             barMain = $(con).find('class>zero_side_bar_main', 1),
+            barMainSize = (cmd === 'up' || cmd === 'down') ? $(barMain).getSize() : {},
             maxScrollHeight = 0,
             pointY = 0,
             touchstart = function (e) {
@@ -923,21 +938,31 @@
                 switch (cmd) {
                     case 'left':
                         temp.cssText('left:0;top:0;height:' + size.height + 'px;');
-                        $(con).cssText('height:' + (size.height - 2) + 'px;width:' + (size.width - dif) + 'px;margin:0;');
+                        $(con).cssText('height:' + (size.height - 2) + 'px;width:' + (size.width - dif > 320 ? 320 : size.width - dif) + 'px;margin:0;');
                         isLeftOrRight = true;
                         break;
                     case 'right':
-                        temp.cssText('right:0;top:0;height:' + (size.height-2) + 'px;');
-                        $(con).cssText('height:' + (size.height - 2) + 'px;margin:0 0 0 ' + dif + 'px');
+                        temp.cssText('right:0;top:0;height:' + (size.height - 2) + 'px;');
+                        var w = (size.width - dif > 320 ? 320 : size.width - dif);
+                        $(con).cssText('height:' + (size.height - 2) + 'px;margin:0 0 0 ' + (size.width - w- 2) + 'px;width:' + w + 'px');
                         isLeftOrRight = true;
                         break;
                     case 'up':
                         temp.cssText('left:0;top:0;width:' + size.width + 'px;');
-                        $(con).cssText('height:' + (size.height - dif -2) + 'px;margin:0;');
+                        var maxH = (size.height - dif - 2);
+                        if (maxH > barMainSize.height + dif) {
+                            maxH = barMainSize.height + dif;
+                        }
+                        $(con).cssText('height:' + maxH + 'px;margin:0;');
                         break;
                     case 'down':
                         temp.cssText('left:0;bottom:0;width:' + size.width + 'px;');
-                        $(con).cssText('height:' + (size.height - dif -2) + 'px;margin:' + dif + 'px 0 0 0');
+                        var maxH = (size.height - dif - 2);
+                        if (maxH > barMainSize.height + dif) {
+                            maxH = barMainSize.height + dif;
+                            dif = size.height - maxH - 2;
+                        }
+                        $(con).cssText('height:' + maxH + 'px;margin:' + dif + 'px 0 0 0');
                         break;
                 }
                 size = $(con).getSize();
@@ -952,7 +977,7 @@
                     end: function (o) {
                         o.remove();
                         con.cssText('visibility:visible;');
-                        $(con).find('select').foreach(function () { UI.select(this); });
+                        //$(con).find('select').foreach(function () { UI.select(this); });
                     }
                 });
                 maxScrollHeight = barMain[0].scrollHeight - barMain[0].clientHeight;

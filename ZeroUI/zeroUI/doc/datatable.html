@@ -10,22 +10,25 @@
     <div class="zero_main">
         <div class="zero_data_list zero_page_bar_fixed">
             <div id="zero_data_list_header" class="zero_title_bar clearfix noprint">
-            <div class="zero_left"><span class="zero_title">用户列表</span><a class="zero_bg_icon zero_bg_icon_filter2" onclick="zero.UI.upSideBar('filterSideBar', true)">过滤</a></div>
+            <div class="zero_left"><span class="zero_title">用户列表</span><a class="zero_bg_icon zero_bg_icon_filter2" onclick="zero.UI.leftSideBar('filterSideBar', true)">筛选</a></div>
             <div class="zero_right">
                 <input type="button" value="新建" class="zero_bg_icon zero_bg_icon_plus" onclick="myPage.addFunc()" />
-                <input type="button" value="删除" class="zero_bg_icon zero_bg_icon_remove" onclick="myPage.bulkDeleteFunc()" />
+                <input type="button" value="批量删除" class="zero_bg_icon zero_bg_icon_remove" onclick="myPage.bulkDeleteFunc()" />
                 <!--页面最大宽度只有1024像素时就隐藏-->
-                <select onchange="myPage.selCmd(this)" class="zero_iframe_page_ctrl zero_bg_icon zero_bg_icon_screen MCW1024H">
-                    <option value="">页面操作</option>
+                <select onchange="myPage.selCmd(this)" class="zero_iframe_page_ctrl zero_bg_icon zero_bg_icon_list MCW1024H">
+                    <option value="">列表操作</option>
                     <option value="select_all" class="zero_bg_icon zero_bg_icon_checkbox_checked">全选</option>
                     <option value="select_reverse" class="zero_bg_icon zero_bg_icon_checkmark">反选</option>
                     <option value="select_cancel" class="zero_bg_icon zero_bg_icon_checkbox_unchecked">弃选</option>
                     <option value="data_export" class="zero_bg_icon zero_bg_icon_download2">导出数据</option>
                     <option value="data_import" class="zero_bg_icon zero_bg_icon_upload2">导入数据</option>
+                    <option value="page_print" class="zero_bg_icon zero_bg_icon_print">打印</option>
+                </select>
+                <select onchange="myPage.selCmd(this)" class="zero_iframe_page_ctrl zero_bg_icon zero_bg_icon_screen MCW1024H">
+                    <option value="">页面操作</option>
                     <option value="page_lock" class="zero_bg_icon zero_bg_icon_lock">锁定页面</option>
                     <option value="page_unlock" class="zero_bg_icon zero_bg_icon_unlocked">解锁页面</option>
                     <option value="page_refresh" class="zero_bg_icon zero_bg_icon_loop2">刷新页面</option>
-                    <option value="page_print" class="zero_bg_icon zero_bg_icon_print">打印页面</option>
                     <option value="page_source" class="zero_bg_icon zero_bg_icon_file_xml">查看原始源码</option>
                     <option value="page_source_now" class="zero_bg_icon zero_bg_icon_file_xml">查看当前源码</option>
                     <option value="page_full" class="zero_bg_icon zero_bg_icon_expand">全屏切换</option>
@@ -48,11 +51,11 @@
         <div class="zero_mp_main">
             <div class="zero_side_bar_header">
                 <div class="zero_side_bar_header_l"><a class="zero_bg_icon zero_bg_icon_filter2"></a></div>
-                <div class="zero_side_bar_header_c">用户过滤(上侧弹出)</div>
+                <div class="zero_side_bar_header_c">用户筛选(左侧弹出)</div>
                 <div class="zero_side_bar_header_r"><a class="zero_side_bar_close zero_bg_icon zero_bg_icon_close"></a></div>
             </div>
             <div class="zero_side_bar_main"><form class="zero_form" id="myForm1">
-                <dl class="zero_form_group zero_form_group_cols2">
+                <dl class="zero_form_group">
                     <dd><div class="zero_form_text">
                         <h2 class="zero_form_input_label">角色：</h2>
                          </div><div class="zero_form_input"><select name="role"><option value="">--不限--</option><option value="1">管理员</option><option value="2">会员</option></select></div></dd>
@@ -65,7 +68,7 @@
                     <dd><div class="zero_form_text">
                         <h2 class="zero_form_input_label">排序：</h2>
                         </div><div class="zero_form_input"><select name="sort"><option value="">--不限--</option><option value="1">按注册时间</option><option value="2">按年龄</option></select></div></dd>
-                    <dd class="zero_form_cells1"><div class="zero_form_text">
+                    <dd><div class="zero_form_text">
                         <h2 class="zero_form_input_label">区域：</h2>
                          </div><div class="zero_form_input"><input type="text" name="keyword" placeholder="请输入关键词" /></div></dd>
                 </dl>
@@ -128,8 +131,8 @@
                             var _this = this,
                                 form = this.form(),
                                 d = form.getData();
-                            if (!d.file) { return dialog.tips("<span style=\"font-size:12px;color:#f00;\">请选择一个Excel文件！</span>"); }
-                            if (!/\.xlsx?$/i.test(d.file)) {
+                            if (!d.file_1a2b3c) { return dialog.tips("<span style=\"font-size:12px;color:#f00;\">请选择一个Excel文件！</span>"); }
+                            if (!/\.xlsx?$/i.test(d.file_1a2b3c)) {
                                 dialog.tips("<span style=\"font-size:12px;color:#f00;\">你当前选择的文件类型不对，请选择Excel文件！</span>");
                                 return;
                             }
@@ -145,7 +148,7 @@
                                     }
                                 };
                             /*form.action = '/home/uploadFile';
-                            form.onAfterSubmit = function (res) {
+                            form.onResponse = function (res) {
                                 var data = {};
                                 try { data = eval('(' + res + ')'); } catch (e) {
                                     endFunc({ status: 0, msg: e.message, source: res });
@@ -161,7 +164,18 @@
                             width: 400,
                             showCloseBtn: true,
                             showHeader: true,
-                            content: '<div style="margin:10px;"><div>请选择一个Excel文件：</div><div style="border:solid 1px #dedede;"><input type="file" name="file" style="width:100%;" /></div></div>',
+                            content: '<div style="margin:10px;"><div>请选择一个Excel文件：</div><div style="border:solid 1px #dedede;"><label for="file_1a2b3c" style="text-align:center;height:30px;line-height:30px;display:block;"><span>选择文件</span><input type="file" name="file_1a2b3c" id="file_1a2b3c" style="display:none;" /></label></div></div>',
+                            onShowed: function () {
+                                var form = this.form();
+                                zero(form.inputs.file_1a2b3c).addEvent('change', function (e) {
+                                    var v = this.value;
+                                    if (/\.xlsx?$/i.test(v)) {
+                                        zero(this).parent().find('span').html(v)
+                                    } else {
+                                        zero(this).parent().find('span').html('选择文件')
+                                    }
+                                });
+                            },
                             btnConfig: [ { text: '取消', func: function () { this.close(); } },{ text: '上传', func: uploadBtnFunc, isPrimary: true }]
                         })
                         break;

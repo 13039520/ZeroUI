@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>Welcome</title>
+<link href="../css/zero.adminUI.css" rel="stylesheet" />
+<style type="text/css">
+div.canvas_box{width:50%;height:50%;float:left;border-bottom:solid 1px #ccc;border-right:solid 1px #ccc; margin:-1px 0 0 -1px;overflow:hidden;}
+</style>
+</head>
+<body class="zero_ifram_page">
+    <!--
+    canvas 浏览器兼容性：
+    Mozilla 程序从 Gecko 1.8 (Firefox 1.5) 开始支持 <canvas>。
+    它首先是由 Apple 引入的，用于 OS X Dashboard 和 Safari。
+    Internet Explorer 从IE9开始支持<canvas> ，
+    更旧版本的IE中，页面可以通过引入 Google 的 Explorer Canvas 项目中的脚本来获得<canvas>支持。
+    Explorer Canvas:https://github.com/arv/explorercanvas
+    Google Chrome和Opera 9+ 也支持 <canvas>。
+    -->
+    <div class="canvas_box">
+        <canvas id="canvas"></canvas>
+    </div>
+    <div class="canvas_box">
+        <canvas id="canvas2"></canvas>
+    </div>
+    <div class="canvas_box">
+        <canvas id="canvas3"></canvas>
+    </div>
+    <div class="canvas_box">
+        <canvas id="canvas4"></canvas>
+    </div>
+
+
+    <script src="../js/zero.js" type="text/javascript"></script>
+    <script src="../js/zero.UI.js" type="text/javascript"></script>
+    <script src="../js/zero.adminUI.js" type="text/javascript"></script>
+    <script src="../js/chart.min.js" type="text/javascript"></script>
+    <script src="../js/chart.utils.js" type="text/javascript"></script>
+    <script type="text/javascript">
+
+        var getSalesChartConfig = function (index, labelString) {
+            var months = ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'];
+            var getData = function () {
+                var reval = [];
+                for (var i = 0; i < 3; i++) {
+                    reval.push(randomScalingFactor())
+                }
+                return reval;
+            };
+            var getLabels = function () {
+                if (index < 0) { index = 0; }
+                if (index > months.length - 1) { index = months.length - 1 }
+                var reval = [];
+                for (var i = 0; i < 3; i++) {
+                    reval.push(months[index]);
+                    index++;
+                    if (index >= months.length) { index = 0; }
+                }
+                return reval;
+            }
+
+            var data1 = getData();
+            var data2 = getData();
+            var labels = getLabels();
+            var config = {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: '同比',
+                        backgroundColor: window.chartColors.red,
+                        borderColor: window.chartColors.red,
+                        data: data1,
+                        fill: false,
+                    }, {
+                        label: '环比',
+                        fill: false,
+                        backgroundColor: window.chartColors.blue,
+                        borderColor: window.chartColors.blue,
+                        data: data2,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    title: {
+                        display: true,
+                        text: '销售图表'
+                    },
+                    tooltips: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    hover: {
+                        mode: 'index',
+                        intersect: true
+                    },
+                    scales: {
+                        xAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: labelString
+                            }
+                        }],
+                        yAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: '增长率'
+                            }
+                        }]
+                    }
+                }
+            };
+            return config;
+        };
+        var drawChart = function () {
+            var ctx = document.getElementById('canvas').getContext('2d');
+            window.myLine = new Chart(ctx, getSalesChartConfig(0, '一季度'));
+            var ctx2 = document.getElementById('canvas2').getContext('2d');
+            window.myLine2 = new Chart(ctx2, getSalesChartConfig(3, '二季度'));
+            var ctx3 = document.getElementById('canvas3').getContext('2d');
+            window.myLine3 = new Chart(ctx3, getSalesChartConfig(6, '三季度'));
+            var ctx4 = document.getElementById('canvas4').getContext('2d');
+            window.myLine4 = new Chart(ctx4, getSalesChartConfig(9, '四季度'));
+        };
+
+        zero.ready(function () {
+            //判断是否为多选项卡模式
+            if (zeroAdminUI.isMultiTabs) {
+                //锁定该欢迎页面
+                zeroAdminUI.tabIframePage.pageTabLock(true);
+            }
+            drawChart();
+        });
+    </script>
+</body>
+</html>
