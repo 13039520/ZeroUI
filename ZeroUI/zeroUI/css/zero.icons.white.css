@@ -457,21 +457,22 @@ button.zero_bg_icon{padding-left:20px;border-color:#666; background-color:#999;c
 .zero_bg_icon_zoom_out{background-image:url(images/icon/white/zoom_out.png);}
 
 
-body #zero_ap_layout_left{background-color:#4477aa;}
+body #zero_ap_layout_left{background-color:#4488bb;}
 body #zero_ap_layout_left_header{border-color:#fff;background-color:#44aadd;}
 body #zero_ap_layout_left_header h1{color:#fff;}
 body #zero_ap_layout_left_header h2{color:#fff;}
 body #zero_ap_layout_left_ctrl_btn{border-color:#44aadd; background-image:url(images/icon/white/indent_decrease.png);}
 body #zero_ap_layout_left_menu_init{border-color:#f2f2f2;}
 body #zero_ap_layout_right_header{background-color:#44aadd;}
-body #zero_ap_layout_right_header .zero_right .zero_bg_icon{color:#000;background-color:#4477aa;}
-body #zero_ap_layout_right_tabs{border-bottom-color:#4477aa;background-color:#fff;}
+body #zero_ap_layout_right_header .zero_right .zero_bg_icon{color:#000;background-color:#4488bb;}
+body #zero_ap_layout_right_tabs{border-bottom-color:#4488bb;background-color:#fff;}
 body .zero_ap_layout_left_hide #zero_ap_layout_left_ctrl_btn{background-image:url(images/icon/white/indent_increase.png)}
 body #zero_ap_layout_left_menu dl{border-bottom-color:#225588;}
 body #zero_ap_layout_left_menu dt{background-image:url(images/icon/white/folder.png);border-bottom-color:#225588; color:#fff;}
 body #zero_ap_layout_left_menu dd{color:#fff; background-image:url(images/icon/white/file4.png);border-left-color:#225588;border-bottom-color:#225588;}
 body #zero_ap_layout_left_menu .zero_open dt{background-image:url(images/icon/white/folder_open.png);}
-body #zero_ap_layout_left_menu .zero_selected .zero_selected{background-image:url(images/icon/white/file.png);font-weight:bold;}
+body #zero_ap_layout_left_menu dl dd:hover,
+body #zero_ap_layout_left_menu .zero_selected .zero_selected{background-image:url(images/icon/white/file.png);}
 body .zero_data_list .zero_title_bar .zero_bg_icon{border:solid 1px #666; background-color:#999; color:#fff; cursor:pointer;padding-right:3px;}
 body .zero_repeat_item_btns input[type=button].zero_bg_icon,
 body .zero_repeat_item_btns input[type=submit].zero_bg_icon,
