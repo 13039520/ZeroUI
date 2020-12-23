@@ -54,7 +54,7 @@
         $(pNode).cssText('paddingLeft:0');
         var pl = $(ele).getStyle('paddingLeft');
         var pln = parseInt($(ele).getStyle('paddingLeft'), 10);
-        var bColor = this.colorReverse($(ele).getStyle('backgroundColor'));
+        var bColor = $(ele).getStyle('color');
         var bH = parseInt($(ele).getStyle('borderTopWidth'), 10) + parseInt($(ele).getStyle('borderBottomWidth'), 10);
         var sh = ele.offsetHeight;
         if (sh < 1) {
