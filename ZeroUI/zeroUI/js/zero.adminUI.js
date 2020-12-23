@@ -32,7 +32,7 @@
             var lSize = $('zero_ap_layout_left').getSize();
             $('zero_ap_layout_left_menu_init').cssText('height:' + (wSize.height - 66 - 10 - 3) + 'px');
             $('zero_ap_layout_right').cssText('width:' + (wSize.width - (wSize.width>1024?lSize.width:0)) + 'px');
-            $('zero_ap_layout_right_iframes').cssText('height:' + (wSize.height - (isMultiTabs?66:34)) + 'px');
+            $('zero_ap_layout_right_iframes').cssText('height:' + (wSize.height - (isMultiTabs?66:34)-2) + 'px');
         },
         selectionEmpty = function () {
             document.selection ? document.selection.empty() : window.getSelection && window.getSelection().removeAllRanges()
@@ -206,15 +206,15 @@
                     if(n.indexOf('zero_arrow_l')>-1){
                         $(a).find("class>zero_tab", 1);
                         d = parseInt($(a)[0].style.marginLeft, 10);
-                        cl = (d ? d : 0) + 121;
+                        cl = (d ? d : 0) + 120;
                         0 < cl && (cl = 0);
                         $(a).cssText("margin-left:" + cl + "px");
                     }else if(n.indexOf('zero_arrow_r')>-1){
                         var c = $(a).find("class>zero_tab", 1);
                         d = (d = parseInt($(a)[0].style.marginLeft, 10)) ? d : 0;
                         var b = $($(a)[0].parentNode).getSize().width,
-                            c = 121 * c.length;
-                        c > b && (b = c - b + d, 0 < b && (d -= 121 < b ? 121 : b, $(a).cssText("margin-left:" + d + "px")));
+                            c = 120 * c.length;
+                        c > b && (b = c - b + d, 0 < b && (d -= 120 < b ? 120 : b, $(a).cssText("margin-left:" + d + "px")));
                     }else if(n.indexOf('zero_tab_text')>-1){
                         tabSelected(d.parentNode);
                     }else if(n.indexOf('zero_tab_close')>-1){
@@ -252,7 +252,7 @@
             $(riframes).find("iframe").removeClass("zero_selected");
             iframe[0].attachEvent ? iframe[0].attachEvent("onload", h) : iframe[0].onload = h;
             iframe.appendTo(riframes[0]);
-            $(rtabs).cssText('width:'+($(rtabs,'div',1).length*121)+'px')
+            $(rtabs).cssText('width:'+($(rtabs,'div',1).length*120)+'px')
         },
         tabSelected = function (tab) {
             var c = $(tab).attribute("id").replace("tab", ""),
@@ -267,8 +267,8 @@
 
             var e = $(rtabs)[0].style.marginLeft,
                 e = parseInt(e ? e : 0, 10),
-                f = 1 > f ? 0 : 121 * f,
-                h = $(rtabs).parent().getSize().width - 121,
+                f = 1 > f ? 0 : 120 * f,
+                h = $(rtabs).parent().getSize().width - 120,
                 g = e + f;
             if (g > h || 0 > g) {
                 var k = $.htmlStrToDom('<div style="width:100%;height:100%;overflow:hidden;position:absolute;z-index:9999;background:#fff;filter:alpha(opacity=10);opacity:0.01;left:0;top:0;"></div>').appendTo();
@@ -319,7 +319,7 @@
                 b >= e.length && (b = e.length - 1);
                 c = $(e[b]).addClass("zero_selected").attribute("id").replace("tab", "");
                 $("iframe" + c).addClass("zero_selected");
-                parseInt($(rtabs)[0].style.marginLeft, 10) < (1 > b ? 0 : 0 - 121 * b) && tabSelected(e[b])
+                parseInt($(rtabs)[0].style.marginLeft, 10) < (1 > b ? 0 : 0 - 120 * b) && tabSelected(e[b])
             }
             try {
                 $(h[0].contentWindow).removeEvent('onscroll');
