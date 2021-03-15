@@ -420,37 +420,37 @@
         };
         this.isTabIframePage = win !== topWin;
         this.topWin = topWin;
-        this.pageTabIframeNode = this.tabNumber = null;
-        this.pageTabFocus = function (num) {
+        this.tabIframeNode = this.tabNumber = null;
+        this.tabFocus = function (num) {
             isNaN(num) ? num = 0 : (num = parseInt(num, 10), num = 2E3 > num ? 2E3 : num);
             if (num) {
                 var b = this;
                 setTimeout(function () {
-                    b.topWin.adminObj.mainPage.tabFocus(b.getPageTabNumber())
+                    b.topWin.adminObj.mainPage.tabFocus(b.getTabNumber())
                 }, num)
-            } else this.topWin.adminObj.mainPage.tabFocus(this.getPageTabNumber())
+            } else this.topWin.adminObj.mainPage.tabFocus(this.getTabNumber())
         };
-        this.pageTabFitShow = function () {
-            this.topWin.zeroAdminUI.mainPage.tabFitShow(this.getPageTabNumber())
+        this.tabFitShow = function () {
+            this.topWin.zeroAdminUI.mainPage.tabFitShow(this.getTabNumber())
         };
-        this.pageTabLock = function (isLock) {
-            this.topWin.zeroAdminUI.mainPage.tabLock(this.getPageTabNumber(), isLock)
+        this.tabLock = function (isLock) {
+            this.topWin.zeroAdminUI.mainPage.tabLock(this.getTabNumber(), isLock)
         };
-        this.pageTabClose = function () {
-            this.topWin.zeroAdminUI.mainPage.tabClose(this.getPageTabNumber())
+        this.tabClose = function () {
+            this.topWin.zeroAdminUI.mainPage.tabClose(this.getTabNumber())
         };
-        this.getPageTabIframeNode = function () {
+        this.getTabIframeNode = function () {
             if (!this.isTabIframePage) return null;
-            if (this.pageTabIframeNode) return this.pageTabIframeNode;
+            if (this.tabIframeNode) return this.tabIframeNode;
             for (var a = $(this.topWin.document, "iframe"), b = null, e = 0; e < a.length; e++) if (a[e].contentWindow == window) {
-                b = this.pageTabIframeNode = a[e];
+                b = this.tabIframeNode = a[e];
                 break
             }
             return b
         };
-        this.getPageTabNumber = function () {
+        this.getTabNumber = function () {
             if (this.pageTabNumber) return this.pageTabNumber;
-            var a = this.getPageTabIframeNode(),
+            var a = this.getTabIframeNode(),
                 b = "";
             a && (b = $(a).attribute("id"));
             return b ? this.pageTabNumber = b.replace(/^iframe/, "") : b

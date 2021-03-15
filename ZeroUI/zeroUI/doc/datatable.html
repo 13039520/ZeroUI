@@ -201,10 +201,10 @@
                         this.datafileFunc(sel);
                         break;
                     case 'page_lock':
-                        zeroAdminUI.tabIframePage.pageTabLock(true);
+                        zeroAdminUI.tabIframePage.tabLock(true);
                         break;
                     case 'page_unlock':
-                        zeroAdminUI.tabIframePage.pageTabLock(false);
+                        zeroAdminUI.tabIframePage.tabLock(false);
                         break;
                     case 'page_refresh':
                         window.location.reload(true);
@@ -213,7 +213,7 @@
                         window.print();
                         break;
                     case 'page_full':
-                        zeroAdminUI.tabIframePage.pageTabFitShow();
+                        zeroAdminUI.tabIframePage.tabFitShow();
                         break;
                     case 'page_source':
                         var w = dialog.waiting('……请稍候……');
