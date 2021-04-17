@@ -464,12 +464,12 @@ body.zero_ifram_page .zero_data_list .zero_title_bar{border-bottom-color:#fff;}
 
 
 body #zero_ap_layout_left{background-color:#2c8ed3;}
-body #zero_ap_layout_left_header{border-color:#fff;background-color:#2cc0f0;}
+body #zero_ap_layout_left_header{border-color:#cafdff;background-color:#2cc0f0;}
 body #zero_ap_layout_left_header h1{color:#fff;}
 body #zero_ap_layout_left_header h2{color:#fff;}
 body #zero_ap_layout_left_ctrl_btn{border-color:#2cc0f0;}
 body #zero_ap_layout_left_ctrl_btn span{background-image:url(images/icon/white/indent_decrease.png);}
-body #zero_ap_layout_left_menu_init{border-color:#f2f2f2;}
+body #zero_ap_layout_left_menu_init{border-color:#cafdff;}
 body #zero_ap_layout_right_header{background-color:#2cc0f0;}
 body #zero_ap_layout_right_header .zero_right .zero_bg_icon{color:#000;background-color:#2c8ed3;}
 body .zero_ap_layout_left_hide #zero_ap_layout_left_ctrl_btn span{background-image:url(images/icon/white/indent_increase.png)}
@@ -486,3 +486,5 @@ body .zero_repeat_item_btns input[type=reset].zero_bg_icon,
 body .zero_repeat_item_btns button.zero_bg_icon,
 body .zero_repeat_item_btns .zero_bg_icon{color:#fff;}
 html body #dialogInit .zero_dialog .zero_dialogT .dialog_icon{background-image:url(images/icon/white/info2.png);}
+
+body #zero_ap_layout_right_tabs .zero_r_tabs_init .zero_tab{border-right-color:#cafdff;}
