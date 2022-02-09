@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>系统使用说明</title>
+    <link href="../css/zero.adminUI.css" rel="stylesheet" />
+    <style type="text/css">
+        #article_init{max-width:780px; min-height:500px; margin:40px auto; padding:10px; border:solid 1px #2c8ed3;overflow:hidden;background-color:#fff;box-shadow:0 0 10px rgba(0,0,0,0.5);border-radius:5px;}
+        #article_init h1{text-align:center;border-bottom:solid 1px #2c8ed3;}
+    </style>
+</head>
+<body>
+    <div id="article_init">
+        <h1>系统使用说明</h1>
+        <h2>关于权限控制</h2>
+        <ol>
+            <li>在“角色管理”中的“权限”可以对角色进行权限分配，用户的基础权限继承自角色。</li>
+            <li>在“用户管理”中的“权限”是对其角色权限的额外补充，对于一般用户不必进行配置。</li>
+            <li>在“用户管理”中的“权限”，其设置的权限最终会与该用户的角色权限进行合并。</li>
+            <li>特别说明：权限控制需要配合对应的菜单设置才能看到相应的操作入口。</li>
+        </ol>
+        <h2>关于用户管理</h2>
+        <ol>
+            <li>用户在登录之后，点击右上角的按钮会弹出用户的基本信息，在该面板中可以对自己的登录密码进行变更修改以及退出登录。</li>
+            <li>在“用户管理”中的“新建”可以添加用户，用户添加之后不能删除，只能“修改”或“禁用”。</li>
+            <li>在“用户管理”中的“权限”设置，其设置的权限最终会与该用户的角色权限进行合并。</li>
+            <li>在“用户管理”中的“重置密码”会将用户的密码重置为初始密码：123456。</li>
+            <li>在“用户管理”中的“禁(启)用”会将用户的禁用启用状态进行反转，启用变为禁用，禁用变为启用。</li>
+            <li>在“用户管理”中的“修改”可以修改用户的角色和机构及登录名和姓名等基础信息。</li>
+        </ol>
+        <h2>关于设备配置</h2>
+        <ol>
+            <li>在设备配置菜单组中，可以对电子天平、水质测定仪、雷磁离子计等设备的串口参数进行配置，如串口号、波特率等。</li>
+            <li>
+                在对串口类设备的参数进行变更设置后如果要使其生效，需要重启服务器上的“HualianLIS.DataServerApp.exe”服务程序：
+                <ol>
+                    <li>如果该程序没有界面或系统托盘上没有图标的话，该程序应该是在系统启动时无用户界面的情况启动运行的，请通过“进程管理器”查看进程并进行程序的结束和重启；</li>
+                    <li>该程序重启会导致其它相关的客户端程序的连接断开，之后客户端程序会在尝试重连成功后获取新的配置数据并重新运行。</li>
+                    <li style="color:#f90;">请在确认没有其它用户正在上传数据时进行该操作；</li>
+                    <li>电子天平的采集程序是否运行正常请检查服务器上的“HualianLIS.DeviceTerminalApp.exe”服务程序是否正常运行。</li>
+                    <li>水质测定仪和雷磁离子计的采集程序是否运行正常请在服务器上远程到“10.98.1.204”的计算机上检查“HualianLIS.DeviceTerminalApp.exe”服务程序是否正常运行。</li>
+                    <li style="color:blue;">对于电子天平，我们的建议是参考当前设备的串口参数对天平进行参数设定，之后接到对应的串口线上即可，不必更改系统配置。</li>
+                </ol>
+            </li>
+            <li>
+                在“ICP告警规则列表”中可以对ICP设备的检测项进行告警规则设定：
+                <ol>
+                    <li>指定类型是“强度”或“浓度”；</li>
+                    <li>指定元素标签；</li>
+                    <li>指定元素波长(如果波长为0值，则该规则将应用于指定元素的所有波长上)；</li>
+                    <li>指定最小值；</li>
+                    <li>指定最大值；</li>
+                    <li>最小值和最大值不能都是0值；</li>
+                    <li>当最小值和最大值相同时视为固定标准值，将做等于判断；</li>
+                    <li>当最小值和最大值有一个是0值时，将做小于或大于判断；</li>
+                    <li>当最小值和最大值都非0值且两个数值之间存在差时，将做小于等于和大于等于判断；</li>
+                    <li>添加规则之后只能“修改”和“禁用”；</li>
+                    <li>添加规则之后由后台服务程序定时检测并进行记录，检测的异常数据会在“设备数据”菜单组下的“ICP告警数据记录”中列出。</li>
+                </ol>
+            </li>
+        </ol>
+        <h2>关于设备数据</h2>
+        <ol>
+            <li>在设备数据菜单组下可以查看存档在服务器上的设备数据。</li>
+        </ol>
+    </div>
+    <div style="height:1px;overflow:hidden;"></div>
+<script type="text/javascript" src="../js/zero.js"></script>
+<script type="text/javascript" src="../js/zero.ch.js"></script>
+<script type="text/javascript" src="../js/zero.adminUI.js"></script>
+<script type="text/javascript">
+    zero.ready(function () {
+        
+    });
+</script>
+</body>
+</html>

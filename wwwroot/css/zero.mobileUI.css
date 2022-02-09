@@ -10,6 +10,7 @@ body #dialogInit .zero_dialogB a{border-color:#dfdfdf;color:#44aadd;background:#
 body #dialogInit .zero_dialogB a:hover{color:#44aadd;background:#f7f7f7;}
 body #dialogInit .zero_dialogMaskDiv,body #dialogInit .zero_nDialog .zero_dialogMaskDiv{background:#000;opacity:0.1; filter:alpha(opacity=10);}
 body #dialogInit .zero_dialogShowDiv,body #dialogInit .zero_nDialog .zero_dialogShowDiv{border-color:#4488bb;box-shadow:0 0 10px rgba(0,0,0,.7);border-radius:0;}
+body #dialogInit .zero_dialogB{}
 /*以更明确的指向覆盖zero_date_input的默认样式*/
 body #zero_date_input .box{border-color:#44aadd;border-radius:0;}
 body #zero_date_input .box .t{background:#44aadd;}
@@ -17,7 +18,7 @@ body #zero_date_input p{background:#44aadd;color:#fff;}
 body #zero_date_input p span:hover{color:#037676;}
 body #zero_date_input .b a{border-left-color:#dedede;}
 
-html,body{padding:0;margin:0;font-size:16px;line-height:1.7;height:100%;}
+html,body{padding:0;margin:0;font-size:16px;line-height:1.7;}
 #zero_mp_header{width:100%;height:32px;overflow:hidden;color:#fff;line-height:32px;border-bottom:solid 1px #fff;}
 #zero_mp_header .zero_bg_icon{padding:0;margin:0;width:32px;height:32px;display:block;background-position:center;background-color:transparent;}
 .zero_mp_header{width:100%;height:32px;overflow:hidden;background:#44aadd;padding:0;margin:0;}

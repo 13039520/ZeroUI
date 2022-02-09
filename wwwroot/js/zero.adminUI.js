@@ -9,9 +9,6 @@
         isEdge = /\bEdge\/\d+/i.test(userAgent),
         isTopWin = topWin === win;
 
-
-    
-
     var UI = {};
 
     UI.singleTabPageReplacementTips = 'The current page is locked. There may be unfinished tasks. Are you sure you want to replace it? ';
@@ -73,7 +70,9 @@
             var menu = $("zero_ap_layout_left_menu");
             if (menu.length !== 1) { return; }
             $(menu, "a").foreach(function (a) {
-                $(this.parentNode).attribute("link", $(this).attribute("href")).html($(this).html()).attribute("id", "nav" + $.guid())
+                var target = $(this).attribute("target");
+                if (target != 'dialog') { target = ''; }
+                $(this.parentNode).attribute('target', target).attribute("link", $(this).attribute("href")).html($(this).html()).attribute("id", "nav" + $.guid())
             });
             menu.addEvent("click", function (a) {
                 a = a || event;
@@ -93,6 +92,10 @@
                     c = function () {
                         var a = $(this),
                             d = $(this.parentNode);
+                        if ($(a).attribute('target') === 'dialog') {
+                            dialog.loadIframe($(a).text(), $(a).attribute("link"), 100000, 100000);
+                            return;
+                        }
                         if (wSize && wSize.width < 1024) { btn.fireEvent('click'); }
                         if (!isMultiTabs) {
                             var num = $(rtabs).find('class=zero_tabs_single').attribute('id');
@@ -163,13 +166,15 @@
         menuOpen = function (menu) {
             var num = $(menu).attribute("id").replace("nav", ""),
                 title = $(menu).html(),
-                src = $(menu).attribute("link");
+                src = $(menu).attribute("link"),
+                parent = $(menu).parent().find('dt', 1).first().html();
             if (!isMultiTabs) {
                 var pTitle = $(menu).parent().find('dt').html().replace(/[<>]/g, '');
                 $(rtabs).html('<div class="zero_tabs_single" id="tab'+num+'"><span class="zero_bg_icon zero_bg_icon_home"></span><span>' + pTitle + '</span><span class="gt">&gt;&gt;</span><span>' + title.replace(/[<>]/g, '') + '</span></div>');
                 if ($(riframes).find("iframe").length) {
                     $(riframes).find("iframe")[0].id = 'iframe'+num;
                     $(riframes).find("iframe")[0].src = src;
+                    onSelectPage({ name: title, parent: parent, src: src });
                     return;
                 }
                 var h = function () {
@@ -178,7 +183,6 @@
                 var iframe = $.htmlStrToDom('<iframe frameBorder="0" class="zero_selected" style="visibility:hidden;" allowTransparency="true" src="' + src + '" id="iframe' + num + '"></iframe>');
                 iframe[0].attachEvent ? iframe[0].attachEvent("onload", h) : iframe[0].onload = h;
                 iframe.appendTo(riframes[0]);
-                var parent = $(menu).parent().find('dt', 1).first().html();
                 onSelectPage({ name: title, parent: parent, src: src });
                 return;
             }
@@ -439,7 +443,7 @@
         this.tabClose = function () {
             this.topWin.zeroAdminUI.mainPage.tabClose(this.getTabNumber())
         };
-        this.getTabIframeNode = function () {
+        this.getPageTabIframeNode = function () {
             if (!this.isTabIframePage) return null;
             if (this.tabIframeNode) return this.tabIframeNode;
             for (var a = $(this.topWin.document, "iframe"), b = null, e = 0; e < a.length; e++) if (a[e].contentWindow == window) {
@@ -449,11 +453,11 @@
             return b
         };
         this.getTabNumber = function () {
-            if (this.pageTabNumber) return this.pageTabNumber;
-            var a = this.getTabIframeNode(),
+            if (this.tabNumber) return this.tabNumber;
+            var a = this.getPageTabIframeNode(),
                 b = "";
             a && (b = $(a).attribute("id"));
-            return b ? this.pageTabNumber = b.replace(/^iframe/, "") : b
+            return b ? this.tabNumber = b.replace(/^iframe/, "") : b
         };
         this.isMultiTabs = false;
         if (this.isTabIframePage) {
@@ -466,6 +470,8 @@
     $.adminUI = window.zeroAdminUI = UI;
 
     $.ready(function () {
-        
+        if (!isTouchScreen) {
+            zero(document.createElement('div')).cssText('display:none;').html('&nbsp;<style>::-webkit-scrollbar{width:8px;height:8px;}::-webkit-scrollbar-button{background: #2c8ed3; height:8px;width:8px;}::-webkit-scrollbar-track-piece{background: #e7f9fb;}::-webkit-scrollbar-thumb {background:#ccc;border:solid 1px #e7f9fb;border-left:none;}#zero_ap_layout_left ::-webkit-scrollbar-button{height:0;}#zero_ap_layout_left ::-webkit-scrollbar-track-piece{background:#225588;width:0;}#zero_ap_layout_left ::-webkit-scrollbar-thumb{background-color:#2cc0f0;border:0;border-left:solid 0 #000;}</style>').appendTo();
+        }
     });
 })(zero);
