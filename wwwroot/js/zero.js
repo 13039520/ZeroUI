@@ -2912,7 +2912,8 @@
 				}
 				delete config
 			}
-		}, this.enterKeyAnswer = function (flag, dialogNode) {
+		};
+		this.enterKeyAnswer = function (flag, dialogNode) {
 			$(this.rootNode, 'class=zero_dialog', 1).foreach(function (n) {
 				if (flag) {
 					$(this).removeAttribute(NAE)
