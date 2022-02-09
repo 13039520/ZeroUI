@@ -9,21 +9,17 @@ HttpLargeFileOutputThreshold=4194304
 HttpLargeFileOutputRate=1048576
 //1048576=1M
 HttpMaxURILength=1048576
-//无数据活动保留时常
 HttpNoDataActivityHoldTime=15000
-//内容实体长度：419430400=400M
+//419430400=400M
 HttpMaxContentLength=419430400
 
-//静态文件后缀：
 SiteStaticFileSuffix=.html .xml .htm .css .js .txt .csv
 SiteStaticFileSuffix=.zip .rar
 SiteStaticFileSuffix=.ico .jpg .jpeg .png .gif .webp .svg .psd .ai .cdr .tiff .eps .epsf
 SiteStaticFileSuffix=.m3u8 .ts
-//目录默认文件：
+
 SiteDefaultFile=Index.html Index.htm Default.html Default.htm
-//站点主目录：@AppBaseDir/wwwroot
 SiteHomeDirectory=@AppBaseDir/wwwroot
-//虚拟目录(最后的目录名称不能重复)：
 SiteVirtualDirectory=D:\testFiles
 SiteVirtualDirectory=E:\videos
 
