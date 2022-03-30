@@ -34,14 +34,14 @@ body #zero_date_input .b a{border-left-color:#dedede;}
 #zero_ap_layout_right{border:0;padding:0;margin:0;height:100%;width:0;overflow:hidden;float:left;}
 #zero_ap_layout_right_header{height:32px;overflow:hidden;padding:0 0 0 35px;margin:0;border:0;background-color:#00bcf2;font-size:12px;line-height:32px;background-image:url(images/bg_line001.png);}
 #zero_ap_layout_right_header .zero_right{width:auto;height:32px;}
-#zero_ap_layout_right_header .zero_right .zero_bg_icon{color:#161B35;padding:0;cursor:pointer;background-color:#0488BC;background-position:center; display:block;width:20px;height:26px;margin:2px;border-radius:50%;border:solid 1px #0488BC;border-right:0;float: left;}
+#zero_ap_layout_right_header .zero_right .zero_bg_icon{color:#161B35;padding:0;cursor:pointer;background-color:#0488BC;background-position:center; display:block;width:24px;height:24px;margin:2px;border-radius:50%;border:solid 1px #0488BC;border-right:0;float: left;}
 #zero_ap_layout_right_tabs{height:34px;width:100%;overflow:hidden;margin:0;padding:0;border:0;background-color:#0488BC;}
 #zero_ap_layout_right_iframes{height:0;overflow:hidden;margin:0;padding:0;border:solid 1px #161B35;background:url(images/loading.gif) no-repeat center;}
 .zero_ap_layout_left_hide #zero_ap_layout_left{width:0;}
 .zero_ap_layout_left_hide #zero_ap_layout_left_ctrl_btn{z-index:2;margin:4px 0 0 0;background-image:url(images/icon/indent_increase.png)}
 
-#zero_ap_layout_left_menu{margin:0;padding:0; border:0;display:block;overflow:hidden;height:100%;background-color:#0488BC;color:#fff;}
-#zero_ap_layout_left_menu dl{padding:0; margin:0;overflow:hidden; display:block;border-bottom:solid 1px #225588;  white-space:nowrap;}
+#zero_ap_layout_left_menu{margin:0;padding:0; border:0;display:block;overflow:hidden;height:100%;background-color:#0488BC;color:#fff;background-image:url(images/bg_line001.png);}
+#zero_ap_layout_left_menu dl{padding:0; margin:0;overflow:hidden; display:block;border-bottom:solid 1px #225588;white-space:nowrap;}
 #zero_ap_layout_left_menu dt{padding:2px 0 2px 26px; cursor:pointer; margin:0 0 -1px 0; background:url(images/icon/folder.png) no-repeat 5px center; overflow:hidden;border-bottom:solid 1px #225588;line-height:28px;}
 #zero_ap_layout_left_menu dt:hover{font-weight:bold;}
 #zero_ap_layout_left_menu dd{padding:2px 0 2px 26px; cursor:pointer; margin:0 0 -1px 16px; line-height:28px; background:url(images/icon/file4.png) no-repeat 5px center; overflow:hidden; border-left:solid 1px #225588;border-bottom:solid 1px #225588;font-size:12px;}

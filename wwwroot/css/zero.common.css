@@ -113,7 +113,7 @@ dl.zero_form_group dd.zero_tips .zero_form_input {border-color: #f90;}
 .zero_repeat_item_btns input[type=submit].zero_bg_icon,
 .zero_repeat_item_btns input[type=reset].zero_bg_icon,
 .zero_repeat_item_btns button.zero_bg_icon,
-.zero_repeat_item_btns .zero_bg_icon{color:#fff;}
+.zero_repeat_item_btns .zero_bg_icon{color:#fff;border-radius:3px;font-size:12px;}
 .zero_repeat_col2 .zero_repeat_item{width:50%;}
 .zero_repeat_col3 .zero_repeat_item{width:33.333%;}
 .zero_repeat_col4 .zero_repeat_item{width:25%;}
