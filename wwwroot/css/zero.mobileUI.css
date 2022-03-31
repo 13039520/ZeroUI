@@ -1,5 +1,5 @@
 ﻿@import 'zero.common.css';
-@import 'zero.icons.white.css';
+@import 'zero.icons.css';
 
 /*以更明确的指向覆盖dialog的默认样式*/
 body #dialogInit .zero_dialog .zero_dialogT{background:#44aadd;color:#fff;border-bottom:solid 1px #44aadd;}
@@ -10,7 +10,7 @@ body #dialogInit .zero_dialogB a{border-color:#dfdfdf;color:#44aadd;background:#
 body #dialogInit .zero_dialogB a:hover{color:#44aadd;background:#f7f7f7;}
 body #dialogInit .zero_dialogMaskDiv,body #dialogInit .zero_nDialog .zero_dialogMaskDiv{background:#161B35;opacity:0.1; filter:alpha(opacity=10);}
 body #dialogInit .zero_dialogShowDiv,body #dialogInit .zero_nDialog .zero_dialogShowDiv{border-color:#4488bb;box-shadow:0 0 10px rgba(0,0,0,.7);border-radius:0;}
-body #dialogInit .zero_dialogB{}
+
 /*以更明确的指向覆盖zero_date_input的默认样式*/
 body #zero_date_input .box{border-color:#44aadd;border-radius:0;}
 body #zero_date_input .box .t{background:#44aadd;}
