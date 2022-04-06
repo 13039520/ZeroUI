@@ -197,7 +197,7 @@
                 riframes = $("zero_ap_layout_right_iframes");
                 return;
             }
-            var d = $("zero_ap_layout_right_tabs").html('<div class="zero_r_arrow"><span class="zero_arrow_l zero_bg_icon zero_bg_icon_arrow_left3"></span><span class="zero_arrow_r zero_bg_icon zero_bg_icon_arrow_right3"></span></div><div class="zero_r_tabs_init"><div class="zero_init"><div class="zero_tabs"></div></div></div>'),
+            var d = $("zero_ap_layout_right_tabs").html('<div class="zero_r_arrow"><p><span class="zero_arrow_l">&lt;</span><span class="zero_arrow_r">&gt;</span></p></div><div class="zero_r_tabs_init"><div class="zero_init"><div class="zero_tabs"></div></div></div>'),
             a = rtabs = $(d).find("class=zero_tabs"),
             b = riframes = $("zero_ap_layout_right_iframes"),
             e = $(d).find("class=zero_arrow_l"),
