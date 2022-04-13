@@ -1,0 +1,1 @@
+ZeroWAS.App.exe
