@@ -16,7 +16,7 @@
     UI.isMultiTabs = false;
 
     UI.mainPage = function () {
-        var rtabs, riframes, wSize, isMultiTabs=true;
+        var rtabs, riframes, wSize, isMultiTabs=true, currTabNumEle=0,currTabCountEle=0;
         var winResize = function (isClick) {
             wSize = $(win).getSize();
             if (undefined === isClick) {
@@ -197,11 +197,12 @@
                 riframes = $("zero_ap_layout_right_iframes");
                 return;
             }
-            var d = $("zero_ap_layout_right_tabs").html('<div class="zero_r_arrow"><p><span class="zero_arrow_l">&lt;</span><span class="zero_arrow_r">&gt;</span></p></div><div class="zero_r_tabs_init"><div class="zero_init"><div class="zero_tabs"></div></div></div>'),
-            a = rtabs = $(d).find("class=zero_tabs"),
-            b = riframes = $("zero_ap_layout_right_iframes"),
-            e = $(d).find("class=zero_arrow_l"),
-            c = $(d).find("class=zero_arrow_r");
+            var d = $("zero_ap_layout_right_tabs").html('<div class="zero_r_arrow"><p><span class="zero_arrow_l">&lt;</span><span class="zero_arrow_c"><b class="tb">00</b><b class="bb">00</b></span><span class="zero_arrow_r">&gt;</span></p></div><div class="zero_r_tabs_init"><div class="zero_init"><div class="zero_tabs"></div></div></div>'),
+                a = rtabs = $(d).find("class=zero_tabs"),
+                b = riframes = $("zero_ap_layout_right_iframes"),
+                bs = $(d).find("b");
+            currTabNumEle=bs[0];
+            currTabCountEle=bs[1];
             d.addEvent("click", function (d) {
                 d = d || event;
                 d = d.srcElement || d.target;
@@ -223,6 +224,10 @@
                         tabSelected(d.parentNode);
                     }else if(n.indexOf('zero_tab_close')>-1){
                         tabClose(d.parentNode)
+                    }else if(n==='zero_arrow_c'){
+                        tabCurrent(d);
+                    }else if(n==='tb'||n==='bb'){
+                        tabCurrent(d.parentNode);
                     }
                 }
             }).addEvent("dblclick", function (a) {
@@ -256,7 +261,14 @@
             $(riframes).find("iframe").removeClass("zero_selected");
             iframe[0].attachEvent ? iframe[0].attachEvent("onload", h) : iframe[0].onload = h;
             iframe.appendTo(riframes[0]);
-            $(rtabs).cssText('width:'+($(rtabs,'div',1).length*120)+'px')
+            var len = $(rtabs,'div',1).length;
+            $(rtabs).cssText('width:'+(len*120)+'px');
+            $(currTabNumEle).text(len.toString());
+            $(currTabCountEle).text(len.toString());
+        },
+        tabCurrent = function (ele) {
+            var t = $(rtabs).find('class>zero_selected');
+            if(t.length){tabSelected(t[0]);}
         },
         tabSelected = function (tab) {
             var c = $(tab).attribute("id").replace("tab", ""),
@@ -264,8 +276,11 @@
                 menu = $('nav' + c),
                 title = $(menu).html(),
                 src = $(menu).attribute('link'),
-                parent = $(menu).parent().find('dt').first().html();
-            $(rtabs).find("class>zero_tab", 1).removeClass("zero_selected").filter("n=" + f).addClass("zero_selected");
+                parent = $(menu).parent().find('dt').first().html(),
+                ts = $(rtabs).find("class>zero_tab", 1).removeClass("zero_selected");
+            $(currTabNumEle).text((1+f).toString());
+            $(currTabCountEle).text(ts.length.toString());
+            ts.filter("n=" + f).addClass("zero_selected");
 
             onSelectPage({ name: title, parent: parent, src: src });
 
@@ -324,6 +339,9 @@
                 c = $(e[b]).addClass("zero_selected").attribute("id").replace("tab", "");
                 $("iframe" + c).addClass("zero_selected");
                 parseInt($(rtabs)[0].style.marginLeft, 10) < (1 > b ? 0 : 0 - 120 * b) && tabSelected(e[b])
+            }else{
+                $(currTabCountEle).text(e.length.toString());
+                $(currTabNumEle).text((1+parseInt(e.filter('class>zero_selected').attribute('n'),10)).toString());
             }
             try {
                 $(h[0].contentWindow).removeEvent('onscroll');
