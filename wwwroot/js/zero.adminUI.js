@@ -16,7 +16,7 @@
     UI.isMultiTabs = false;
 
     UI.mainPage = function () {
-        var rtabs, riframes, wSize, isMultiTabs=true, currTabNumEle=0,currTabCountEle=0;
+        var rtabs, riframes, wSize, isMultiTabs=true, currTabNumEle,currTabCountEle;
         var winResize = function (isClick) {
             wSize = $(win).getSize();
             if (undefined === isClick) {
@@ -30,6 +30,13 @@
             $('zero_ap_layout_left_menu_init').cssText('height:' + (wSize.height - 66 - 10 - 3) + 'px');
             $('zero_ap_layout_right').cssText('width:' + (wSize.width - (wSize.width>1024?lSize.width:0)) + 'px');
             $('zero_ap_layout_right_iframes').cssText('height:' + (wSize.height - (isMultiTabs?66:34)-2) + 'px');
+        },
+        setTabInfo = function (count, num){
+            var func = function (n) {
+                return n.toString();
+            };
+            $(currTabNumEle).text(func(num));
+            $(currTabCountEle).text(func(count));
         },
         selectionEmpty = function () {
             document.selection ? document.selection.empty() : window.getSelection && window.getSelection().removeAllRanges()
@@ -263,8 +270,7 @@
             iframe.appendTo(riframes[0]);
             var len = $(rtabs,'div',1).length;
             $(rtabs).cssText('width:'+(len*120)+'px');
-            $(currTabNumEle).text(len.toString());
-            $(currTabCountEle).text(len.toString());
+            setTabInfo(len,len);
         },
         tabCurrent = function (ele) {
             var t = $(rtabs).find('class>zero_selected');
@@ -278,10 +284,8 @@
                 src = $(menu).attribute('link'),
                 parent = $(menu).parent().find('dt').first().html(),
                 ts = $(rtabs).find("class>zero_tab", 1).removeClass("zero_selected");
-            $(currTabNumEle).text((1+f).toString());
-            $(currTabCountEle).text(ts.length.toString());
+            setTabInfo(ts.length,1+f);
             ts.filter("n=" + f).addClass("zero_selected");
-
             onSelectPage({ name: title, parent: parent, src: src });
 
             var e = $(rtabs)[0].style.marginLeft,
@@ -334,14 +338,18 @@
             e = $(rtabs).find("class>zero_tab", 1).foreach(function (a) {
                 $(this).attribute("n", a)
             });
-            if (e.length && f) {
+            var flag = false;
+            if (f) {
                 b >= e.length && (b = e.length - 1);
                 c = $(e[b]).addClass("zero_selected").attribute("id").replace("tab", "");
                 $("iframe" + c).addClass("zero_selected");
-                parseInt($(rtabs)[0].style.marginLeft, 10) < (1 > b ? 0 : 0 - 120 * b) && tabSelected(e[b])
+                if(parseInt($(rtabs)[0].style.marginLeft, 10) < (1 > b ? 0 : 0 - 120 * b)){ tabSelected(e[b]) }
+                else{ flag = true; }
             }else{
-                $(currTabCountEle).text(e.length.toString());
-                $(currTabNumEle).text((1+parseInt(e.filter('class>zero_selected').attribute('n'),10)).toString());
+                flag = true;
+            }
+            if(flag){
+                setTabInfo(e.length,1+parseInt(e.filter('class>zero_selected').attribute('n'),10));
             }
             try {
                 $(h[0].contentWindow).removeEvent('onscroll');
