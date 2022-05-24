@@ -2149,7 +2149,7 @@
 						}
 						val = '' + val;
 						try {
-							val.length && (val = encodeURIComponent(decodeURIComponent(val)))
+							val.length && (val = encodeURIComponent(val))
 						} catch (e) {
 							log(e.message)
 						}
