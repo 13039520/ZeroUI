@@ -53,12 +53,12 @@
     <div class="demo">
         <div style="border:solid 1px #dedede;padding:5px;">
             <table>
-                <tr><td>日期：</td><td><input type="text" value="2010-01-01" onfocus="zero.dateInput('选择一个日期').target(this).editType(1).format('yyyy年MM月dd日').show(true).ok(function (str, json, date) { this.value = str; return true;})" /></td></tr>
-                <tr><td>时间：</td><td><input type="text" value="10:10:25" onfocus="zero.dateInput('选择一个时间').target(this).editType(2).format('HH时mm分ss秒').show(true).ok(function (str, json, date) { this.value = str; return true; })" /></td></tr>
-                <tr><td>日期时间：</td><td><input type="text" value="2010-01-01 10:10:25" onfocus="zero.dateInput('选择一个日期时间').target(this).editType(3).format('yyyy年MM月dd日HH时mm分ss秒').show(true).ok(function (str, json, date) { this.value = str; return true; })" /></td></tr>
-                <tr><td>日期：</td><td><input type="text" value="2010-01-01" onfocus="zero.dateInput('选择一个日期').target(this).editType(1).format('yyyy年MM月dd日').show(false).ok(function (str, json, date) { this.value = str; return true;})" /></td></tr>
-                <tr><td>时间：</td><td><input type="text" value="10:10:25" onfocus="zero.dateInput('选择一个时间').target(this).editType(2).format('HH时mm分ss秒').show(false).ok(function (str, json, date) { this.value = str; return true; })" /></td></tr>
-                <tr><td>日期时间：</td><td><input type="text" value="2010-01-01 10:10:25" onfocus="zero.dateInput('选择一个日期时间').target(this).editType(3).format('yyyy年MM月dd日HH时mm分ss秒').show(false).ok(function (str, json, date) { this.value = str; return true; })" /></td></tr>
+                <tr><td>日期：</td><td><input type="text" value="2010-01-01" onfocus="zero.dateInput('选择一个日期').target(this).editType(1).format('yyyy-MM-dd').show(true).ok(function (str, json, date) { this.value = str; return true;})" /></td></tr>
+                <tr><td>时间：</td><td><input type="text" value="10:10:25" onfocus="zero.dateInput('选择一个时间').target(this).editType(2).format('HH:mm:ss').show(true).ok(function (str, json, date) { this.value = str; return true; })" /></td></tr>
+                <tr><td>日期时间：</td><td><input type="text" value="2010-01-01 10:10:25" onfocus="zero.dateInput('选择一个日期时间').target(this).editType(3).format('yyyy-MM-dd HH:mm:ss').show(true).ok(function (str, json, date) { this.value = str; return true; })" /></td></tr>
+                <tr><td>日期：</td><td><input type="text" value="2010-01-01" onfocus="zero.dateInput('选择一个日期').target(this).editType(1).format('yyyy-MM-dd').show(false).ok(function (str, json, date) { this.value = str; return true;})" /></td></tr>
+                <tr><td>时间：</td><td><input type="text" value="10:10:25" onfocus="zero.dateInput('选择一个时间').target(this).editType(2).format('HH:mm:ss').show(false).ok(function (str, json, date) { this.value = str; return true; })" /></td></tr>
+                <tr><td>日期时间：</td><td><input type="text" value="2010-01-01 10:10:25" onfocus="zero.dateInput('选择一个日期时间').target(this).editType(3).format('yyyy-MM-dd HH:mm:ss').show(false).ok(function (str, json, date) { this.value = str; return true; })" /></td></tr>
             </table>
         </div>
     </div>
@@ -79,7 +79,7 @@
                 zero.dateInput('选择一个日期')
                     .target(this)//关联目标控件
                     .editType(1)//修改(1日期2时间N日期时间)
-                    .format('yyyy年MM月dd日')//格式化(默认格式：yyyy-MM-dd HH:mm:ss)
+                    .format('yyyy-MM-dd')//格式化(默认格式：yyyy-MM-dd HH:mm:ss)
                     .show(true)//动画呈现
                     .ok(function (str, json, date) {
                         this.value = str;
@@ -90,7 +90,7 @@
                 zero.dateInput('选择一个时间')
                     .target(this)
                     .editType(2)
-                    .format('HH时mm分ss秒')
+                    .format('HH:mm:ss')
                     .show(true)
                     .ok(function (str, json, date) {
                         this.value = str;
@@ -100,7 +100,7 @@
             document.getElementById('datetime1').onfocus = function () {
                 zero.dateInput('选择一个日期时间')
                     .target(this)
-                    .format('yyyy年MM月dd日HH时mm分ss秒')
+                    .format('yyyy-MM-dd HH:mm:ss')
                     .show(true)
                     .ok(function (str, json, date) {
                         this.value = str;
@@ -111,7 +111,7 @@
                 zero.dateInput('选择一个日期')
                     .target(this)
                     .editType(1)
-                    .format('yyyy年MM月dd日')
+                    .format('yyyy-MM-dd')
                     .show(false)
                     .ok(function (str, json, date) {
                         this.value = str;
@@ -122,7 +122,7 @@
                 zero.dateInput('选择一个时间')
                     .target(this)
                     .editType(2)
-                    .format('HH时mm分ss秒')
+                    .format('HH:mm:ss')
                     .show(false)
                     .ok(function (str, json, date) {
                         this.value = str;
@@ -132,7 +132,7 @@
             document.getElementById('datetime2').onfocus = function () {
                 zero.dateInput('选择一个日期时间')
                     .target(this)
-                    .format('yyyy年MM月dd日HH时mm分ss秒')
+                    .format('yyyy-MM-dd HH:mm:ss')
                     .show(false)
                     .ok(function (str, json, date) {
                         this.value = str;

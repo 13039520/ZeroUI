@@ -5,12 +5,84 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>drag zeroJs</title>
     <link href="../css/zero.adminUI.css" rel="stylesheet" />
+    <style type="text/css">
+        .tabs{overflow: hidden;padding: 0; margin: 0;}
+        .tabs_title{overflow: hidden;height: 40px; padding: 0; margin: 0; white-space:nowrap;font-weight: 600;}
+        .tabs_title_item{overflow: hidden;height: 40px; line-height: 40px; float: left;padding: 0 5px; margin: 0;display: block; cursor: pointer;}
+        .tabs_title_selected{height: 36px; border-bottom: solid 4px #000;color: #00f;}
+        .tabs_title_focus_line_top .tabs_title_selected{border-bottom-width:0;border-top: solid 4px #000;line-height: 32px;}
+        .tabs_content{overflow: hidden;}
+        .tabs_content_item{overflow: hidden; display: none;}
+        .tabs_content_selected{display: block;}
+        .tabs_content_info{border-top: solid 1px #999;word-break: break-all;}
+    </style>
     <script type="text/javascript" src="../js/zero.js"></script>
     <script type="text/javascript" src="../js/zero.ch.js"></script>
     <script type="text/javascript" src="../js/zero.UI.js"></script>
     <script type="text/javascript" src="../js/zero.adminUI.js"></script>
     <script type="text/javascript">
+        zero.tabs=function(){
+            var tabs=function(item,e){
+                if(zero(item).hasClass('tabs_title_selected')){return;}
+                var a=zero(item).parent();
+                var selIndex=-1;
+                zero(a).find('class>tabs_title_item',1).foreach(function(n){
+                    if(item!==this){
+                        zero(this).removeClass('tabs_title_selected');
+                    }else{
+                        selIndex=n;
+                        zero(this).addClass('tabs_title_selected');
+                    }
+                });
+                if(zero(a).hasClass('tabs_title_items')){a.parent();}
+                zero(a).parent().find('class>tabs_content',1).first().find('class>tabs_content_item',1).foreach(function(n){
+                    if(n!==selIndex){
+                        zero(this).removeClass('tabs_content_selected');
+                    }else{
+                        zero(this).addClass('tabs_content_selected');
+                    }
+                });
+            };
+            var ps=[];
+            var ws=[];
+            zero(document.body,'class>tabs_title_item').foreach(function(index){
+                if(zero(this).attribute('_l_')){return;}
+                if(!ps.exists(this.parentNode)){
+                    ps.push(this.parentNode);
+                    ws.push(0);
+                }
+                ws[ws.length-1]=ws[ws.length-1]+this.offsetWidth;
+                zero(this).attribute('_l_',(index+1)).addEvent('click',function(e){
+                    tabs(this,e);
+                });
+            });
+            for(var i=0;i<ps.length;i++){
+                if(ps[i].offsetWidth<ws[i]){
+                    ps[i].style.width=ws[i]+'px';
+                }
+                zero.drag(ps[i]).begin(function (node, point, para) {
+                        var box = zero(node).parent(),//向上2级的节点(id=mydiv002)
+                            boxPoint = zero(box).getAbsPoint(),//获得限定范围节点的坐标
+                            boxSize = zero(box).getSize(true),//获得限定范围节点的尺寸
+                            nodeSize = zero(node).getSize();//获得拖动节点的尺寸
+                        //设置可拖动范围(默认是整个页面)
+                        var rx= 0 - (nodeSize.width - boxSize.width + boxPoint.x);
+                        this.range(rx,
+                            boxPoint.y,
+                            nodeSize.width - boxSize.width,
+                            nodeSize.height - boxSize.height);
+                        this.para({boxPoint:boxPoint,boxSize:boxSize,nodeSize:nodeSize})
+                    }).move(function (node, point, para) {
+                        var num=parseInt(point.x,10)+para.boxPoint.x;
+                        zero(this.node).cssText('margin-left:' + num + 'px');
+                    }).end(function (node, point, para) {
+                        //移除拖动中的样式
+                        //zero(this.node).removeClass('drag_node_on');
+                    });
+            }
+        };
         zero.ready(function () {
+            zero.tabs();
             zero(document.body, 'div').filter('class=demo').foreach(function (num) {
                 var s = zero(this).html();
                 s = zero.codeHighlight.html(s).match(/.+/g);
@@ -25,6 +97,74 @@
     </script>
 </head>
 <body class="zero_ifram_page"><div class="zero_demo_main">
+    <div class="tabs" style="border:solid 1px #999;">
+        <div class="tabs_title"><!--tabs_title_focus_line_top-->
+            <div class="tabs_title_item tabs_title_selected">tab 11111</div>
+            <div class="tabs_title_item">tab 22222</div>
+            <div class="tabs_title_item">tab 33333</div>
+            <div class="tabs_title_item">tab 44444</div>
+            <div class="tabs_title_item">tab 55555</div>
+            <div class="tabs_title_item">tab 66666</div>
+            <div class="tabs_title_item">tab 77777</div>
+            <div class="tabs_title_item">tab 88888</div>
+            <div class="tabs_title_item">tab 99999</div>
+            <div class="tabs_title_item">tab 00000</div>
+            <div class="tabs_title_item">tab aaaaa</div>
+            <div class="tabs_title_item">tab bbbbb</div>
+            <div class="tabs_title_item">tab ccccc</div>
+            <div class="tabs_title_item">tab ddddd</div>
+            <div class="tabs_title_item">tab eeeee</div>
+            <div class="tabs_title_item">tab fffff</div>
+            <div class="tabs_title_item">tab ggggg</div>
+            <div class="tabs_title_item">tab hhhhh</div>
+            <div class="tabs_title_item">tab iiiiii</div>
+            <div class="tabs_title_item">tab jjjjj</div>
+            <div class="tabs_title_item">tab kkkkk</div>
+            <div class="tabs_title_item">tab lllll</div>
+            <div class="tabs_title_item">tab mmmmm</div>
+            <div class="tabs_title_item">tab nnnnn</div>
+            <div class="tabs_title_item">tab ooooo</div>
+            <div class="tabs_title_item">tab ppppp</div>
+            <div class="tabs_title_item">tab qqqqq</div>
+            <div class="tabs_title_item">tab uuuuu</div>
+            <div class="tabs_title_item">tab vvvvv</div>
+            <div class="tabs_title_item">tab wwwww</div>
+        </div>
+        <div class="tabs_content">
+            <div>这是不受tabs控制的块001</div>
+            <div class="tabs_content_item tabs_content_selected">tabs_content 11111</div>
+            <div class="tabs_content_item">tabs_content 22222</div>
+            <div class="tabs_content_item">tabs_content 33333</div>
+            <div class="tabs_content_item">tabs_content 44444</div>
+            <div class="tabs_content_item">tabs_content 55555</div>
+            <div class="tabs_content_item">tabs_content 66666</div>
+            <div class="tabs_content_item">tabs_content 77777</div>
+            <div class="tabs_content_item">tabs_content 88888</div>
+            <div class="tabs_content_item">tabs_content 99999 tabs_content 99999 tabs_content 99999 tabs_content 99999 tabs_content 99999 tabs_content 99999 tabs_content 99999 </div>
+            <div class="tabs_content_item">tabs_content 00000</div>
+            <div class="tabs_content_item">tabs_content aaaaa</div>
+            <div class="tabs_content_item">tabs_content bbbbb</div>
+            <div class="tabs_content_item">tabs_content ccccc</div>
+            <div class="tabs_content_item">tabs_content ddddd</div>
+            <div class="tabs_content_item">tabs_content eeeee</div>
+            <div class="tabs_content_item">tabs_content fffff</div>
+            <div class="tabs_content_item">tabs_content ggggg</div>
+            <div class="tabs_content_item">tabs_content hhhhh</div>
+            <div class="tabs_content_item">tabs_content iiiiii</div>
+            <div class="tabs_content_item">tabs_content jjjjj</div>
+            <div class="tabs_content_item">tabs_content kkkkk</div>
+            <div class="tabs_content_item">tabs_content lllll</div>
+            <div class="tabs_content_item">tabs_content mmmmm</div>
+            <div class="tabs_content_item">tabs_content nnnnn</div>
+            <div class="tabs_content_item">tabs_content ooooo</div>
+            <div class="tabs_content_item">tabs_content ppppp</div>
+            <div class="tabs_content_item">tabs_content qqqqq</div>
+            <div class="tabs_content_item">tabs_content uuuuu</div>
+            <div class="tabs_content_item">tabs_content vvvvv</div>
+            <div class="tabs_content_item">tabs_content wwwww</div>
+            <div>这是不受tabs控制的块002</div>
+        </div>
+    </div>
     <h2>zero.drag</h2>
     <table class="zero_datatable">
         <thead><tr><td>构造</td></tr></thead>
@@ -65,7 +205,7 @@
     
     <h3>运用示例：</h3>
     <div class="demo">
-        <div id="mydiv002" style="height:300px;border:solid 1px #090;background:#f7f7f7;">
+        <div id="mydiv002" style="height:300px;border:solid 1px #900;background:#f7f7f7;">
             <div>
                 <div class="drag_node">拖动我01</div>
                 <div class="drag_node">拖动我02</div>
@@ -97,10 +237,10 @@
                             boxSize = zero(box).getSize(),//获得限定范围节点的尺寸
                             nodeSize = zero(node).getSize();//获得拖动节点的尺寸
                         //设置可拖动范围(默认是整个页面)
-                        this.range(boxPoint.x,
-                            boxPoint.y,
-                            boxSize.width - nodeSize.width,
-                            boxSize.height - nodeSize.height);
+                        this.range(boxPoint.x + 1,
+                            boxPoint.y + 1,
+                            boxSize.width - nodeSize.width - 2,
+                            boxSize.height - nodeSize.height -2);
                         //设置拖动中的样式
                         zero(this.node).addClass('drag_node_on');
                     }).move(function (node, point, para) {

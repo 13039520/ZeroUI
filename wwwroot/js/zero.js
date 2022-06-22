@@ -98,6 +98,15 @@
 			return this
 		}
 	}
+	if (!Array.prototype.exists) {
+		Array.prototype.exists = function (o) {
+			for (var k = 0; k < this.length;k++) {
+				if(this[k]!==o){continue}
+				return true;
+			}
+			return false
+		}
+	}
 	if (!Array.prototype.clearItems) {
 		Array.prototype.clearItems = function (k) {
 			for (var g = 0; g < this.length;) {
@@ -1054,13 +1063,18 @@
 						}
 						break;
 					case '>':
-						if (v.indexOf(value) > -1) {
-							reval.push(nodes[i])
+						if('className'!==property){
+							if (v.indexOf(value) > -1) { reval.push(nodes[i]) }
+						}else{
+							if(v.length>0&&v.split(' ').exists(value)){reval.push(nodes[i])}
 						}
 						break;
 					case '<':
-						if (v.indexOf(value) < 0) {
-							reval.push(nodes[i])
+						
+						if('className'!==property){
+							if (v.indexOf(value) < 0) { reval.push(nodes[i]) }
+						}else{
+							if(v.length<1||!(v.split(' ').exists(value))){reval.push(nodes[i])}
 						}
 						break
 				}
@@ -2082,12 +2096,6 @@
 					y = parseInt(y, 10);
 					w = parseInt(w, 10);
 					h = parseInt(h, 10);
-					if (x < 0) {
-						x = 0
-					}
-					if (y < 0) {
-						y = 0
-					}
 					if (w < 1) {
 						w = 1
 					}
@@ -3611,7 +3619,7 @@
 					if (node.length) {
 						return
 					}
-					var s = '~{position:absolute;left:0;top:0;width:100%;height:0;padding:0;margin:0;border:0;z-index:1;font-size:14px;}~ .show{position:absolute;background:#0094ff;padding:0;overflow:hidden;z-index:1;width:0;height:0;border:0;}~ .mask{background:rgba(255,255,255,.1);width:100%;overflow:hidden;padding:0;margin:0;border:0;position:absolute;}~ .box{width:318px;height:218px;background:#fff;border:solid 1px #0094ff;padding:0;margin:0;overflow:hidden;position:absolute;margin:0px;border-radius:5px;}~ .t{height:40px;background:#2fb8d7;background:linear-gradient(90deg, #2fb8d7, #fff);border-bottom:solid 1px #fff;font-size:16px;}~ .c{height:112px;padding-top:20px;background:#fff;border-top:solid 2px #fff;border-bottom:solid 2px #fff;}~ .b{height:40px;background:#2fb8d7;border-top:solid 1px #900;}~ .b a{display:block;height:40px;width:25%;border-left:solid 1px #2fb8d7;margin-left:-1px;line-height:40px;text-align:center;float:left;color:#02484f;text-decoration:none;cursor:pointer;background:#fff;}~ .b a:hover{font-weight:bold;font-size:16px;}~ .tl{width:195px;height:40px;padding-left:5px;line-height:40px;float:left;color:#fff;}~ .tr{width:118px;height:40px;line-height:40px;float:right;background:#fff;text-align:center;border-radius:40px 0 0 0;color:#2fb8d7;}~ .inputs{line-height:40px;margin:5px;height:42px;}~ .inputs input{display:block;width:80px;height:40px;border:solid 1px #dedede;border-radius:5px;background:#f2f2f2;padding:0;margin:0;float:left;text-align:center;outline:none;color:#2fb8d7;font-weight:bold;font-size:16px;}~ .inputs input[disabled]{color:#dedede;}~ .inputs span{display:block;width:20px;height:40px;padding:0;margin:0;float:left;text-align:center;}~ .sel{width:318px;height:218px;background:rgba(255,255,255,1);position:absolute;overflow:hidden;}~ .sel div{overflow:hidden;}~ p{padding:0;margin:0;height:25px;line-height:25px;overflow:hidden;background:#2fb8d7;background:linear-gradient(90deg, #2fb8d7, #fff);border-bottom:solid 1px #900;}~ .sel .title{font-size:12px;}~ p span{display:block;width:12.5%;float:left;border-left:solid 1px #0094ff;text-align:center;padding:0;margin:0 0 0 -1px;cursor:pointer;}~ p span:hover{background:#fff;}~ .next,~ .per{visibility:hidden;}~ .year .next,~ .year .per{visibility:visible;}~ .title{font-size:16px;text-transform:capitalize;cursor:default;width:62.5%;text-align:left;text-indent:5px;}~ .title:hover{background:none;}~ b,~ i{display:block;width:12.5%;border-top:solid 1px #dedede;border-left:solid 1px #dedede;padding:0;margin:-1px 0 0 -1px;text-align:center;font-style:normal;font-weight:normal;float:left;height:24px;line-height:24px;font-size:12px;}~ b.selected,~ i.selected{background:#f90;color:#fff;}~ b{cursor:pointer;}~ b:hover{color:#f00;}';
+					var s = '~{position:absolute;left:0;top:0;width:100%;height:0;padding:0;margin:0;border:0;z-index:1;font-size:14px;}~ .show{position:absolute;background:#0094ff;padding:0;overflow:hidden;z-index:1;width:0;height:0;border:0;}~ .mask{background:rgba(255,255,255,.1);width:100%;overflow:hidden;padding:0;margin:0;border:0;position:absolute;}~ .box{width:318px;height:218px;background:#fff;border:solid 1px #0094ff;padding:0;margin:0;overflow:hidden;position:absolute;margin:0px;border-radius:5px;}~ .t{height:40px;background:#2fb8d7;background:linear-gradient(90deg, #2fb8d7, #fff);border-bottom:solid 1px #fff;font-size:16px;}~ .c{height:112px;padding-top:20px;background:#fff;border-top:solid 2px #fff;border-bottom:solid 2px #fff;}~ .b{height:40px;background:#2fb8d7;border-top:solid 1px #900;}~ .b a{display:block;height:40px;width:25%;border-left:solid 1px #2fb8d7;margin-left:-1px;line-height:40px;text-align:center;float:left;color:#02484f;text-decoration:none;cursor:pointer;background:#fff;}~ .b a:hover{font-weight:bold;font-size:16px;}~ .tl{width:195px;height:40px;padding-left:5px;line-height:40px;float:left;color:#fff;}~ .tr{width:118px;height:40px;line-height:40px;float:right;background:#fff;text-align:center;border-radius:40px 0 0 0;color:#2fb8d7;}~ .inputs{line-height:40px;margin:5px;height:42px;}~ .inputs input{display:block;width:80px;height:40px;border:solid 1px #dedede;border-radius:5px;background:#f2f2f2;padding:0;margin:0;float:left;text-align:center;outline:none;color:#2fb8d7;font-weight:bold;font-size:16px;}~ .inputs input[disabled]{color:#dedede;}~ .inputs span{display:block;width:20px;height:40px;padding:0;margin:0;float:left;text-align:center;}~ .sel{width:318px;height:218px;background:rgba(255,255,255,1);position:absolute;overflow:hidden;}~ .sel div{overflow:hidden;}~ p{padding:0;margin:0;height:25px;line-height:25px;overflow:hidden;background:#2fb8d7;background:linear-gradient(90deg, #2fb8d7, #fff);border-bottom:solid 1px #900;}~ .sel .title{font-size:12px;}~ p span{display:block;width:12.5%;float:left;border-left:solid 1px #0094ff;text-align:center;padding:0;margin:0 0 0 -1px;cursor:pointer;}~ p span:hover{background:#fff;}~ .next,~ .per{visibility:hidden;}~ .year .next,~ .year .per{visibility:visible;}~ .title{font-size:16px;text-transform:capitalize;cursor:default;width:62.5%;text-align:left;text-indent:5px;}~ .title:hover{background:#00bcf2;color:#fff;}~ b,~ i{display:block;width:12.5%;border-top:solid 1px #dedede;border-left:solid 1px #dedede;padding:0;margin:-1px 0 0 -1px;text-align:center;font-style:normal;font-weight:normal;float:left;height:24px;line-height:24px;font-size:12px;}~ b.selected,~ i.selected{background:#f90;color:#fff;}~ b{cursor:pointer;}~ b:hover{color:#f00;}';
 					$(document.createElement('div')).cssText('display:none').attribute('id', id + '_style').html('&nbsp;<style type="text/css">' + (s.replace(/~/g, '#' + id)) + '</style>').appendTo(doc.body)
 				},
 				getRoot = function () {
@@ -3621,7 +3629,7 @@
 					if (node.length) {
 						node.remove()
 					}
-					node = $.htmlStrToDom('<div id="' + id + '"><div class="mask"></div><div class="box"><div class="t"><div class="tl"></div><div class="tr"></div></div><div class="c"><div class="inputs"><input type="text" name="yyyy" data-title="year" /><span>' + ('年' === lan.year ? lan.year : '-') + '</span><input type="text" name="MM" data-title="month" /><span>' + ('月' === lan.month ? lan.month : '-') + '</span><input type="text" name="dd" data-title="day" /><span>' + ('日' === lan.day ? lan.day : '') + '</span></div><div class="inputs"><input type="text" name="HH" data-title="hour" /><span>' + ('时' === lan.hour ? lan.hour : ':') + '</span><input type="text" name="mm" data-title="minute" /><span>' + ('分' === lan.minute ? lan.minute : ':') + '</span><input type="text" name="ss" data-title="second" /><span>' + ('秒' === lan.second ? lan.second : '') + '</span></div></div><div class="b"><a class="cancel">' + lan.cancel + '</a><a class="now">' + lan.now + '</a><a class="clean">' + lan.clear + '</a><a class="ok">' + lan.sure + '</a></div></div></div>').appendTo(doc.body);
+					node = $.htmlStrToDom('<div id="' + id + '"><div class="mask"></div><div class="box"><div class="t"><div class="tl"></div><div class="tr"></div></div><div class="c"><div class="inputs"><input type="text" name="yyyy" data-title="year" /><span>' + ('年' === lan.year ? lan.year : '-') + '</span><input type="text" name="MM" data-title="month" /><span>' + ('月' === lan.month ? lan.month : '-') + '</span><input type="text" name="dd" data-title="day" /><span>' + ('日' === lan.day ? lan.day : '') + '</span></div><div class="inputs"><input type="text" name="HH" data-title="hour" /><span>' + ('时' === lan.hour ? lan.hour : ':') + '</span><input type="text" name="mm" data-title="minute" /><span>' + ('分' === lan.minute ? lan.minute : ':') + '</span><input type="text" name="ss" data-title="second" /><span>' + ('秒' === lan.second ? lan.second : '') + '</span></div></div><div class="b"><a class="clean">' + lan.clear + '</a><a class="now">' + lan.now + '</a><a class="ok">' + lan.sure + '</a><a class="cancel">' + lan.cancel + '</a></div></div></div>').appendTo(doc.body);
 					return node
 				},
 				inputFunc = function () {
@@ -3635,7 +3643,9 @@
 					var numFunc = function (num) {
 						return num < 10 ? '0' + num : num
 					};
-					var html = ['<div class="sel ' + iTitle + '" data-begin="' + value + '" data-name="' + name + '"><p><span class="title">' + title + ' : ' + (undefined !== lan[iTitle] ? lan[iTitle] : iTitle) + '</span><span class="per">&lt;&lt;</span><span class="next">&gt;&gt;</span><span class="close">x</span></p><div>'];
+					var d = form.getData();
+					var result = $.datetimeParse(d.yyyy + '-' + d.MM + '-' + d.dd + ' ' + d.HH + ':' + d.mm + ':' + d.ss + '.' + d.fff);
+					var html = ['<div class="sel ' + iTitle + '" data-begin="' + value + '" data-name="' + name + '"><p><span class="title">[<u style="color:#000;text-decoration:none;text-transform:uppercase;">' + (undefined !== lan[iTitle] ? lan[iTitle] : iTitle) + '</u>] ' + getDatetimeFormat(result, format) + '</span><span class="per">&lt;&lt;</span><span class="next">&gt;&gt;</span><span class="close">x</span></p><div>'];
 					var bs = 0;
 					switch (name) {
 						case 'yyyy':
