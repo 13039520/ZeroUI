@@ -1,9 +1,9 @@
 ﻿/*图标*/
-.zero_bg_icon{background-position:2px center;background-repeat:no-repeat;padding-left:20px;vertical-align:middle;background-color:#00bcf2;}
+.zero_bg_icon{background-position:2px center;background-repeat:no-repeat;padding-left:20px;vertical-align:middle;background-color:#00a6ed;}
 input[type=button].zero_bg_icon,
 input[type=submit].zero_bg_icon,
 input[type=reset].zero_bg_icon,
-button.zero_bg_icon{padding-left:20px;border-color:#0488bc; background-color:#00bcf2;font-size:14px;color:#fff;}
+button.zero_bg_icon{padding-left:20px;border-color:#0269a6; background-color:#00a6ed;font-size:14px;color:#fff;}
 
 .zero_bg_icon_accessibility{background-image:url(images/icon/accessibility.png);}
 .zero_bg_icon_address_book{background-image:url(images/icon/address_book.png);}

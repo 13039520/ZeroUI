@@ -15,11 +15,11 @@ a{text-decoration:none;}
 p.imitateSelect{display:inline-block; white-space:nowrap; overflow:hidden;padding:0;margin:0;}
 p.imitateSelect select{visibility:hidden;}
 p.imitateSelect a{display:inline-block;overflow:hidden;}
-p.imitateSelect b{display:inline-block;overflow:hidden;width:16px;height:16px;float:right;line-height:16px;text-align:center;font-size:20px;font-weight:bold;border:0;margin-right:2px;color:#fff;text-indent:0;}
-div.imitateSelect{position:absolute;overflow:hidden;z-index:11;background-position:top left;border:solid 1px #0488bc;margin:0;padding:0;}
-div.imitateSelect p{border-bottom:solid 1px #0488bc;border-left:solid 1px #0488bc;padding:0;margin:0 0 0 -1px;white-space:nowrap; overflow:hidden;cursor:pointer;}
+p.imitateSelect b{display:inline-block;overflow:hidden;width:16px;height:16px;float:right;line-height:16px;text-align:center;font-size:20px;font-weight:bold;border:0;margin-right:2px;text-indent:0;}
+div.imitateSelect{position:absolute;overflow:hidden;z-index:11;background-position:top left;border:solid 1px #0269a6;margin:0;padding:0;}
+div.imitateSelect p{border-bottom:solid 1px #0269a6;border-left:solid 1px #0269a6;padding:0;margin:0 0 0 -1px;white-space:nowrap; overflow:hidden;cursor:pointer;color:#fff;}
 div.imitateSelect p:last-child{border-bottom:none;}
-div.imitateSelect p.zero_selected,div.imitateSelect p:hover{background-color:#ccc;}
+div.imitateSelect p.zero_selected,div.imitateSelect p:hover{background-color:#0583cc;}
 
 input{vertical-align:middle;}
 input[type=text],input[type=password],input[type=time],input[type=tel],textarea,select,input[type=radio],input[type=checkbox],select{border:solid 1px #dfdfdf;border-radius:0;background:#fafafa;color:#161B35;margin:1px;padding:0;height:22px;line-height:22px; outline:none;}
@@ -60,7 +60,7 @@ input[type=button]:focus,input[type=submit]:focus,input[type=reset]:focus,button
 dl.zero_form_group{border:0;padding:0 0 2px 0;margin:10px;display:block;overflow:hidden;border:solid 1px #eee;background:#fff;}
 dl.zero_form_group dt{display:block;padding:0 0 0 3px;margin:0;height:30px;font-size:16px; line-height:30px;color:#037f8c;border-bottom:solid 1px #037f8c}
 dl.zero_form_group dt span{display:inline-block;}
-dl.zero_form_group dt .zero_bg_icon{width:20px;height:20px;border-radius:0; display:block;float:left;background-position:center; padding:0;margin:3px 3px 0 0;vertical-align:middle;border:solid 1px #0488bc;background-color:#00bcf2;}
+dl.zero_form_group dt .zero_bg_icon{width:20px;height:20px;border-radius:0; display:block;float:left;background-position:center; padding:0;margin:3px 3px 0 0;vertical-align:middle;border:solid 1px #0269a6;background-color:#00a6ed;}
 dl.zero_form_group dd{display:block;padding:0;margin:0;float:left;height:52px;width:100%;overflow:hidden;}
 dl.zero_form_group .zero_form_text{height:19px;line-height:19px;overflow:hidden;border:0;margin:2px 1.5px 0 1.5px;padding:0;border:solid 1px #eee;color:#888;border-bottom:none;white-space:nowrap;text-overflow:ellipsis;}
 dl.zero_form_group .zero_form_input{height:28px;min-height:28px;border:0;margin:0 1.5px 0 1.5px;padding:0;display:block;background:#fafafa;border:solid 1px #dedede;position:relative;color:#0c50ba;}
@@ -133,9 +133,9 @@ dl.zero_form_group dd.zero_tips .zero_form_input {border-color: #f90;}
 
 table.zero_datatable {width: 100%;border-spacing: 0;border-collapse: collapse;}
 table.zero_datatable caption{font-size:16px;}
-table.zero_datatable thead{background:#0488bc;}
+table.zero_datatable thead{background:#0269a6;}
 table.zero_datatable p{padding:0;margin:0;}
-table.zero_datatable thead th,table.zero_datatable thead td{text-align:left;border:solid 1px #0488bc;color:#fff;line-height:1;padding:2px;font-size:12px;}
+table.zero_datatable thead th,table.zero_datatable thead td{text-align:left;border:solid 1px #0269a6;color:#fff;line-height:1;padding:2px;font-size:12px;}
 table.zero_datatable tbody{color:#666;font-size:14px;word-break:break-all;word-wrap:break-word;}
 table.zero_datatable tfoot td,
 table.zero_datatable tfoot th{background:#fff;border:solid 1px #dedede;overflow:hidden;} 
@@ -152,7 +152,7 @@ table.zero_datatable tbody tr.zero_selected a{color:#4488bb;}
 table.zero_datatable tbody tr.zero_selected a:hover{color:#f00;}
 table.zero_datatable .zero_ctrl a,
 table.zero_datatable button,
-table.zero_datatable input[type=button]{display:inline-block;height:20px; line-height:20px; font-size:12px;background-color:#00bcf2;border-color:#0488bc;border-radius:3px;}
+table.zero_datatable input[type=button]{display:inline-block;height:20px; line-height:20px; font-size:12px;background-color:#00a6ed;border-color:#0269a6;border-radius:3px;}
 table.zero_datatable .zero_ctrl a:hover,
 table.zero_datatable button:hover,
 table.zero_datatable input[type=button]:hover{border-color:#666;}
@@ -179,11 +179,11 @@ table.zero_datatable .zero_bg_icon{padding-right:3px;cursor:pointer;}
 
 .zero_side_bar{height:100%;width:100%;padding:0;margin:0;border:0;top:0;left:0;bottom:0;overflow:hidden;position:fixed;z-index:1;background:rgba(0,0,0,0.1);display:none;}
 .zero_side_bar .zero_mp_main{height:100%;padding:0;background-color:#fafafa;visibility:visible;overflow-x:hidden;overflow-y:auto;border:solid 1px #4488bb;}
-.zero_side_bar_header{color:#fff;line-height:32px;height:32px;overflow:hidden;background:#44aadd;padding:0;margin:0;border-bottom:solid 1px #4488bb;display:block;}
+.zero_side_bar_header{color:#fff;line-height:32px;height:32px;overflow:hidden;background:#00a6ed;padding:0;margin:0;border-bottom:solid 1px #4488bb;display:block;}
 .zero_side_bar_header_l{width:0;height:0;overflow:hidden;display:block;padding:0;margin:0;border:0;float:left;}
 .zero_side_bar_header_c{padding:0;margin:0 32px;height:32px;border:0; overflow:hidden;text-align:left;text-indent:5px;white-space:nowrap;text-overflow:ellipsis;}
 .zero_side_bar_header_r{width:0;height:0;overflow:hidden;display:block;padding:0;margin:0;border:0;float:right;}
-.zero_side_bar_header .zero_bg_icon{padding:0;margin:-1px;width:32px;height:32px;display:block;background-position:center;background-color:#44aadd;position:absolute;border:solid 1px #4488bb;}
+.zero_side_bar_header .zero_bg_icon{padding:0;margin:-1px;width:32px;height:32px;display:block;background-position:center;background-color:#00a6ed;position:absolute;border:solid 1px #4488bb;}
 .zero_side_bar_header_r .zero_bg_icon{margin:-33px 0 0 -33px;}
 .zero_side_bar_main{padding:0;margin:0;display:block;position:absolute;overflow-x:hidden;overflow-y:auto;background:#fff;}
 html.zero_side_bar_show,body.zero_side_bar_show{overflow:hidden;}
@@ -191,17 +191,17 @@ html.zero_side_bar_show,body.zero_side_bar_show{overflow:hidden;}
 .zero_icon_nav_list{padding:0;margin:0;border:0;overflow:hidden;}
 .zero_icon_nav_list dl{padding:0 0 10px 0;margin:10px;border:0;overflow:hidden;list-style:none;zoom:1;background:rgba(255,255,255,.9);}
 .zero_icon_nav_list dl:after{display:block;content:'';clear:both;height:0;width:100%;}
-.zero_icon_nav_list dt{padding:0;margin:0;overflow:hidden;border-bottom:solid 1px #44aadd;color:#44aadd;}
+.zero_icon_nav_list dt{padding:0;margin:0;overflow:hidden;border-bottom:solid 1px #00a6ed;color:#00a6ed;}
 .zero_icon_nav_list dd{width:60px;height:70px;overflow:hidden;float:left;padding:0;margin:10px 0 0 10px;border:0;}
-.zero_icon_nav_list .zero_bg_icon{width:100%;height:40px;background-color:#44aadd; background-position:center;border-radius:0; display:block;overflow:hidden;padding:0;margin:0;}
+.zero_icon_nav_list .zero_bg_icon{width:100%;height:40px;background-color:#00a6ed; background-position:center;border-radius:0; display:block;overflow:hidden;padding:0;margin:0;}
 .zero_icon_nav_list .zero_icon_nav_list_text{width:100%;height:30px; line-height:1; font-size:14px; overflow:hidden;display:block;text-align:center;color:#666;}
 .zero_icon_nav_list dt span{display:inline-block;}
-.zero_icon_nav_list dt .zero_bg_icon{width:20px;height:20px;display:inline-block;background-position:center; padding:0;margin:3px;vertical-align:middle;border:solid 1px #44aadd;}
+.zero_icon_nav_list dt .zero_bg_icon{width:20px;height:20px;display:inline-block;background-position:center; padding:0;margin:3px;vertical-align:middle;border:solid 1px #00a6ed;}
 
 .zero_ctrl_inputs{background:#fff;padding:5px 0;margin:0;border:0;display:block;overflow:hidden;zoom:1;line-height:27px;}
 .zero_ctrl_inputs *{display:block;float:left;vertical-align:middle;font-size:14px;}
 .zero_ctrl_inputs:after{display:block;width:0;height:0;overflow:hidden;clear:both;}
-.zero_ctrl_inputs .zero_bg_icon{border:solid 1px #0488bc;color: #fff;}
+.zero_ctrl_inputs .zero_bg_icon{border:solid 1px #0269a6;color: #fff;}
 .zero_ctrl_inputs a{height:27px; padding-right:5px;border-radius:0;}
 
 /*在一定的屏幕宽度下隐藏页面元素*/

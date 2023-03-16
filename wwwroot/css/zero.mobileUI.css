@@ -2,39 +2,39 @@
 @import 'zero.icons.css';
 
 /*以更明确的指向覆盖dialog的默认样式*/
-body #dialogInit .zero_dialog .zero_dialogT{background:#44aadd;color:#fff;border-bottom:solid 1px #44aadd;}
-body #dialogInit .zero_dialog .zero_dialogT .dialog_icon{border:solid 1px #44aadd;border-radius:0;background-color:#4488bb; background-image:url(../css/images/icon/info2.png);width:20px;height:20px;margin:9px 0 0 9px;}
-body #dialogInit .zero_dialog span.zero_closeBtn{border:solid 1px #44aadd;color:#44aadd;box-shadow:none; border-radius:0; width:1.25em;height:1.25em;margin:0.625em 0 0 -1.875em;line-height:1.25em;position:absolute;background-color:#4488bb;}
-body #dialogInit .zero_dialog span.zero_closeBtn:hover{background:#f7f7f7;color:#44aadd;border-color:#44aadd;}
-body #dialogInit .zero_dialogB a{border-color:#dfdfdf;color:#44aadd;background:#f7f7f7;cursor:pointer;}
-body #dialogInit .zero_dialogB a:hover{color:#44aadd;background:#f7f7f7;}
+body #dialogInit .zero_dialog .zero_dialogT{background:#00a6ed;color:#fff;border-bottom:solid 1px #00a6ed;}
+body #dialogInit .zero_dialog .zero_dialogT .dialog_icon{border:solid 1px #00a6ed;border-radius:0;background-color:#4488bb; background-image:url(../css/images/icon/info2.png);width:20px;height:20px;margin:9px 0 0 9px;}
+body #dialogInit .zero_dialog span.zero_closeBtn{border:solid 1px #00a6ed;color:#00a6ed;box-shadow:none; border-radius:0; width:1.25em;height:1.25em;margin:0.625em 0 0 -1.875em;line-height:1.25em;position:absolute;background-color:#4488bb;}
+body #dialogInit .zero_dialog span.zero_closeBtn:hover{background:#f7f7f7;color:#00a6ed;border-color:#00a6ed;}
+body #dialogInit .zero_dialogB a{border-color:#dfdfdf;color:#00a6ed;background:#f7f7f7;cursor:pointer;}
+body #dialogInit .zero_dialogB a:hover{color:#00a6ed;background:#f7f7f7;}
 body #dialogInit .zero_dialogMaskDiv,body #dialogInit .zero_nDialog .zero_dialogMaskDiv{background:#161B35;opacity:0.1; filter:alpha(opacity=10);}
 body #dialogInit .zero_dialogShowDiv,body #dialogInit .zero_nDialog .zero_dialogShowDiv{border-color:#4488bb;box-shadow:0 0 10px rgba(0,0,0,.7);border-radius:0;}
 
 /*以更明确的指向覆盖zero_date_input的默认样式*/
-body #zero_date_input .box{border-color:#44aadd;border-radius:0;}
-body #zero_date_input .box .t{background:#44aadd;}
-body #zero_date_input p{background:#44aadd;color:#fff;}
+body #zero_date_input .box{border-color:#00a6ed;border-radius:0;}
+body #zero_date_input .box .t{background:#00a6ed;}
+body #zero_date_input p{background:#00a6ed;color:#fff;}
 body #zero_date_input p span:hover{color:#037676;}
 body #zero_date_input .b a{border-left-color:#dedede;}
 
 html,body{padding:0;margin:0;font-size:16px;line-height:1.7;}
 #zero_mp_header{width:100%;height:32px;overflow:hidden;color:#fff;line-height:32px;border-bottom:solid 1px #fff;}
 #zero_mp_header .zero_bg_icon{padding:0;margin:0;width:32px;height:32px;display:block;background-position:center;background-color:transparent;}
-.zero_mp_header{width:100%;height:32px;overflow:hidden;background:#44aadd;padding:0;margin:0;}
+.zero_mp_header{width:100%;height:32px;overflow:hidden;background:#00a6ed;padding:0;margin:0;}
 .zero_mp_header_fixed{position:fixed;top:0;left:0;z-index:1;border-bottom:solid 1px #4488bb;}
-.zero_mp_header_l{width:32px;height:32px;overflow:hidden;display:block;padding:0;margin:0;border:0;text-align:center;background-color:#44aadd;position:absolute;top:0;left:0;border-right:solid 1px #4488bb;}
+.zero_mp_header_l{width:32px;height:32px;overflow:hidden;display:block;padding:0;margin:0;border:0;text-align:center;background-color:#00a6ed;position:absolute;top:0;left:0;border-right:solid 1px #4488bb;}
 .zero_mp_header_c{padding:0;margin:0 32px;border:0;overflow:hidden;text-align:center;}
-.zero_mp_header_r{width:32px;height:32px;overflow:hidden;display:block;padding:0;margin:0;border:0;text-align:center;background-color:#44aadd;position:absolute;top:0;right:0;border-left:solid 1px #4488bb;}
+.zero_mp_header_r{width:32px;height:32px;overflow:hidden;display:block;padding:0;margin:0;border:0;text-align:center;background-color:#00a6ed;position:absolute;top:0;right:0;border-left:solid 1px #4488bb;}
 
 #zero_mp_footer{width:100%;height:40px;overflow:hidden;color:#fff;line-height:40px;}
-.zero_mp_footer{width:100%;height:40px;overflow:hidden;background:#44aadd;padding:0;margin:0;border:0;}
+.zero_mp_footer{width:100%;height:40px;overflow:hidden;background:#00a6ed;padding:0;margin:0;border:0;}
 .zero_mp_footer_fixed{position:fixed;bottom:0;left:0;z-index:1;}
 .zero_mp_footer_nav{list-style:none;border-top:solid 1px #4488bb;}
 .zero_mp_footer_nav li{display:block;width:20%;height:40px;overflow:hidden;float:left;text-align:center;border-left:solid 1px #4488bb;padding:0;margin:0 0 0 -1px;}
 .zero_mp_footer_nav .zero_bg_icon{display:block;margin:0;padding:0;overflow:hidden;height:20px;background-position:center;background-color:transparent;}
 .zero_mp_footer_nav .zero_mp_nav_text{height:20px;line-height:20px;display:block;overflow:hidden;font-size:12px;color:#fff;}
-.zero_mp_footer_nav li.zero_selected{background:#44aadd;}
+.zero_mp_footer_nav li.zero_selected{background:#00a6ed;}
 
 .zero_mp_main{padding:0;margin:0;border:0;overflow:hidden;display:block;position:relative;}
 #zero_mp_remark_bar .zero_side_bar_main p{padding:0;margin:2px;font-size:14px;}
