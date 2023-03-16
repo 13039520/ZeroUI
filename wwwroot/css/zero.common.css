@@ -133,9 +133,9 @@ dl.zero_form_group dd.zero_tips .zero_form_input {border-color: #f90;}
 
 table.zero_datatable {width: 100%;border-spacing: 0;border-collapse: collapse;}
 table.zero_datatable caption{font-size:16px;}
-table.zero_datatable thead{background:#0269a6;}
+table.zero_datatable thead{background:transparent;}
 table.zero_datatable p{padding:0;margin:0;}
-table.zero_datatable thead th,table.zero_datatable thead td{text-align:left;border:solid 1px #0269a6;color:#fff;line-height:1;padding:2px;font-size:12px;}
+table.zero_datatable thead th,table.zero_datatable thead td{text-align:left;border:none;border-bottom:solid 5px #0269a6;vertical-align: bottom; color:#0269a6;line-height:1;padding:2px;font-size:12px;}
 table.zero_datatable tbody{color:#666;font-size:14px;word-break:break-all;word-wrap:break-word;}
 table.zero_datatable tfoot td,
 table.zero_datatable tfoot th{background:#fff;border:solid 1px #dedede;overflow:hidden;} 

@@ -65,9 +65,9 @@ body #zero_date_input .b a{border-left-color:#dedede;}
 #zero_ap_layout_right_tabs .zero_arrow_c{border-radius: 0;font-size: 12px;color: #fff;}
 #zero_ap_layout_right_tabs .zero_arrow_r{border-radius: 0;}
 #zero_ap_layout_right_tabs .zero_r_tabs_init{height:32px;width:100%;overflow:hidden;padding:0;margin:0;float:left;}
-#zero_ap_layout_right_tabs .zero_r_tabs_init .zero_init{height:32px;margin:0 90px 0 0;overflow:hidden;padding:0;background-color:#00a6ed;}
+#zero_ap_layout_right_tabs .zero_r_tabs_init .zero_init{height:32px;margin:0 90px 0 0;overflow:hidden;padding:0;background-color:#00a6ed;background-image:url(images/bg_line001.png);}
 #zero_ap_layout_right_tabs .zero_r_tabs_init .zero_tabs{width:121px;height:32px;overflow:hidden;padding:0;margin:0;border:0;}
-#zero_ap_layout_right_tabs .zero_r_tabs_init .zero_tab{width:116px; height:31px;overflow:hidden;float:left;background-color:#00a6ed;margin:0 1px;border:solid 1px #0269a6;border-radius: 5px 5px 0 0;}
+#zero_ap_layout_right_tabs .zero_r_tabs_init .zero_tab{width:116px; height:31px;overflow:hidden;float:left;background-color:#00a6ed;background-color:rgba(0,166,237,.6);margin:0 1px;border:solid 1px #0269a6;border-radius: 5px 5px 0 0;}
 #zero_ap_layout_right_tabs .zero_r_tabs_init .zero_tab_text{display:block;padding:0;margin:0;width:99px;height:31px;overflow:hidden;float:left;white-space:nowrap;text-overflow:ellipsis;color:#fff; text-indent:4px;line-height:30px;font-size:14px;cursor:default;user-select:none;}
 #zero_ap_layout_right_tabs .zero_r_tabs_init .zero_tab_close{display:block;padding:0;margin:6px 1px 0 0;width:16px;height:16px;overflow:hidden;float:right;background:#0269a6;color:#00a6ed;line-height:12px;text-align:center;cursor:pointer;border-radius:0;user-select:none;}
 #zero_ap_layout_right_tabs .zero_r_tabs_init .zero_selected{background:#0269a6;border-top-color:#0269a6;border-left-color:#0269a6;}
