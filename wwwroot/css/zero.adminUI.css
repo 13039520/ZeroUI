@@ -133,9 +133,9 @@ body #zero_date_input .b a{border-left-color:#dedede;}
 }
 @media print {
     body{background-color:#fff;}
-    table.zero_datatable thead th, table.zero_datatable thead td{border-color:#161B35;color:#161B35;background-color:#fff;}
-    table.zero_datatable tbody th, table.zero_datatable tbody td{border:dashed 1px #161B35; color:#161B35;background-color:#fff;}
-    table.zero_datatable tfoot th, table.zero_datatable tfoot td{border:dashed 1px #161B35; color:#161B35;background-color:#fff;}
+    table.zero_datatable thead th, table.zero_datatable thead td{border-bottom: solid 1px #dedede;color:#161B35;background-color:#fff;}
+    table.zero_datatable tbody th, table.zero_datatable tbody td{color:#161B35;background-color:#fff;}
+    table.zero_datatable tfoot th, table.zero_datatable tfoot td{color:#161B35;background-color:#fff;}
     .noprint { display: none; }
     .zero_top_page .zero_ap_fitDiv{display:none;}
     .zero_ifram_page .zero_data_list{overflow:hidden;margin:0;}
