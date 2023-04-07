@@ -12,7 +12,7 @@
         .tabs_title_selected{height: 36px; border-bottom: solid 4px #000;color: #00f;}
         .tabs_title_focus_line_top .tabs_title_selected{border-bottom-width:0;border-top: solid 4px #000;line-height: 32px;}
         .tabs_content{overflow: hidden;}
-        .tabs_content_item{overflow: hidden; display: none;}
+        .tabs_content_item{overflow: hidden; display: none;background-color: #f4f4f4;}
         .tabs_content_selected{display: block;}
         .tabs_content_info{border-top: solid 1px #999;word-break: break-all;}
     </style>
@@ -22,7 +22,12 @@
     <script type="text/javascript" src="../js/zero.adminUI.js"></script>
     <script type="text/javascript">
         zero.tabs=function(){
+            var isMoved=false;
             var tabs=function(item,e){
+                if(isMoved){
+                    isMoved=false;
+                    return;
+                }
                 if(zero(item).hasClass('tabs_title_selected')){return;}
                 var a=zero(item).parent();
                 var selIndex=-1;
@@ -73,11 +78,15 @@
                             nodeSize.height - boxSize.height);
                         this.para({boxPoint:boxPoint,boxSize:boxSize,nodeSize:nodeSize})
                     }).move(function (node, point, para) {
+                        isMoved=true;
                         var num=parseInt(point.x,10)+para.boxPoint.x;
                         zero(this.node).cssText('margin-left:' + num + 'px');
                     }).end(function (node, point, para) {
                         //移除拖动中的样式
                         //zero(this.node).removeClass('drag_node_on');
+                        setTimeout(() => {
+                            if(isMoved){isMoved=false;}
+                        }, 16);
                     });
             }
         };
@@ -131,7 +140,6 @@
             <div class="tabs_title_item">tab wwwww</div>
         </div>
         <div class="tabs_content">
-            <div>这是不受tabs控制的块001</div>
             <div class="tabs_content_item tabs_content_selected">tabs_content 11111</div>
             <div class="tabs_content_item">tabs_content 22222</div>
             <div class="tabs_content_item">tabs_content 33333</div>
@@ -140,7 +148,21 @@
             <div class="tabs_content_item">tabs_content 66666</div>
             <div class="tabs_content_item">tabs_content 77777</div>
             <div class="tabs_content_item">tabs_content 88888</div>
-            <div class="tabs_content_item">tabs_content 99999 tabs_content 99999 tabs_content 99999 tabs_content 99999 tabs_content 99999 tabs_content 99999 tabs_content 99999 </div>
+            <div class="tabs_content_item">
+                <p>tabs_content 99999 tabs_content 99999 tabs_content 99999 tabs_content 99999 tabs_content 99999 tabs_content 99999 tabs_content 99999</p>
+                <p>tabs_content 99999 tabs_content 99999 tabs_content 99999 tabs_content 99999 tabs_content 99999 tabs_content 99999 tabs_content 99999</p>
+                <p>tabs_content 99999 tabs_content 99999 tabs_content 99999 tabs_content 99999 tabs_content 99999 tabs_content 99999 tabs_content 99999</p>
+                <p>tabs_content 99999 tabs_content 99999 tabs_content 99999 tabs_content 99999 tabs_content 99999 tabs_content 99999 tabs_content 99999</p>
+                <p>tabs_content 99999 tabs_content 99999 tabs_content 99999 tabs_content 99999 tabs_content 99999 tabs_content 99999 tabs_content 99999</p>
+                <p>tabs_content 99999 tabs_content 99999 tabs_content 99999 tabs_content 99999 tabs_content 99999 tabs_content 99999 tabs_content 99999</p>
+                <p>tabs_content 99999 tabs_content 99999 tabs_content 99999 tabs_content 99999 tabs_content 99999 tabs_content 99999 tabs_content 99999</p>
+                <p>tabs_content 99999 tabs_content 99999 tabs_content 99999 tabs_content 99999 tabs_content 99999 tabs_content 99999 tabs_content 99999</p>
+                <p>tabs_content 99999 tabs_content 99999 tabs_content 99999 tabs_content 99999 tabs_content 99999 tabs_content 99999 tabs_content 99999</p>
+                <p>tabs_content 99999 tabs_content 99999 tabs_content 99999 tabs_content 99999 tabs_content 99999 tabs_content 99999 tabs_content 99999</p>
+                <p>tabs_content 99999 tabs_content 99999 tabs_content 99999 tabs_content 99999 tabs_content 99999 tabs_content 99999 tabs_content 99999</p>
+                <p>tabs_content 99999 tabs_content 99999 tabs_content 99999 tabs_content 99999 tabs_content 99999 tabs_content 99999 tabs_content 99999</p>
+                <p>tabs_content 99999 tabs_content 99999 tabs_content 99999 tabs_content 99999 tabs_content 99999 tabs_content 99999 tabs_content 99999</p>
+            </div>
             <div class="tabs_content_item">tabs_content 00000</div>
             <div class="tabs_content_item">tabs_content aaaaa</div>
             <div class="tabs_content_item">tabs_content bbbbb</div>
@@ -170,7 +192,7 @@
         <thead><tr><td>构造</td></tr></thead>
         <tbody>
         <tr><td>zero.drag(ele)</td></tr>
-        <tr><td>将要拖到的页面节点传入</td></tr>
+        <tr><td>将要拖动的页面节点传入</td></tr>
     </tbody></table>
     <table class="zero_datatable">
         <thead><tr><td>属性</td></tr></thead>

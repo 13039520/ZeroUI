@@ -141,7 +141,7 @@ table.zero_datatable tfoot td,
 table.zero_datatable tfoot th{background:#fff;border:solid 1px #dedede;overflow:hidden;} 
 table.zero_datatable tfoot .zero_left{width:49%; height:30px; padding-top:4px;}
 table.zero_datatable tfoot .zero_right{width:49%;}
-table.zero_datatable tbody td{border:solid 1px #eee;padding:6px 2px;}
+table.zero_datatable tbody th,table.zero_datatable tbody td{border:solid 1px #eee;padding:6px 2px;}
 table.zero_datatable tbody tr{background:#f2f2f2;color:#333;line-height:1.2;}
 table.zero_datatable tbody tr:hover{color:#f00;}
 table.zero_datatable tbody tr:nth-child(even){background:#fafafa;color:#161B35;}
