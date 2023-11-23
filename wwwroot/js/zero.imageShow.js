@@ -1,6 +1,6 @@
 ﻿/// <reference path="zero.js" />
 (function ($) {
-    var core = function (imgs, showed, index, behavior, useDirectionKey, win, zIndex) {
+    var core = function (imgs, showed, index, behavior, useDirectionKey, win, zIndex, loadingBack, loadingFore) {
         if (!isArray(imgs)) { return }
         if (imgs.length < 1) { return }
         if (index != undefined && index != null) {
@@ -14,6 +14,8 @@
         if (!isWin(win)) { win = window; }
         win.focus();
         if (!isNum(zIndex)) { zIndex = 0; }
+        if(!isStr(loadingBack)||!/^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/.test(loadingBack)){ loadingBack='#f2f2f2'; }
+        if(!isStr(loadingFore)||!/^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/.test(loadingFore)){ loadingFore='#000'; }
         var id = '_zero_image_show_',
             doc = win.document,
             body = doc.body,
@@ -81,7 +83,7 @@
             loadImgFun = function (image, loaded) {
                 running = true;
                 bTime = new Date();
-                $(imgInit).html('<p style="padding:0;margin:0;height:100%;background:#f2f2f2;overflow:hidden;"><span style="display:block;padding:0;margin:0;height:50%;"></span><span style="display:block;padding:0;margin:0;text-align:center;">……'+$.lan.loading+'……</span></p>');
+                $(imgInit).html('<p style="padding:0;margin:0;height:100%;background:'+loadingBack+';overflow:hidden;"><span style="display:block;padding:0;margin:0;height:50%;"></span><span style="display:block;padding:0;margin:0;text-align:center;color:'+loadingFore+';">……'+$.lan.loading+'……</span></p>');
                 var img = document.createElement('img');
                 img.style.visibility = 'hidden';
                 if (isStr(image.alt)) { img.alt = image.alt; }
@@ -301,7 +303,7 @@
         if (!isStr(options.behavior)) { options.behavior = ''; }
         if (undefined === options.useDirectionKey) { options.useDirectionKey = false; }
         if (!isFunc(options.onShowed)) { options.onShowed = function () { }; }
-        core(options.source, options.onShowed, options.index, options.behavior, options.useDirectionKey, options.win, options.zIndex);
+        core(options.source, options.onShowed, options.index, options.behavior, options.useDirectionKey, options.win, options.zIndex, options.loadingBack, options.loadingFore);
     };
     window.imageShow = init;
     $.imageShow = init;

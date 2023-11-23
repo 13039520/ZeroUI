@@ -16,12 +16,13 @@ HttpMaxContentLength=419430400
 SiteStaticFileSuffix=.html .xml .htm .css .js .txt .csv
 SiteStaticFileSuffix=.zip .rar
 SiteStaticFileSuffix=.ico .jpg .jpeg .png .gif .webp .svg .psd .ai .cdr .tiff .eps .epsf
-SiteStaticFileSuffix=.m3u8 .ts
+SiteStaticFileSuffix=.m3u8 .ts .glb
 
 SiteDefaultFile=Index.html Index.htm Default.html Default.htm
 SiteHomeDirectory=@AppBaseDir/wwwroot
 SiteVirtualDirectory=D:\testFiles
-SiteVirtualDirectory=E:\videos
+SiteVirtualDirectory=E:\软件工具\three.js-master\build
+SiteVirtualDirectory=E:\软件工具\three.js-master\examples
 
 //MIME Type
 SiteMIME=.7z=application/octet-stream
@@ -29,3 +30,4 @@ SiteMIME=.apk=application/octet-stream
 SiteMIME=.cur=image/x-icon
 SiteMIME=.m3u8=application/x-mpegURL
 SiteMIME=.ts=video/MP2T
+SiteMIME=.glb=model/gltf-binary
